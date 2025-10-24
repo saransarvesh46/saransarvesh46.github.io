@@ -1,4 +1,6 @@
 import { motion, useInView } from 'framer-motion';
+
+
 import { useRef } from 'react';
 import { FiGithub, FiExternalLink } from 'react-icons/fi';
 
@@ -72,96 +74,93 @@ const projects = [
 const Projects = () => {
 	const ref = useRef(null);
 	const isInView = useInView(ref, { once: true, margin: '-100px' });
-	return (
-		<section
-			id="projects"
-			ref={ref}
-			className="py-20 bg-white dark:bg-gray-900 relative overflow-hidden"
-		>
-			{/* Animated horizontal line */}
-			<motion.div
-				initial={{ width: 0 }}
-				animate={isInView ? { width: '100%' } : { width: 0 }}
-				transition={{ duration: 1, delay: 0.2 }}
-				className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-blue-400/30 to-transparent pointer-events-none"
-				style={{ zIndex: 1 }}
-			/>
-			<div className="container mx-auto px-4">
-				<motion.h2
-					initial={{ opacity: 0, y: 40 }}
-					animate={
-						isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }
-					}
-					transition={{ duration: 0.7 }}
-					className="text-3xl md:text-4xl font-bold text-center mb-12 bg-gradient-to-r from-blue-500 via-cyan-400 to-purple-500 bg-clip-text text-transparent"
-				>
-					Projects
-				</motion.h2>
-				<div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
-					{projects.map((project, idx) => (
-						<motion.div
-							key={project.title}
-							initial={{ opacity: 0, y: 40 }}
-							whileInView={{ opacity: 1, y: 0 }}
-							viewport={{ once: true, amount: 0.3 }}
-							transition={{ duration: 0.6, delay: idx * 0.1 }}
-							className="bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 rounded-2xl shadow-lg p-8 flex flex-col hover:scale-105 hover:shadow-2xl transition-transform duration-300 group border border-gray-200 dark:border-gray-700"
-							whileHover={{
-								scale: 1.05,
-								boxShadow: '0 8px 32px 0 rgba(60,132,206,0.15)',
-							}}
-						>
-							<div className="mb-6">
-								<h3 className="text-2xl font-bold mb-3 text-blue-600 dark:text-cyan-400 group-hover:underline transition-all">
-									{project.title}
-								</h3>
-								<p className="text-gray-700 dark:text-gray-300 mb-4 text-base leading-relaxed">
-									{project.description}
-		
-								</p>
-								<div className="flex flex-wrap gap-2 mb-2">
-									{project.technologies.map((tech) => (
-										<span
-											key={tech}
-											className="px-3 py-1 text-xs rounded bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 font-medium"
-										>
-											{tech}
-										</span>
-									))}
+		return (
+			<section
+				id="projects"
+				ref={ref}
+				className="py-20 bg-gradient-to-br from-white/70 via-blue-50/60 to-purple-50/60 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative overflow-hidden"
+			>
+				{/* Animated horizontal line */}
+				<motion.div
+					initial={{ width: 0 }}
+					animate={isInView ? { width: '100%' } : { width: 0 }}
+					transition={{ duration: 1, delay: 0.2 }}
+					className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-blue-400/30 to-transparent pointer-events-none"
+					style={{ zIndex: 1 }}
+				/>
+				<div className="container mx-auto px-4">
+					<motion.h2
+						initial={{ opacity: 0, y: 40 }}
+						animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+						transition={{ duration: 0.7 }}
+						className="text-3xl md:text-4xl font-bold text-center mb-12 bg-gradient-to-r from-blue-500 via-cyan-400 to-purple-500 bg-clip-text text-transparent"
+					>
+						Projects
+					</motion.h2>
+					<div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+						{projects.map((project, idx) => (
+							<motion.div
+								key={project.title}
+								initial={{ opacity: 0, y: 40 }}
+								whileInView={{ opacity: 1, y: 0 }}
+								viewport={{ once: true, amount: 0.3 }}
+								transition={{ duration: 0.6, delay: idx * 0.1 }}
+								className="bg-white/60 dark:bg-gray-900/60 backdrop-blur-lg rounded-2xl shadow-xl p-8 flex flex-col hover:scale-105 hover:shadow-2xl transition-transform duration-300 group border border-white/30 dark:border-gray-800/40"
+								whileHover={{
+									scale: 1.05,
+									boxShadow: '0 8px 32px 0 rgba(60,132,206,0.15)',
+								}}
+							>
+								<div className="mb-6">
+									<h3 className="text-2xl font-bold mb-3 text-blue-600 dark:text-cyan-400 group-hover:underline transition-all">
+										{project.title}
+									</h3>
+									<p className="text-gray-700 dark:text-gray-300 mb-4 text-base leading-relaxed">
+										{project.description}
+									</p>
+									<div className="flex flex-wrap gap-2 mb-2">
+										{project.technologies.map((tech) => (
+											<span
+												key={tech}
+												className="px-3 py-1 text-xs rounded-full font-semibold shadow bg-gradient-to-r from-cyan-100 to-blue-100 dark:from-cyan-900 dark:to-blue-900 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800"
+											>
+												{tech}
+											</span>
+										))}
+									</div>
 								</div>
-							</div>
-							<div className="mt-auto flex gap-4">
-								{project.github && (
-									<motion.a
-										href={project.github}
-										target="_blank"
-										rel="noopener noreferrer"
-										className="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-cyan-400 transition-colors text-lg"
-										aria-label="GitHub"
-										whileHover={{ scale: 1.2, color: '#2563eb' }}
-									>
-										<FiGithub />
-									</motion.a>
-								)}
-								{project.demo && (
-									<motion.a
-										href={project.demo}
-										target="_blank"
-										rel="noopener noreferrer"
-										className="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-cyan-400 transition-colors text-lg"
-										aria-label="Demo"
-										whileHover={{ scale: 1.2, color: '#06b6d4' }}
-									>
-										<FiExternalLink />
-									</motion.a>
-								)}
-							</div>
-						</motion.div>
-					))}
+								<div className="mt-auto flex gap-4">
+									{project.github && (
+										<motion.a
+											href={project.github}
+											target="_blank"
+											rel="noopener noreferrer"
+											className="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-cyan-400 transition-colors text-lg bg-white/40 dark:bg-gray-800/40 p-2 rounded-full shadow hover:scale-110"
+											aria-label="GitHub"
+											whileHover={{ scale: 1.2, color: '#2563eb' }}
+										>
+											<FiGithub />
+										</motion.a>
+									)}
+									{project.demo && (
+										<motion.a
+											href={project.demo}
+											target="_blank"
+											rel="noopener noreferrer"
+											className="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-cyan-400 transition-colors text-lg bg-white/40 dark:bg-gray-800/40 p-2 rounded-full shadow hover:scale-110"
+											aria-label="Demo"
+											whileHover={{ scale: 1.2, color: '#06b6d4' }}
+										>
+											<FiExternalLink />
+										</motion.a>
+									)}
+								</div>
+							</motion.div>
+						))}
+					</div>
 				</div>
-			</div>
-		</section>
-	);
+			</section>
+		);
 };
 
 export default Projects;

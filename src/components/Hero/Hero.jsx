@@ -1,4 +1,5 @@
 import { motion, useInView } from 'framer-motion';
+
 import { useRef } from 'react';
 import { FiChevronDown, FiMail } from 'react-icons/fi';
 

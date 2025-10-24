@@ -62,12 +62,12 @@ const tools = [
 
 const SkillItem = ({ name, icon }) => (
   <motion.div 
-    className="flex items-center p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+    className="flex items-center gap-4 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
     whileHover={{ x: 5 }}
     transition={{ type: 'spring', stiffness: 300 }}
   >
-    <span className="text-cyan-500 dark:text-cyan-400 text-xl mr-3">{icon}</span>
-    <span className="text-gray-700 dark:text-gray-200 font-medium">{name}</span>
+    <span className="flex items-center justify-center w-8 h-8 text-cyan-500 dark:text-cyan-400">{icon}</span>
+    <span className="text-gray-700 dark:text-gray-200 font-medium text-base flex-1">{name}</span>
   </motion.div>
 );
 
