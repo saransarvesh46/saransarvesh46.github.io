@@ -84,7 +84,7 @@ const projects = [
 			'ClinicalTrials.gov API',
 			'ORCID API',
 		],
-		github: null,
+		github: 'https://github.com/saran887/CuraLink---AI-Powered-Clinical-Trial-Research-Platform',
 		demo: 'https://cura-link-ai-powered-clinical-trial-iota.vercel.app',
 	},
 	
