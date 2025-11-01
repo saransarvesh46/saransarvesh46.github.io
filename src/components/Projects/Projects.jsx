@@ -67,6 +67,26 @@ const projects = [
 		github: 'https://github.com/saran887/iot-ecommerce',
 		demo: 'https://iot-webpage-git-main-sarans-projects-ffa5672c.vercel.app?_vercel_share=RPdbB1VKgefwYDmFvfAkqPUMsuoXKV0Q',
 	},
+	{
+		title: 'CuraLink',
+		description:
+			"CuraLink is an AI-powered medical platform that connects patients with clinical trials and enables global researcher collaboration. It uses Google Gemini AI for intelligent condition detection and expert matching, integrates real-time data from PubMed, ClinicalTrials.gov, and ORCID APIs, and features a modern responsive interface built with React 18 and Tailwind CSS. Deployed on Vercel (frontend) and Render (backend).",
+		technologies: [
+			'Google Gemini AI',
+			'FastAPI',
+			'SQLAlchemy',
+			'React 18',
+			'Tailwind CSS',
+			'Vite',
+			'Axios',
+			'Leaflet',
+			'PubMed API',
+			'ClinicalTrials.gov API',
+			'ORCID API',
+		],
+		github: null,
+		demo: 'https://cura-link-ai-powered-clinical-trial-iota.vercel.app',
+	},
 	
 	
 ];
