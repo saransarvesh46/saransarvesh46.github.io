@@ -98,68 +98,74 @@ const Projects = () => {
 			<section
 				id="projects"
 				ref={ref}
-				className="py-20 bg-gradient-to-br from-white/70 via-blue-50/60 to-purple-50/60 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative overflow-hidden"
+				className="py-24 bg-gray-950 relative overflow-hidden"
 			>
-				{/* Animated horizontal line */}
-				<motion.div
-					initial={{ width: 0 }}
-					animate={isInView ? { width: '100%' } : { width: 0 }}
-					transition={{ duration: 1, delay: 0.2 }}
-					className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-blue-400/30 to-transparent pointer-events-none"
-					style={{ zIndex: 1 }}
-				/>
-				<div className="container mx-auto px-4">
+				{/* Subtle gradient overlay */}
+				<div className="absolute inset-0 bg-gradient-to-br from-blue-950/20 via-gray-950 to-purple-950/10" />
+				
+				<div className="container mx-auto px-6 max-w-7xl relative z-10">
 					<motion.h2
-						initial={{ opacity: 0, y: 40 }}
-						animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-						transition={{ duration: 0.7 }}
-						className="text-3xl md:text-4xl font-bold text-center mb-12 bg-gradient-to-r from-blue-500 via-cyan-400 to-purple-500 bg-clip-text text-transparent"
+						initial={{ opacity: 0, y: 20 }}
+						animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+						transition={{ duration: 0.6 }}
+						className="text-5xl md:text-6xl font-bold text-center mb-4 bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent"
 					>
 						Projects
 					</motion.h2>
-					<div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+					<motion.p
+						initial={{ opacity: 0 }}
+						animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+						transition={{ duration: 0.6, delay: 0.2 }}
+						className="text-center text-gray-400 mb-16 text-lg"
+					>
+						Showcasing real-world solutions
+					</motion.p>
+					<div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
 						{projects.map((project, idx) => (
 							<motion.div
 								key={project.title}
-								initial={{ opacity: 0, y: 40 }}
+								initial={{ opacity: 0, y: 30 }}
 								whileInView={{ opacity: 1, y: 0 }}
-								viewport={{ once: true, amount: 0.3 }}
-								transition={{ duration: 0.6, delay: idx * 0.1 }}
-								className="bg-white/60 dark:bg-gray-900/60 backdrop-blur-lg rounded-2xl shadow-xl p-8 flex flex-col hover:scale-105 hover:shadow-2xl transition-transform duration-300 group border border-white/30 dark:border-gray-800/40"
-								whileHover={{
-									scale: 1.05,
-									boxShadow: '0 8px 32px 0 rgba(60,132,206,0.15)',
-								}}
+								viewport={{ once: true, amount: 0.2 }}
+								transition={{ duration: 0.5, delay: idx * 0.1 }}
+								className="group bg-gray-900/40 backdrop-blur-sm rounded-2xl p-6 flex flex-col hover:bg-gray-900/60 transition-all duration-300 border border-white/10 hover:border-blue-500/30 hover:shadow-2xl hover:shadow-blue-900/20"
 							>
-								<div className="mb-6">
-									<h3 className="text-2xl font-bold mb-3 text-blue-600 dark:text-cyan-400 group-hover:underline transition-all">
+								<div className="mb-5">
+									<h3 className="text-2xl font-bold mb-3 text-white group-hover:text-blue-400 transition-colors">
 										{project.title}
 									</h3>
-									<p className="text-gray-700 dark:text-gray-300 mb-4 text-base leading-relaxed">
+									<p className="text-gray-400 text-sm leading-relaxed mb-4">
 										{project.description}
 									</p>
-									<div className="flex flex-wrap gap-2 mb-2">
-										{project.technologies.map((tech) => (
+									<div className="flex flex-wrap gap-2">
+										{project.technologies.slice(0, 5).map((tech) => (
 											<span
 												key={tech}
-												className="px-3 py-1 text-xs rounded-full font-semibold shadow bg-gradient-to-r from-cyan-100 to-blue-100 dark:from-cyan-900 dark:to-blue-900 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800"
+												className="px-3 py-1 text-xs rounded-full font-medium bg-blue-500/10 text-blue-300 border border-blue-500/20"
 											>
 												{tech}
 											</span>
 										))}
+										{project.technologies.length > 5 && (
+											<span className="px-3 py-1 text-xs text-gray-500">
+												+{project.technologies.length - 5}
+											</span>
+										)}
 									</div>
 								</div>
-								<div className="mt-auto flex gap-4">
+								<div className="mt-auto flex gap-3 pt-4 border-t border-white/5">
 									{project.github && (
 										<motion.a
 											href={project.github}
 											target="_blank"
 											rel="noopener noreferrer"
-											className="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-cyan-400 transition-colors text-lg bg-white/40 dark:bg-gray-800/40 p-2 rounded-full shadow hover:scale-110"
+											className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white/5 text-gray-300 hover:bg-blue-600 hover:text-white transition-all duration-300 text-sm font-medium border border-white/10 hover:border-blue-500"
 											aria-label="GitHub"
-											whileHover={{ scale: 1.2, color: '#2563eb' }}
+											whileHover={{ scale: 1.02 }}
+											whileTap={{ scale: 0.98 }}
 										>
-											<FiGithub />
+											<FiGithub className="w-4 h-4" />
+											Code
 										</motion.a>
 									)}
 									{project.demo && (
@@ -167,11 +173,13 @@ const Projects = () => {
 											href={project.demo}
 											target="_blank"
 											rel="noopener noreferrer"
-											className="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-cyan-400 transition-colors text-lg bg-white/40 dark:bg-gray-800/40 p-2 rounded-full shadow hover:scale-110"
+											className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-blue-600 text-white hover:bg-blue-500 transition-all duration-300 text-sm font-medium shadow-lg shadow-blue-600/20"
 											aria-label="Demo"
-											whileHover={{ scale: 1.2, color: '#06b6d4' }}
+											whileHover={{ scale: 1.02 }}
+											whileTap={{ scale: 0.98 }}
 										>
-											<FiExternalLink />
+											<FiExternalLink className="w-4 h-4" />
+											Live
 										</motion.a>
 									)}
 								</div>

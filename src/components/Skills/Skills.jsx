@@ -62,19 +62,19 @@ const tools = [
 
 const SkillItem = ({ name, icon }) => (
   <motion.div 
-    className="flex items-center gap-4 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+    className="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-700/50 transition-all"
     whileHover={{ x: 5 }}
     transition={{ type: 'spring', stiffness: 300 }}
   >
-    <span className="flex items-center justify-center w-8 h-8 text-cyan-500 dark:text-cyan-400">{icon}</span>
-    <span className="text-gray-700 dark:text-gray-200 font-medium text-base flex-1">{name}</span>
+    <span className="flex items-center justify-center w-8 h-8 text-blue-400">{icon}</span>
+    <span className="text-gray-300 font-medium text-sm flex-1">{name}</span>
   </motion.div>
 );
 
 const Skills = () => {
   return (
-    <section id="skills" className="py-20 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
-      <div className="container mx-auto px-4 max-w-6xl">
+    <section id="skills" className="py-24 bg-gray-900">
+      <div className="container mx-auto px-6 max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -82,36 +82,31 @@ const Skills = () => {
           viewport={{ once: true, margin: "-100px" }}
           className="text-center mb-16"
         >
-          <span className="text-cyan-500 font-medium mb-2 block">MY CAPABILITIES</span>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            My <span className="text-cyan-500">Skills</span>
+          <h2 className="text-5xl md:text-6xl font-bold text-white mb-4">
+            Skills & Expertise
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto rounded-full"></div>
+          <p className="text-gray-400 text-lg">
+            Technologies I work with
+          </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {skillsByCategory.map((category, index) => (
             <motion.div
               key={category.category}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ 
-                duration: 0.6, 
-                delay: index * 0.1,
-                type: 'spring',
-                stiffness: 100
+                duration: 0.5, 
+                delay: index * 0.1
               }}
               viewport={{ once: true, margin: "-50px" }}
-              className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all border border-gray-100 dark:border-gray-700"
+              className="bg-gray-800/50 backdrop-blur-sm p-6 rounded-2xl hover:bg-gray-800/70 transition-all border border-white/10 hover:border-blue-500/30"
             >
-              <div className="flex items-center mb-6">
-                <div className="p-3 bg-cyan-500/10 rounded-xl text-cyan-500 mr-4">
-                  {category.skills[0].icon}
-                </div>
-                <h3 className="text-2xl font-bold text-gray-800 dark:text-white">
-                  {category.category}
-                </h3>
-              </div>
+              <h3 className="text-xl font-bold text-white mb-5 flex items-center gap-3">
+                <span className="text-blue-400">{category.skills[0].icon}</span>
+                {category.category}
+              </h3>
               <div className="space-y-2">
                 {category.skills.map((skill, idx) => (
                   <SkillItem
@@ -129,20 +124,18 @@ const Skills = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ 
-            duration: 0.6,
-            delay: 0.2,
-            type: 'spring',
-            stiffness: 100
+            duration: 0.5,
+            delay: 0.2
           }}
           viewport={{ once: true, margin: "-50px" }}
-          className="mt-20 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-8 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700"
+          className="mt-12 bg-gray-800/50 backdrop-blur-sm p-8 rounded-2xl border border-white/10"
         >
           <div className="text-center mb-8">
-            <h3 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white mb-2">
+            <h3 className="text-2xl font-bold text-white mb-2">
               Tools & Technologies
             </h3>
-            <p className="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto">
-              Technologies and tools I use daily to bring ideas to life
+            <p className="text-gray-400">
+              Development tools I use daily
             </p>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
@@ -153,22 +146,19 @@ const Skills = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 whileHover={{ 
                   y: -5,
-                  scale: 1.05,
-                  boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)'
+                  scale: 1.05
                 }}
                 transition={{ 
                   duration: 0.3, 
-                  delay: index * 0.05,
-                  type: 'spring',
-                  stiffness: 200
+                  delay: index * 0.05
                 }}
                 viewport={{ once: true, margin: "-50px" }}
-                className="flex flex-col items-center p-4 bg-white dark:bg-gray-700/50 rounded-xl shadow-sm hover:shadow-lg transition-all border border-gray-100 dark:border-gray-700"
+                className="flex flex-col items-center p-4 bg-gray-700/30 rounded-xl hover:bg-gray-700/50 transition-all border border-white/5 hover:border-blue-500/30"
               >
-                <div className="p-3 bg-cyan-500/10 rounded-lg text-cyan-500 mb-2">
+                <div className="text-blue-400 mb-2">
                   {tool.icon}
                 </div>
-                <span className="text-sm font-medium text-gray-700 dark:text-gray-200 text-center">
+                <span className="text-sm font-medium text-gray-300 text-center">
                   {tool.name}
                 </span>
               </motion.div>
