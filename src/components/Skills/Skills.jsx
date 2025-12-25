@@ -62,18 +62,18 @@ const tools = [
 
 const SkillItem = ({ name, icon }) => (
   <motion.div 
-    className="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-700/50 transition-all"
+    className="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-100 transition-all dark:hover:bg-white/5"
     whileHover={{ x: 5 }}
     transition={{ type: 'spring', stiffness: 300 }}
   >
-    <span className="flex items-center justify-center w-8 h-8 text-blue-400">{icon}</span>
-    <span className="text-gray-300 font-medium text-sm flex-1">{name}</span>
+    <span className="flex items-center justify-center w-8 h-8 text-sky-600 dark:text-cyan-300">{icon}</span>
+    <span className="text-slate-700 font-medium text-sm flex-1 dark:text-gray-200">{name}</span>
   </motion.div>
 );
 
 const Skills = () => {
   return (
-    <section id="skills" className="py-24 bg-gray-900">
+    <section id="skills" className="py-24 bg-gradient-to-br from-white via-slate-50 to-white dark:from-gray-950 dark:via-gray-900 dark:to-gray-950">
       <div className="container mx-auto px-6 max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -82,10 +82,10 @@ const Skills = () => {
           viewport={{ once: true, margin: "-100px" }}
           className="text-center mb-16"
         >
-          <h2 className="text-5xl md:text-6xl font-bold text-white mb-4">
+          <h2 className="text-5xl md:text-6xl font-bold text-slate-900 mb-4 dark:text-white">
             Skills & Expertise
           </h2>
-          <p className="text-gray-400 text-lg">
+          <p className="text-slate-600 text-lg dark:text-gray-300">
             Technologies I work with
           </p>
         </motion.div>
@@ -101,10 +101,10 @@ const Skills = () => {
                 delay: index * 0.1
               }}
               viewport={{ once: true, margin: "-50px" }}
-              className="bg-gray-800/50 backdrop-blur-sm p-6 rounded-2xl hover:bg-gray-800/70 transition-all border border-white/10 hover:border-blue-500/30"
+              className="bg-white/80 backdrop-blur-xl p-6 rounded-2xl hover:shadow-[0_20px_60px_-40px_rgba(15,23,42,0.35)] transition-all border border-slate-200/80 hover:border-sky-200 dark:bg-gray-900/70 dark:border-white/10"
             >
-              <h3 className="text-xl font-bold text-white mb-5 flex items-center gap-3">
-                <span className="text-blue-400">{category.skills[0].icon}</span>
+              <h3 className="text-xl font-bold text-slate-900 mb-5 flex items-center gap-3 dark:text-white">
+                <span className="text-sky-600 dark:text-cyan-300">{category.skills[0].icon}</span>
                 {category.category}
               </h3>
               <div className="space-y-2">
@@ -128,13 +128,13 @@ const Skills = () => {
             delay: 0.2
           }}
           viewport={{ once: true, margin: "-50px" }}
-          className="mt-12 bg-gray-800/50 backdrop-blur-sm p-8 rounded-2xl border border-white/10"
+          className="mt-12 bg-white/85 backdrop-blur-xl p-8 rounded-2xl border border-slate-200/80 dark:bg-gray-900/70 dark:border-white/10"
         >
           <div className="text-center mb-8">
-            <h3 className="text-2xl font-bold text-white mb-2">
+            <h3 className="text-2xl font-bold text-slate-900 mb-2 dark:text-white">
               Tools & Technologies
             </h3>
-            <p className="text-gray-400">
+            <p className="text-slate-600 dark:text-gray-300">
               Development tools I use daily
             </p>
           </div>
@@ -153,12 +153,12 @@ const Skills = () => {
                   delay: index * 0.05
                 }}
                 viewport={{ once: true, margin: "-50px" }}
-                className="flex flex-col items-center p-4 bg-gray-700/30 rounded-xl hover:bg-gray-700/50 transition-all border border-white/5 hover:border-blue-500/30"
+                className="flex flex-col items-center p-4 bg-slate-50 rounded-xl hover:bg-white transition-all border border-slate-200 dark:bg-white/5 dark:border-white/10"
               >
-                <div className="text-blue-400 mb-2">
+                <div className="text-sky-600 mb-2 dark:text-cyan-300">
                   {tool.icon}
                 </div>
-                <span className="text-sm font-medium text-gray-300 text-center">
+                <span className="text-sm font-medium text-slate-700 text-center dark:text-gray-200">
                   {tool.name}
                 </span>
               </motion.div>

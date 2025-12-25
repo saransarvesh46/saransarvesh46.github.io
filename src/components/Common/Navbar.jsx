@@ -1,11 +1,15 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiGithub, FiLinkedin, FiMail, FiMenu, FiX } from 'react-icons/fi';
+import { FiGithub, FiLinkedin, FiMail, FiMenu, FiX, FiSun, FiMoon, FiDownload } from 'react-icons/fi';
+import { useTheme } from '../../context/ThemeContext';
 
 const Navbar = ({ scrollToSection }) => {
+  const { theme, toggleTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+
+  const resumeUrl = 'https://drive.google.com/file/d/1zKLMeTualmgdJ_-k_nkSHAV_dmym1peN/view?usp=drivesdk';
 
   const handleNavClick = (sectionId, offset = 0) => {
     if (scrollToSection) {
@@ -83,27 +87,33 @@ const Navbar = ({ scrollToSection }) => {
   return (
     <motion.nav
       className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-gray-900/80 backdrop-blur-xl border-b border-white/10 py-3' : 'bg-transparent py-4'
+        isScrolled
+          ? 'bg-[#0b1224]/90 backdrop-blur-2xl border-b border-white/10 py-3'
+          : 'bg-transparent py-4'
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="container mx-auto px-6">
-        <div className="flex justify-between items-center">
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute -top-24 left-1/4 h-48 w-48 bg-cyan-500/20 blur-3xl" />
+        <div className="absolute -top-24 right-1/4 h-48 w-48 bg-purple-500/20 blur-3xl" />
+      </div>
+      <div className="container mx-auto px-6 relative">
+        <div className="flex justify-between items-center gap-4">
           {/* Logo */}
           <motion.div
-            className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent"
+            className="text-2xl font-bold bg-gradient-to-r from-cyan-400 via-blue-300 to-purple-400 bg-clip-text text-transparent"
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
           >
-            <a 
-              href="#home" 
+            <a
+              href="#home"
               onClick={(e) => {
                 e.preventDefault();
                 handleNavClick('home');
-              }} 
-              className="focus:outline-none hover:cursor-pointer focus:ring-2 focus:ring-blue-500/50 focus:ring-opacity-50 rounded-lg px-3 py-2 transition-all"
+              }}
+              className="focus:outline-none hover:cursor-pointer focus:ring-2 focus:ring-cyan-400/60 rounded-lg px-3 py-2 transition-all"
               aria-label="Home"
             >
               Saran Sarvesh
@@ -120,59 +130,75 @@ const Navbar = ({ scrollToSection }) => {
                   e.preventDefault();
                   handleNavClick(link.id, link.offset);
                 }}
-                className={`relative px-5 py-2.5 text-sm font-medium transition-all duration-300 rounded-xl group ${
-                  activeSection === link.id
-                    ? 'text-white'
-                    : 'text-gray-300 hover:text-white'
+                className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-xl group ${
+                  activeSection === link.id ? 'text-white' : 'text-gray-300 hover:text-white'
                 }`}
                 aria-current={activeSection === link.id ? 'page' : undefined}
               >
-                <span className="relative z-10 flex items-center">
+                <span className="relative z-10 flex items-center gap-2">
                   {link.name}
                 </span>
                 {activeSection === link.id && (
                   <motion.span
                     layoutId="activeNavItem"
-                    className="absolute inset-0 bg-blue-600/90 rounded-xl z-0 shadow-lg shadow-blue-600/30"
+                    className="absolute inset-0 bg-white/10 border border-white/10 rounded-xl z-0 shadow-glow"
                     initial={false}
-                    transition={{
-                      type: 'spring',
-                      stiffness: 300,
-                      damping: 30,
-                    }}
+                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                   />
                 )}
               </a>
             ))}
 
-            <div className="hidden md:flex items-center space-x-3 ml-6 border-l border-white/10 pl-6">
+            <div className="hidden md:flex items-center space-x-3 ml-4 pl-4 border-l border-white/10">
               {socialLinks.map((social) => (
                 <a
                   key={social.name}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2.5 rounded-xl text-gray-400 hover:text-blue-400 hover:bg-white/5 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+                  className="p-2.5 rounded-xl text-gray-400 hover:text-cyan-300 hover:bg-white/5 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-500/50"
                   aria-label={social.name}
                 >
                   {social.icon}
                 </a>
               ))}
+              <button
+                onClick={toggleTheme}
+                className="p-2.5 rounded-xl text-gray-300 hover:text-white hover:bg-white/5 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-500/50"
+                aria-label="Toggle theme"
+              >
+                {theme === 'dark' ? <FiSun className="w-5 h-5" /> : <FiMoon className="w-5 h-5" />}
+              </button>
+              <a
+                href={resumeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 text-white text-sm font-semibold shadow-glow hover:scale-[1.02] active:scale-[0.99] transition-transform"
+              >
+                <span className="inline-flex items-center gap-2">
+                  <FiDownload className="w-4 h-4" /> Resume
+                </span>
+              </a>
             </div>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden text-gray-300 hover:text-white focus:outline-none p-2 rounded-xl hover:bg-white/5 transition-all"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {isMobileMenuOpen ? (
-              <FiX className="w-6 h-6" />
-            ) : (
-              <FiMenu className="w-6 h-6" />
-            )}
-          </button>
+          {/* Mobile controls */}
+          <div className="md:hidden flex items-center gap-2">
+            <button
+              onClick={toggleTheme}
+              className="p-2.5 rounded-xl text-gray-300 hover:text-white hover:bg-white/5 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-500/50"
+              aria-label="Toggle theme"
+            >
+              {theme === 'dark' ? <FiSun className="w-5 h-5" /> : <FiMoon className="w-5 h-5" />}
+            </button>
+            <button
+              className="md:hidden text-gray-300 hover:text-white focus:outline-none p-2 rounded-xl hover:bg-white/5 transition-all"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? <FiX className="w-6 h-6" /> : <FiMenu className="w-6 h-6" />}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -183,10 +209,10 @@ const Navbar = ({ scrollToSection }) => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden overflow-hidden fixed top-16 left-0 right-0 bg-gray-900/95 backdrop-blur-xl border-b border-white/10 shadow-2xl"
+            transition={{ duration: 0.28 }}
+            className="md:hidden overflow-hidden fixed top-16 left-3 right-3 bg-[#0b1224]/95 backdrop-blur-2xl border border-white/10 shadow-2xl rounded-2xl"
           >
-            <div className="px-6 pt-4 pb-6 space-y-2">
+            <div className="px-5 pt-4 pb-6 space-y-2">
               {navLinks.map((link) => (
                 <a
                   key={link.id}
@@ -195,24 +221,41 @@ const Navbar = ({ scrollToSection }) => {
                     e.preventDefault();
                     handleNavClick(link.id, link.offset);
                   }}
-                  className={`block w-full text-left px-6 py-3.5 rounded-xl text-base font-medium transition-all ${
+                  className={`block w-full text-left px-6 py-3.5 rounded-xl text-base font-semibold transition-all ${
                     activeSection === link.id
-                      ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30'
-                      : 'text-gray-300 hover:bg-white/5 hover:text-white'
+                      ? 'bg-white/10 text-white shadow-glow'
+                      : 'text-gray-200 hover:bg-white/5 hover:text-white'
                   }`}
                   aria-current={activeSection === link.id ? 'page' : undefined}
                 >
                   {link.name}
                 </a>
               ))}
-              <div className="flex justify-center space-x-8 pt-6 pb-4">
+              <div className="flex items-center gap-3 pt-4">
+                <a
+                  href={resumeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 inline-flex justify-center items-center gap-2 px-4 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold shadow-glow"
+                >
+                  <FiDownload className="w-4 h-4" /> Resume
+                </a>
+                <button
+                  onClick={toggleTheme}
+                  className="p-3 rounded-xl bg-white/5 text-white hover:bg-white/10 transition-all"
+                  aria-label="Toggle theme"
+                >
+                  {theme === 'dark' ? <FiSun className="w-5 h-5" /> : <FiMoon className="w-5 h-5" />}
+                </button>
+              </div>
+              <div className="flex justify-center space-x-6 pt-4 border-t border-white/5 mt-3">
                 {socialLinks.map((social) => (
                   <a
                     key={social.name}
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-cyan-400 transition-colors p-3 rounded-full hover:bg-gray-800/50"
+                    className="text-gray-300 hover:text-cyan-300 transition-colors p-3 rounded-xl hover:bg-white/5"
                     aria-label={social.name}
                   >
                     {social.icon}

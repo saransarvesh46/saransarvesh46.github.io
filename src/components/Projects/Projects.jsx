@@ -1,6 +1,4 @@
 import { motion, useInView } from 'framer-motion';
-
-
 import { useRef } from 'react';
 import { FiGithub, FiExternalLink } from 'react-icons/fi';
 
@@ -98,27 +96,25 @@ const Projects = () => {
 			<section
 				id="projects"
 				ref={ref}
-				className="py-24 bg-gray-950 relative overflow-hidden"
+				className="py-24 bg-gradient-to-b from-white via-slate-50 to-white dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 relative overflow-hidden"
 			>
-				{/* Subtle gradient overlay */}
-				<div className="absolute inset-0 bg-gradient-to-br from-blue-950/20 via-gray-950 to-purple-950/10" />
-				
+				<div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(56,189,248,0.15),transparent_32%),radial-gradient(circle_at_80%_0%,rgba(139,92,246,0.12),transparent_28%),linear-gradient(160deg,rgba(255,255,255,0.7),transparent)] dark:bg-[radial-gradient(circle_at_20%_20%,rgba(56,189,248,0.06),transparent_32%),radial-gradient(circle_at_80%_0%,rgba(139,92,246,0.08),transparent_28%),linear-gradient(160deg,rgba(12,19,35,0.8),transparent)]" />
 				<div className="container mx-auto px-6 max-w-7xl relative z-10">
 					<motion.h2
 						initial={{ opacity: 0, y: 20 }}
 						animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
 						transition={{ duration: 0.6 }}
-						className="text-5xl md:text-6xl font-bold text-center mb-4 bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent"
+						className="text-5xl md:text-6xl font-bold text-center mb-4 text-slate-900 dark:text-white"
 					>
 						Projects
 					</motion.h2>
 					<motion.p
 						initial={{ opacity: 0 }}
 						animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-						transition={{ duration: 0.6, delay: 0.2 }}
-						className="text-center text-gray-400 mb-16 text-lg"
+						transition={{ duration: 0.6, delay: 0.15 }}
+						className="text-center text-slate-600 mb-14 text-lg dark:text-gray-300"
 					>
-						Showcasing real-world solutions
+						Selected builds mixing AI, 3D, and fast web stacks.
 					</motion.p>
 					<div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
 						{projects.map((project, idx) => (
@@ -127,39 +123,40 @@ const Projects = () => {
 								initial={{ opacity: 0, y: 30 }}
 								whileInView={{ opacity: 1, y: 0 }}
 								viewport={{ once: true, amount: 0.2 }}
-								transition={{ duration: 0.5, delay: idx * 0.1 }}
-								className="group bg-gray-900/40 backdrop-blur-sm rounded-2xl p-6 flex flex-col hover:bg-gray-900/60 transition-all duration-300 border border-white/10 hover:border-blue-500/30 hover:shadow-2xl hover:shadow-blue-900/20"
+								transition={{ duration: 0.5, delay: idx * 0.08 }}
+								className="group relative overflow-hidden rounded-2xl border border-slate-200/70 bg-white/90 backdrop-blur-xl p-6 flex flex-col shadow-[0_20px_60px_-35px_rgba(15,23,42,0.45)] hover:-translate-y-1 hover:shadow-[0_30px_80px_-40px_rgba(56,189,248,0.45)] transition-all dark:border-white/10 dark:bg-gray-900/70"
 							>
-								<div className="mb-5">
-									<h3 className="text-2xl font-bold mb-3 text-white group-hover:text-blue-400 transition-colors">
+								<div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-br from-sky-500/5 via-blue-500/5 to-purple-500/5" />
+								<div className="relative mb-5 space-y-3">
+									<h3 className="text-2xl font-bold text-slate-900 leading-snug group-hover:text-sky-700 transition-colors dark:text-white dark:group-hover:text-cyan-200">
 										{project.title}
 									</h3>
-									<p className="text-gray-400 text-sm leading-relaxed mb-4">
+									<p className="text-slate-600 text-sm leading-relaxed line-clamp-4 dark:text-gray-300">
 										{project.description}
 									</p>
 									<div className="flex flex-wrap gap-2">
 										{project.technologies.slice(0, 5).map((tech) => (
 											<span
 												key={tech}
-												className="px-3 py-1 text-xs rounded-full font-medium bg-blue-500/10 text-blue-300 border border-blue-500/20"
+												className="px-3 py-1 text-xs rounded-full font-semibold bg-slate-100 text-slate-700 border border-slate-200 dark:bg-white/5 dark:text-gray-200 dark:border-white/10"
 											>
 												{tech}
 											</span>
 										))}
 										{project.technologies.length > 5 && (
-											<span className="px-3 py-1 text-xs text-gray-500">
+											<span className="px-3 py-1 text-xs text-slate-500 dark:text-gray-400">
 												+{project.technologies.length - 5}
 											</span>
 										)}
 									</div>
 								</div>
-								<div className="mt-auto flex gap-3 pt-4 border-t border-white/5">
+								<div className="relative mt-auto flex gap-3 pt-4 border-t border-slate-100 dark:border-white/5">
 									{project.github && (
 										<motion.a
 											href={project.github}
 											target="_blank"
 											rel="noopener noreferrer"
-											className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white/5 text-gray-300 hover:bg-blue-600 hover:text-white transition-all duration-300 text-sm font-medium border border-white/10 hover:border-blue-500"
+											className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-slate-100 text-slate-700 hover:bg-sky-600 hover:text-white transition-all duration-300 text-sm font-semibold border border-slate-200 hover:border-sky-600 dark:bg-white/5 dark:text-gray-200 dark:border-white/10 dark:hover:border-cyan-400"
 											aria-label="GitHub"
 											whileHover={{ scale: 1.02 }}
 											whileTap={{ scale: 0.98 }}
@@ -173,7 +170,7 @@ const Projects = () => {
 											href={project.demo}
 											target="_blank"
 											rel="noopener noreferrer"
-											className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-blue-600 text-white hover:bg-blue-500 transition-all duration-300 text-sm font-medium shadow-lg shadow-blue-600/20"
+											className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-sky-600 text-white hover:bg-sky-500 transition-all duration-300 text-sm font-semibold shadow-[0_10px_30px_-12px_rgba(56,189,248,0.65)]"
 											aria-label="Demo"
 											whileHover={{ scale: 1.02 }}
 											whileTap={{ scale: 0.98 }}
@@ -184,10 +181,10 @@ const Projects = () => {
 									)}
 								</div>
 							</motion.div>
-						))}
+							))}
+						</div>
 					</div>
-				</div>
-			</section>
+				</section>
 		);
 };
 
