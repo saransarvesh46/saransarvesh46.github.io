@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Optimizer for OG Image</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .info {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border-left: 4px solid #2196F3;
+        }
+        .warning {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border-left: 4px solid #ffc107;
+        }
+        .success {
+            background: #d4edda;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border-left: 4px solid #28a745;
+        }
+        input[type="file"] {
+            margin: 20px 0;
+        }
+        button {
+            background: #2196F3;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #1976D2;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        #preview {
+            margin-top: 20px;
+            max-width: 100%;
+        }
+        .stats {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🖼️ OG Image Optimizer</h1>
+        
+        <div class="info">
+            <strong>Current Issue:</strong> Your image.png is 1MB, but social platforms require images under 300KB for proper preview.
+        </div>
+
+        <div class="warning">
+            <strong>Requirements:</strong><br>
+            • File size: Under 300KB (recommended: 150-250KB)<br>
+            • Dimensions: 1200x630px (recommended for Open Graph)<br>
+            • Format: PNG or JPG
+        </div>
+
+        <input type="file" id="fileInput" accept="image/*">
+        
+        <div class="stats" id="originalStats" style="display:none;">
+            <strong>Original Image:</strong><br>
+            <span id="origSize"></span><br>
+            <span id="origDims"></span>
+        </div>
+
+        <button id="optimizeBtn" style="display:none;">Optimize Image</button>
+
+        <div class="stats" id="optimizedStats" style="display:none;">
+            <strong>Optimized Image:</strong><br>
+            <span id="optSize"></span><br>
+            <span id="optDims"></span>
+        </div>
+
+        <canvas id="canvas" style="display:none;"></canvas>
+        
+        <div id="previewContainer" style="display:none;">
+            <h3>Preview:</h3>
+            <img id="preview" />
+        </div>
+
+        <button id="downloadBtn" style="display:none; background: #28a745; margin-top: 20px;">
+            Download Optimized image.png
+        </button>
+
+        <div class="success" id="instructions" style="display:none;">
+            <strong>Next Steps:</strong><br>
+            1. Download the optimized image<br>
+            2. Replace public/image.png with the downloaded file<br>
+            3. Run: git add . && git commit -m "Optimize OG image for social sharing" && git push<br>
+            4. Test with Facebook Sharing Debugger: https://developers.facebook.com/tools/debug/
+        </div>
+    </div>
+
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const optimizeBtn = document.getElementById('optimizeBtn');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const preview = document.getElementById('preview');
+        let optimizedBlob = null;
+
+        fileInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const img = new Image();
+            const reader = new FileReader();
+
+            reader.onload = function(event) {
+                img.src = event.target.result;
+            };
+
+            img.onload = function() {
+                document.getElementById('originalStats').style.display = 'block';
+                document.getElementById('origSize').textContent = `Size: ${(file.size / 1024).toFixed(2)} KB`;
+                document.getElementById('origDims').textContent = `Dimensions: ${img.width}x${img.height}px`;
+                
+                optimizeBtn.style.display = 'block';
+                optimizeBtn.onclick = () => optimizeImage(img, file.size);
+            };
+
+            reader.readAsDataURL(file);
+        });
+
+        function optimizeImage(img, originalSize) {
+            // Set target dimensions
+            const targetWidth = 1200;
+            const targetHeight = 630;
+            
+            canvas.width = targetWidth;
+            canvas.height = targetHeight;
+
+            // Draw image
+            ctx.drawImage(img, 0, 0, targetWidth, targetHeight);
+
+            // Try different quality levels to get under 300KB
+            let quality = 0.9;
+            let attempt = 0;
+            const maxAttempts = 10;
+
+            function tryCompress() {
+                canvas.toBlob(function(blob) {
+                    const sizeKB = blob.size / 1024;
+                    
+                    if (sizeKB < 280 || attempt >= maxAttempts || quality < 0.5) {
+                        // Success or max attempts reached
+                        optimizedBlob = blob;
+                        showResult(blob, sizeKB);
+                    } else {
+                        // Try again with lower quality
+                        quality -= 0.1;
+                        attempt++;
+                        tryCompress();
+                    }
+                }, 'image/jpeg', quality);
+            }
+
+            tryCompress();
+        }
+
+        function showResult(blob, sizeKB) {
+            document.getElementById('optimizedStats').style.display = 'block';
+            document.getElementById('optSize').textContent = `Size: ${sizeKB.toFixed(2)} KB`;
+            document.getElementById('optDims').textContent = `Dimensions: 1200x630px`;
+
+            if (sizeKB < 300) {
+                document.getElementById('optSize').style.color = '#28a745';
+                document.getElementById('optSize').innerHTML += ' ✓ Good for social sharing!';
+            } else {
+                document.getElementById('optSize').style.color = '#dc3545';
+                document.getElementById('optSize').innerHTML += ' ⚠️ Still too large, try a simpler image';
+            }
+
+            // Show preview
+            const url = URL.createObjectURL(blob);
+            preview.src = url;
+            document.getElementById('previewContainer').style.display = 'block';
+
+            // Show download button
+            downloadBtn.style.display = 'block';
+            downloadBtn.onclick = () => {
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'image.png';
+                a.click();
+                document.getElementById('instructions').style.display = 'block';
+            };
+
+            optimizeBtn.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
