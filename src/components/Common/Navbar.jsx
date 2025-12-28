@@ -5,11 +5,12 @@ import { useTheme } from '../../context/ThemeContext';
 
 const Navbar = ({ scrollToSection }) => {
   const { theme, toggleTheme } = useTheme();
+  const isDark = theme === 'dark';
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
 
-  const resumeUrl = 'https://drive.google.com/file/d/1zKLMeTualmgdJ_-k_nkSHAV_dmym1peN/view?usp=drivesdk';
+  const resumeUrl = 'https://drive.google.com/file/d/1e0EsSP_gfRlEdM7a2bbGbucYXNP8Jjww/view?usp=sharing';
 
   const handleNavClick = (sectionId, offset = 0) => {
     if (scrollToSection) {
@@ -86,10 +87,14 @@ const Navbar = ({ scrollToSection }) => {
 
   return (
     <motion.nav
-      className={`fixed w-full z-50 transition-all duration-300 ${
+      className={`fixed w-full z-50 transition-all duration-300 backdrop-blur-2xl ${
         isScrolled
-          ? 'bg-[#0b1224]/90 backdrop-blur-2xl border-b border-white/10 py-3'
-          : 'bg-transparent py-4'
+          ? isDark
+            ? 'bg-[#0b1224]/90 border-b border-white/10 shadow-[0_10px_40px_-24px_rgba(0,0,0,0.8)] py-3'
+            : 'bg-white/90 border-b border-gray-200 shadow-[0_10px_40px_-20px_rgba(0,0,0,0.35)] py-3'
+          : isDark
+            ? 'bg-transparent py-4'
+            : 'bg-white/70 border-b border-transparent py-4'
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -130,8 +135,14 @@ const Navbar = ({ scrollToSection }) => {
                   e.preventDefault();
                   handleNavClick(link.id, link.offset);
                 }}
-                className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-xl group ${
-                  activeSection === link.id ? 'text-white' : 'text-gray-300 hover:text-white'
+                className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-xl group border border-transparent ${
+                  activeSection === link.id
+                    ? isDark
+                      ? 'text-white'
+                      : 'text-slate-900'
+                    : isDark
+                      ? 'text-gray-300 hover:text-white hover:bg-white/5 hover:border-white/10'
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100 hover:border-slate-200'
                 }`}
                 aria-current={activeSection === link.id ? 'page' : undefined}
               >
@@ -141,7 +152,11 @@ const Navbar = ({ scrollToSection }) => {
                 {activeSection === link.id && (
                   <motion.span
                     layoutId="activeNavItem"
-                    className="absolute inset-0 bg-white/10 border border-white/10 rounded-xl z-0 shadow-glow"
+                    className={`absolute inset-0 rounded-xl z-0 shadow-glow ${
+                      isDark
+                        ? 'bg-white/10 border border-white/10'
+                        : 'bg-slate-900/5 border border-slate-900/10'
+                    }`}
                     initial={false}
                     transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                   />
@@ -149,14 +164,20 @@ const Navbar = ({ scrollToSection }) => {
               </a>
             ))}
 
-            <div className="hidden md:flex items-center space-x-3 ml-4 pl-4 border-l border-white/10">
+            <div className={`hidden md:flex items-center space-x-3 ml-4 pl-4 border-l ${
+              isDark ? 'border-white/10' : 'border-slate-200'
+            }`}>
               {socialLinks.map((social) => (
                 <a
                   key={social.name}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2.5 rounded-xl text-gray-400 hover:text-cyan-300 hover:bg-white/5 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-500/50"
+                    className={`p-2.5 rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 transform ${
+                    isDark
+                      ? 'text-gray-400 hover:text-white hover:bg-white/8 hover:-translate-y-0.5'
+                      : 'text-slate-500 hover:text-slate-900 hover:bg-slate-100 hover:-translate-y-0.5'
+                  }`}
                   aria-label={social.name}
                 >
                   {social.icon}
@@ -164,7 +185,11 @@ const Navbar = ({ scrollToSection }) => {
               ))}
               <button
                 onClick={toggleTheme}
-                className="p-2.5 rounded-xl text-gray-300 hover:text-white hover:bg-white/5 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-500/50"
+                className={`p-2.5 rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 transform ${
+                  isDark
+                    ? 'text-gray-200 hover:text-white hover:bg-white/8 hover:-translate-y-0.5'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100 hover:-translate-y-0.5'
+                }`}
                 aria-label="Toggle theme"
               >
                 {theme === 'dark' ? <FiSun className="w-5 h-5" /> : <FiMoon className="w-5 h-5" />}
@@ -186,13 +211,21 @@ const Navbar = ({ scrollToSection }) => {
           <div className="md:hidden flex items-center gap-2">
             <button
               onClick={toggleTheme}
-              className="p-2.5 rounded-xl text-gray-300 hover:text-white hover:bg-white/5 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-500/50"
+              className={`p-2.5 rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 transform ${
+                isDark
+                  ? 'text-gray-300 hover:text-white hover:bg-white/5 hover:-translate-y-0.5'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100 hover:-translate-y-0.5'
+              }`}
               aria-label="Toggle theme"
             >
               {theme === 'dark' ? <FiSun className="w-5 h-5" /> : <FiMoon className="w-5 h-5" />}
             </button>
             <button
-              className="md:hidden text-gray-300 hover:text-white focus:outline-none p-2 rounded-xl hover:bg-white/5 transition-all"
+              className={`md:hidden focus:outline-none p-2 rounded-xl transition-all transform ${
+                isDark
+                  ? 'text-gray-200 hover:text-white hover:bg-white/8 hover:-translate-y-0.5'
+                  : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100 hover:-translate-y-0.5'
+              }`}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label="Toggle menu"
             >
@@ -210,7 +243,11 @@ const Navbar = ({ scrollToSection }) => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.28 }}
-            className="md:hidden overflow-hidden fixed top-16 left-3 right-3 bg-[#0b1224]/95 backdrop-blur-2xl border border-white/10 shadow-2xl rounded-2xl"
+            className={`md:hidden overflow-hidden fixed top-16 left-3 right-3 backdrop-blur-2xl shadow-2xl rounded-2xl border ${
+              isDark
+                ? 'bg-[#0b1224]/95 border-white/10'
+                : 'bg-white/95 border-gray-200'
+            }`}
           >
             <div className="px-5 pt-4 pb-6 space-y-2">
               {navLinks.map((link) => (
@@ -221,10 +258,14 @@ const Navbar = ({ scrollToSection }) => {
                     e.preventDefault();
                     handleNavClick(link.id, link.offset);
                   }}
-                  className={`block w-full text-left px-6 py-3.5 rounded-xl text-base font-semibold transition-all ${
+                  className={`block w-full text-left px-6 py-3.5 rounded-xl text-base font-semibold transition-all border ${
                     activeSection === link.id
-                      ? 'bg-white/10 text-white shadow-glow'
-                      : 'text-gray-200 hover:bg-white/5 hover:text-white'
+                      ? isDark
+                        ? 'bg-white/10 text-white shadow-glow'
+                        : 'bg-slate-900/5 text-slate-900 border-slate-200'
+                      : isDark
+                        ? 'text-gray-200 border-transparent hover:bg-white/8 hover:text-white hover:border-white/12'
+                        : 'text-slate-700 border-transparent hover:bg-slate-100 hover:text-slate-900 hover:border-slate-200'
                   }`}
                   aria-current={activeSection === link.id ? 'page' : undefined}
                 >
@@ -242,20 +283,30 @@ const Navbar = ({ scrollToSection }) => {
                 </a>
                 <button
                   onClick={toggleTheme}
-                  className="p-3 rounded-xl bg-white/5 text-white hover:bg-white/10 transition-all"
+                  className={`p-3 rounded-xl transition-all transform ${
+                    isDark
+                      ? 'bg-white/8 text-white hover:bg-white/12 hover:-translate-y-0.5'
+                      : 'bg-slate-100 text-slate-800 hover:bg-slate-200 hover:-translate-y-0.5'
+                  }`}
                   aria-label="Toggle theme"
                 >
                   {theme === 'dark' ? <FiSun className="w-5 h-5" /> : <FiMoon className="w-5 h-5" />}
                 </button>
               </div>
-              <div className="flex justify-center space-x-6 pt-4 border-t border-white/5 mt-3">
+              <div className={`flex justify-center space-x-6 pt-4 mt-3 border-t ${
+                isDark ? 'border-white/5' : 'border-slate-200'
+              }`}>
                 {socialLinks.map((social) => (
                   <a
                     key={social.name}
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-300 hover:text-cyan-300 transition-colors p-3 rounded-xl hover:bg-white/5"
+                    className={`transition-colors p-3 rounded-xl transform ${
+                      isDark
+                        ? 'text-gray-200 hover:text-white hover:bg-white/8 hover:-translate-y-0.5'
+                        : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100 hover:-translate-y-0.5'
+                    }`}
                     aria-label={social.name}
                   >
                     {social.icon}

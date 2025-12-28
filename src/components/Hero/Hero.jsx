@@ -28,8 +28,33 @@ const Hero = ({ scrollToSection }) => {
       className="relative min-h-screen flex items-center bg-gradient-to-br from-slate-50 via-white to-sky-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 overflow-hidden"
     >
       <div className="absolute inset-0">
-        <div className="absolute -left-24 -top-24 h-80 w-80 bg-cyan-400/20 blur-3xl" />
-        <div className="absolute right-0 top-10 h-72 w-72 bg-purple-400/20 blur-3xl" />
+        <motion.div 
+          className="absolute -left-24 -top-24 h-96 w-96 bg-cyan-400/25 blur-3xl" 
+          animate={{ 
+            x: [0, 50, 0],
+            y: [0, 30, 0],
+            scale: [1, 1.1, 1]
+          }}
+          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div 
+          className="absolute right-0 top-10 h-80 w-80 bg-purple-400/25 blur-3xl" 
+          animate={{ 
+            x: [0, -40, 0],
+            y: [0, 50, 0],
+            scale: [1, 1.15, 1]
+          }}
+          transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div 
+          className="absolute left-1/2 bottom-20 h-72 w-72 bg-amber-400/20 blur-3xl" 
+          animate={{ 
+            x: [0, 60, 0],
+            y: [0, -40, 0],
+            scale: [1, 1.2, 1]
+          }}
+          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+        />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(56,189,248,0.18),transparent_35%),radial-gradient(circle_at_80%_20%,rgba(147,51,234,0.12),transparent_35%),linear-gradient(120deg,rgba(255,255,255,0.65),transparent)] dark:bg-[radial-gradient(circle_at_20%_30%,rgba(56,189,248,0.05),transparent_35%),radial-gradient(circle_at_80%_20%,rgba(147,51,234,0.08),transparent_35%),linear-gradient(120deg,rgba(12,19,35,0.6),transparent)]" />
       </div>
 
@@ -50,7 +75,7 @@ const Hero = ({ scrollToSection }) => {
 
             <motion.h1
               variants={item}
-              className="text-5xl sm:text-6xl xl:text-7xl font-bold leading-[1.05] text-slate-900 dark:text-white"
+              className="text-6xl sm:text-7xl xl:text-8xl font-display font-extrabold tracking-tight leading-[1.05] text-slate-900 dark:text-white"
             >
               <span className="bg-gradient-to-r from-sky-600 via-blue-500 to-purple-600 bg-clip-text text-transparent dark:from-cyan-300 dark:via-blue-300 dark:to-purple-300">
                 Saran Sarvesh A G
@@ -76,7 +101,7 @@ const Hero = ({ scrollToSection }) => {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => scrollToSection && scrollToSection('contact')}
-                className="group inline-flex items-center gap-3 px-8 py-3.5 rounded-xl bg-sky-600 text-white font-semibold shadow-lg shadow-sky-500/20 hover:shadow-xl hover:shadow-sky-500/30 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900 transition-all"
+                className="group inline-flex items-center gap-3 px-8 py-3.5 rounded-xl bg-sky-600 text-white font-semibold shadow-lg shadow-sky-500/20 hover:shadow-xl hover:shadow-sky-500/35 hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900 transition-all"
               >
                 <FiMail className="w-5 h-5 group-hover:rotate-6 transition-transform" />
                 Contact Me
@@ -85,8 +110,8 @@ const Hero = ({ scrollToSection }) => {
               <motion.button
                 variants={item}
                 onClick={() => scrollToSection && scrollToSection('projects')}
-                className="inline-flex items-center gap-2 px-4 py-3 rounded-xl border border-slate-200 text-slate-700 bg-white/70 backdrop-blur shadow-sm hover:border-sky-300 hover:text-sky-700 transition-all dark:border-white/10 dark:bg-white/5 dark:text-gray-200 dark:hover:border-cyan-300"
-                whileHover={{ y: -2 }}
+                className="inline-flex items-center gap-2 px-4 py-3 rounded-xl border border-slate-200 text-slate-700 bg-white/70 backdrop-blur shadow-sm hover:border-sky-300 hover:text-sky-800 hover:bg-sky-50 transition-all dark:border-white/10 dark:bg-white/5 dark:text-gray-100 dark:hover:border-cyan-300 dark:hover:bg-white/10 dark:hover:text-white"
+                whileHover={{ y: -3 }}
                 whileTap={{ scale: 0.98 }}
                 aria-label="Scroll to Projects"
               >

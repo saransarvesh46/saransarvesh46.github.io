@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useState, useRef } from 'react';
 import { 
   FaPython, FaJava, FaJs, FaReact, FaNodeJs, FaDatabase, FaGithub, 
   FaHtml5, FaCss3Alt, FaGit, FaAndroid, FaChartBar, FaCode
@@ -62,14 +63,68 @@ const tools = [
 
 const SkillItem = ({ name, icon }) => (
   <motion.div 
-    className="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-100 transition-all dark:hover:bg-white/5"
-    whileHover={{ x: 5 }}
+    className="flex items-center gap-3 p-3 rounded-xl border border-transparent hover:border-sky-200 hover:bg-slate-50 transition-all dark:hover:border-cyan-400/40 dark:hover:bg-white/8"
+    whileHover={{ x: 6 }}
     transition={{ type: 'spring', stiffness: 300 }}
   >
     <span className="flex items-center justify-center w-8 h-8 text-sky-600 dark:text-cyan-300">{icon}</span>
     <span className="text-slate-700 font-medium text-sm flex-1 dark:text-gray-200">{name}</span>
   </motion.div>
 );
+
+const SkillCard = ({ category, index }) => {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const cardRef = useRef(null);
+
+  const handleMouseMove = (e) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    setMousePosition({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+  };
+
+  return (
+    <motion.div
+      ref={cardRef}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ 
+        duration: 0.5, 
+        delay: index * 0.15
+      }}
+      viewport={{ once: true, margin: "-50px" }}
+      onMouseMove={handleMouseMove}
+      whileHover={{ y: -12 }}
+      className="group relative overflow-hidden rounded-2xl p-6 bg-white/80 backdrop-blur-2xl
+        border border-slate-200/80 hover:border-sky-200
+        hover:shadow-[0_20px_60px_-40px_rgba(15,23,42,0.35)] transition-all
+        dark:bg-gray-900/70 dark:border-white/10 dark:hover:border-cyan-400/50"
+    >
+      {/* Spotlight effect */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        style={{
+          background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(56, 189, 248, 0.12), transparent 40%)`,
+        }}
+      />
+      <h3 className="text-xl font-bold text-slate-900 mb-5 flex items-center gap-3 dark:text-white relative z-10">
+        <span className="text-sky-600 dark:text-cyan-300">{category.skills[0].icon}</span>
+        {category.category}
+      </h3>
+      <div className="space-y-2 relative z-10">
+        {category.skills.map((skill, idx) => (
+          <SkillItem
+            key={`${skill.name}-${idx}`}
+            name={skill.name}
+            icon={skill.icon}
+          />
+        ))}
+      </div>
+    </motion.div>
+  );
+};
 
 const Skills = () => {
   return (
@@ -82,7 +137,7 @@ const Skills = () => {
           viewport={{ once: true, margin: "-100px" }}
           className="text-center mb-16"
         >
-          <h2 className="text-5xl md:text-6xl font-bold text-slate-900 mb-4 dark:text-white">
+          <h2 className="text-5xl md:text-6xl font-bold tracking-tight text-slate-900 mb-4 dark:text-white relative z-20">
             Skills & Expertise
           </h2>
           <p className="text-slate-600 text-lg dark:text-gray-300">
@@ -92,31 +147,7 @@ const Skills = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {skillsByCategory.map((category, index) => (
-            <motion.div
-              key={category.category}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ 
-                duration: 0.5, 
-                delay: index * 0.1
-              }}
-              viewport={{ once: true, margin: "-50px" }}
-              className="bg-white/80 backdrop-blur-xl p-6 rounded-2xl hover:shadow-[0_20px_60px_-40px_rgba(15,23,42,0.35)] transition-all border border-slate-200/80 hover:border-sky-200 dark:bg-gray-900/70 dark:border-white/10"
-            >
-              <h3 className="text-xl font-bold text-slate-900 mb-5 flex items-center gap-3 dark:text-white">
-                <span className="text-sky-600 dark:text-cyan-300">{category.skills[0].icon}</span>
-                {category.category}
-              </h3>
-              <div className="space-y-2">
-                {category.skills.map((skill, idx) => (
-                  <SkillItem
-                    key={`${skill.name}-${idx}`}
-                    name={skill.name}
-                    icon={skill.icon}
-                  />
-                ))}
-              </div>
-            </motion.div>
+            <SkillCard key={category.category} category={category} index={index} />
           ))}
         </div>
 
@@ -125,10 +156,12 @@ const Skills = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ 
             duration: 0.5,
-            delay: 0.2
+            delay: 0.6
           }}
           viewport={{ once: true, margin: "-50px" }}
-          className="mt-12 bg-white/85 backdrop-blur-xl p-8 rounded-2xl border border-slate-200/80 dark:bg-gray-900/70 dark:border-white/10"
+          className="mt-12 bg-white/85 backdrop-blur-2xl p-8 rounded-2xl
+            border border-slate-200/80
+            dark:bg-gray-900/70 dark:border-white/10"
         >
           <div className="text-center mb-8">
             <h3 className="text-2xl font-bold text-slate-900 mb-2 dark:text-white">
@@ -153,12 +186,12 @@ const Skills = () => {
                   delay: index * 0.05
                 }}
                 viewport={{ once: true, margin: "-50px" }}
-                className="flex flex-col items-center p-4 bg-slate-50 rounded-xl hover:bg-white transition-all border border-slate-200 dark:bg-white/5 dark:border-white/10"
+                className="flex flex-col items-center p-4 rounded-xl border border-slate-200 bg-slate-50 hover:bg-white hover:border-sky-200 hover:-translate-y-1 transition-all dark:bg-white/5 dark:border-white/10 dark:hover:border-cyan-400/40 dark:hover:bg-white/8"
               >
-                <div className="text-sky-600 mb-2 dark:text-cyan-300">
+                <div className="text-sky-600 mb-2 dark:text-cyan-200">
                   {tool.icon}
                 </div>
-                <span className="text-sm font-medium text-slate-700 text-center dark:text-gray-200">
+                <span className="text-sm font-medium text-slate-700 text-center dark:text-gray-100">
                   {tool.name}
                 </span>
               </motion.div>

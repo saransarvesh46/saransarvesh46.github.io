@@ -1,5 +1,5 @@
 import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { FiGithub, FiExternalLink } from 'react-icons/fi';
 
 const projects = [
@@ -104,7 +104,7 @@ const Projects = () => {
 						initial={{ opacity: 0, y: 20 }}
 						animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
 						transition={{ duration: 0.6 }}
-						className="text-5xl md:text-6xl font-bold text-center mb-4 text-slate-900 dark:text-white"
+						className="text-5xl md:text-6xl font-display font-extrabold tracking-tight text-center mb-4 text-slate-900 dark:text-white"
 					>
 						Projects
 					</motion.h2>
@@ -124,7 +124,7 @@ const Projects = () => {
 								whileInView={{ opacity: 1, y: 0 }}
 								viewport={{ once: true, amount: 0.2 }}
 								transition={{ duration: 0.5, delay: idx * 0.08 }}
-								className="group relative overflow-hidden rounded-2xl border border-slate-200/70 bg-white/90 backdrop-blur-xl p-6 flex flex-col shadow-[0_20px_60px_-35px_rgba(15,23,42,0.45)] hover:-translate-y-1 hover:shadow-[0_30px_80px_-40px_rgba(56,189,248,0.45)] transition-all dark:border-white/10 dark:bg-gray-900/70"
+								className="group relative overflow-hidden rounded-2xl border border-slate-200/70 bg-white/90 backdrop-blur-xl p-6 flex flex-col shadow-[0_20px_60px_-35px_rgba(15,23,42,0.45)] hover:-translate-y-1.5 hover:shadow-[0_32px_90px_-40px_rgba(56,189,248,0.5)] hover:border-sky-200 transition-all dark:border-white/10 dark:bg-gray-900/70 dark:hover:border-cyan-400/40"
 							>
 								<div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-br from-sky-500/5 via-blue-500/5 to-purple-500/5" />
 								<div className="relative mb-5 space-y-3">

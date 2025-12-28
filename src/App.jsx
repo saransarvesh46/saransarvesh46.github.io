@@ -7,6 +7,7 @@ import Projects from './components/Projects/Projects';
 import Skills from './components/Skills/Skills';
 import Navbar from './components/Common/Navbar';
 import Footer from './components/Common/Footer';
+import ScrollProgress from './components/Common/ScrollProgress';
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -75,6 +76,7 @@ function App() {
 
   return (
     <ErrorBoundary>
+      <ScrollProgress />
       <div className="min-h-screen bg-gradient-to-br from-blue-100/60 via-purple-100/60 to-cyan-100/60 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors duration-500">
         <div className="absolute inset-0 z-0 backdrop-blur-xl bg-white/30 dark:bg-gray-900/30 pointer-events-none" />
         <Navbar scrollToSection={scrollToSection} />
