@@ -78,7 +78,7 @@ const Hero = ({ scrollToSection }) => {
               className="text-6xl sm:text-7xl xl:text-8xl font-display font-extrabold tracking-tight leading-[1.05] text-slate-900 dark:text-white"
             >
               <span className="bg-gradient-to-r from-sky-600 via-blue-500 to-purple-600 bg-clip-text text-transparent dark:from-cyan-300 dark:via-blue-300 dark:to-purple-300">
-                Saran Sarvesh A G
+                Saran Sarvesh
               </span>
             </motion.h1>
 
