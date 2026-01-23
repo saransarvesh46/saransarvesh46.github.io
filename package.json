@@ -6,10 +6,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --outDir docs",
+    "build": "vite build --outDir docs && cp public/image.png .",
     "lint": "eslint .",
     "preview": "vite preview",
-    "deploy": "npm run build && git add docs && git commit -m 'deploy: update build' && git push origin main"
+    "deploy": "npm run build && git add docs && git commit -m \"deploy: update build\" && git push origin main"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
