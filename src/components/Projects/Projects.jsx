@@ -1,5 +1,5 @@
-import { motion, useInView } from 'framer-motion';
-import { useRef, useState } from 'react';
+import {  useInView,motion } from 'framer-motion';
+import { useRef} from 'react';
 import { FiGithub, FiExternalLink } from 'react-icons/fi';
 
 const projects = [
@@ -55,7 +55,7 @@ const projects = [
 			'A modern, responsive web portfolio for showcasing construction projects. Features interactive image galleries, smooth animations, and dynamic content rendering. Built with the MERN stack, it allows easy project management and provides a professional platform for clients to explore completed and ongoing projects.',
 		technologies: ['React', 'Tailwind CSS', 'Framer Motion', 'Node.js', 'MongoDB'],
 		github: 'https://github.com/saran887/construction-portfolio',
-		demo: 'https://construction-website-git-main-sarans-projects-ffa5672c.vercel.app?_vercel_share=RynzIlxEehWUlNGk695ZpSxmmQTttnQk',
+		demo: 'https://construction-website-teal-chi.vercel.app/',
 	},
 	{
 		title: 'IoT E-Commerce Platform',
@@ -63,7 +63,7 @@ const projects = [
 			'A next-generation e-commerce platform integrated with IoT for real-time inventory tracking and automated stock updates. Built with the MERN stack, it provides secure user authentication, dynamic product catalogs, and seamless order management, making it suitable for businesses embracing IoT in retail.',
 		technologies: ['React', 'Node.js', 'MongoDB', 'IoT Integration'],
 		github: 'https://github.com/saran887/iot-ecommerce',
-		demo: 'https://iot-webpage-git-main-sarans-projects-ffa5672c.vercel.app?_vercel_share=RPdbB1VKgefwYDmFvfAkqPUMsuoXKV0Q',
+		demo: 'https://iot-webpage-five.vercel.app/',
 	},
 	{
 		title: 'CuraLink',
