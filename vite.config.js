@@ -8,6 +8,7 @@ import autoprefixer from 'autoprefixer';
  *  "Render-blocking resources" PageSpeed warning. */
 const deferMainCss = () => ({
   name: 'defer-main-css',
+  apply: 'build',
   transformIndexHtml(html) {
     return html.replace(
       /<link rel="stylesheet" crossorigin href="(\/assets\/[^"]+\.css)">/g,
