@@ -1,7 +1,13 @@
 import { useState, useEffect } from 'react';
+// eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiGithub, FiLinkedin, FiMail, FiMenu, FiX, FiSun, FiMoon, FiDownload } from 'react-icons/fi';
 import { useTheme } from '../../context/ThemeContext';
+
+/* ── Navbar — Industrial precision navigation ────────────────────────
+   Cold precision palette with cyan accent highlights.
+   Floating glass effect on scroll. Clean micro-details.
+   ──────────────────────────────────────────────────────────────────── */
 
 const Navbar = ({ scrollToSection }) => {
   const { theme, toggleTheme } = useTheme();
@@ -17,7 +23,6 @@ const Navbar = ({ scrollToSection }) => {
       scrollToSection(sectionId, offset);
     }
     setIsMobileMenuOpen(false);
-    // Update URL hash without page jump
     if (window.history.pushState) {
       window.history.pushState(null, null, `#${sectionId}`);
     } else {
@@ -29,9 +34,8 @@ const Navbar = ({ scrollToSection }) => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
       
-      // Find which section is in view
       const sections = ['home', 'skills', 'projects', 'contact'];
-      const scrollPosition = window.scrollY + 100; // 100px offset from top
+      const scrollPosition = window.scrollY + 100;
       
       for (let i = 0; i < sections.length; i++) {
         const section = sections[i];
@@ -42,7 +46,6 @@ const Navbar = ({ scrollToSection }) => {
           const sectionHeight = element.offsetHeight;
           const sectionBottom = sectionTop + sectionHeight;
           
-          // If we're at the last section or the next section is below the current scroll position
           if (i === sections.length - 1 || scrollPosition < document.getElementById(sections[i + 1])?.offsetTop) {
             if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
               setActiveSection(section);
@@ -53,7 +56,6 @@ const Navbar = ({ scrollToSection }) => {
       }
     };
 
-    // Initial check
     handleScroll();
     
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -87,30 +89,24 @@ const Navbar = ({ scrollToSection }) => {
 
   return (
     <motion.nav
-      className={`fixed w-full z-50 transition-all duration-300 backdrop-blur-2xl ${
+      className={`fixed w-full z-50 transition-all duration-500 ${
         isScrolled
           ? isDark
-            ? 'bg-[#0b1224]/90 border-b border-white/10 shadow-[0_10px_40px_-24px_rgba(0,0,0,0.8)] py-3'
-            : 'bg-white/90 border-b border-gray-200 shadow-[0_10px_40px_-20px_rgba(0,0,0,0.35)] py-3'
-          : isDark
-            ? 'bg-transparent py-4'
-            : 'bg-white/70 border-b border-transparent py-4'
+            ? 'bg-[#050508]/85 backdrop-blur-2xl border-b border-zinc-800/40 shadow-[0_1px_30px_rgba(0,0,0,0.3)] py-3'
+            : 'bg-white/80 backdrop-blur-2xl border-b border-zinc-200/60 shadow-[0_1px_30px_rgba(0,0,0,0.04)] py-3'
+          : 'bg-transparent py-5'
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
     >
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-24 left-1/4 h-48 w-48 bg-cyan-500/20 blur-3xl" />
-        <div className="absolute -top-24 right-1/4 h-48 w-48 bg-purple-500/20 blur-3xl" />
-      </div>
       <div className="container mx-auto px-6 relative">
         <div className="flex justify-between items-center gap-4">
-          {/* Logo */}
+          {/* Logo — industrial style with accent dot */}
           <motion.div
-            className="text-2xl font-bold bg-gradient-to-r from-cyan-400 via-blue-300 to-purple-400 bg-clip-text text-transparent"
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
+            className="font-display font-bold text-lg text-zinc-900 dark:text-zinc-100"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
           >
             <a
               href="#home"
@@ -118,15 +114,16 @@ const Navbar = ({ scrollToSection }) => {
                 e.preventDefault();
                 handleNavClick('home');
               }}
-              className="focus:outline-none hover:cursor-pointer focus:ring-2 focus:ring-cyan-400/60 rounded-lg px-3 py-2 transition-all"
+              className="focus:outline-none focus:ring-2 focus:ring-accent/40 rounded-lg px-1 py-1 transition-all inline-flex items-center gap-2"
               aria-label="Home"
             >
+              <span className="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0" />
               Saran Sarvesh
             </a>
           </motion.div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-2">
+          <div className="hidden md:flex items-center space-x-1">
             {navLinks.map((link) => (
               <a
                 key={link.id}
@@ -135,37 +132,30 @@ const Navbar = ({ scrollToSection }) => {
                   e.preventDefault();
                   handleNavClick(link.id, link.offset);
                 }}
-                className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-xl group border border-transparent ${
+                className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-lg ${
                   activeSection === link.id
-                    ? isDark
-                      ? 'text-white'
-                      : 'text-slate-900'
+                    ? 'text-accent'
                     : isDark
-                      ? 'text-gray-300 hover:text-white hover:bg-white/5 hover:border-white/10'
-                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100 hover:border-slate-200'
+                      ? 'text-zinc-500 hover:text-zinc-200'
+                      : 'text-zinc-400 hover:text-zinc-800'
                 }`}
                 aria-current={activeSection === link.id ? 'page' : undefined}
               >
-                <span className="relative z-10 flex items-center gap-2">
-                  {link.name}
-                </span>
+                <span className="relative z-10">{link.name}</span>
                 {activeSection === link.id && (
                   <motion.span
                     layoutId="activeNavItem"
-                    className={`absolute inset-0 rounded-xl z-0 shadow-glow ${
-                      isDark
-                        ? 'bg-white/10 border border-white/10'
-                        : 'bg-slate-900/5 border border-slate-900/10'
-                    }`}
+                    className="absolute inset-0 rounded-lg bg-accent/[0.07] z-0"
                     initial={false}
-                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                    transition={{ type: 'spring', stiffness: 350, damping: 30 }}
                   />
                 )}
               </a>
             ))}
 
-            <div className={`hidden md:flex items-center space-x-3 ml-4 pl-4 border-l ${
-              isDark ? 'border-white/10' : 'border-slate-200'
+            {/* Divider + social/controls */}
+            <div className={`hidden md:flex items-center space-x-2 ml-4 pl-4 border-l ${
+              isDark ? 'border-zinc-800' : 'border-zinc-200'
             }`}>
               {socialLinks.map((social) => (
                 <a
@@ -173,10 +163,10 @@ const Navbar = ({ scrollToSection }) => {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                    className={`p-2.5 rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 transform ${
+                  className={`p-2 rounded-lg transition-all duration-300 ${
                     isDark
-                      ? 'text-gray-400 hover:text-white hover:bg-white/8 hover:-translate-y-0.5'
-                      : 'text-slate-500 hover:text-slate-900 hover:bg-slate-100 hover:-translate-y-0.5'
+                      ? 'text-zinc-600 hover:text-zinc-200 hover:bg-zinc-800/60'
+                      : 'text-zinc-400 hover:text-zinc-700 hover:bg-zinc-100'
                   }`}
                   aria-label={social.name}
                 >
@@ -185,20 +175,21 @@ const Navbar = ({ scrollToSection }) => {
               ))}
               <button
                 onClick={toggleTheme}
-                className={`p-2.5 rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 transform ${
+                className={`p-2 rounded-lg transition-all duration-300 ${
                   isDark
-                    ? 'text-gray-200 hover:text-white hover:bg-white/8 hover:-translate-y-0.5'
-                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100 hover:-translate-y-0.5'
+                    ? 'text-zinc-500 hover:text-zinc-200 hover:bg-zinc-800/60'
+                    : 'text-zinc-400 hover:text-zinc-700 hover:bg-zinc-100'
                 }`}
                 aria-label="Toggle theme"
               >
                 {theme === 'dark' ? <FiSun className="w-5 h-5" /> : <FiMoon className="w-5 h-5" />}
               </button>
+              {/* Resume CTA — accent colored with cyan glow */}
               <a
                 href={resumeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 text-white text-sm font-semibold shadow-glow hover:scale-[1.02] active:scale-[0.99] transition-transform"
+                className="px-4 py-2 rounded-lg bg-accent text-white text-sm font-semibold hover:bg-accent-hover shadow-glow hover:shadow-[0_0_50px_rgba(14,165,233,0.2)] active:scale-[0.98] transition-all duration-300"
               >
                 <span className="inline-flex items-center gap-2">
                   <FiDownload className="w-4 h-4" /> Resume
@@ -208,23 +199,23 @@ const Navbar = ({ scrollToSection }) => {
           </div>
 
           {/* Mobile controls */}
-          <div className="md:hidden flex items-center gap-2">
+          <div className="md:hidden flex items-center gap-1">
             <button
               onClick={toggleTheme}
-              className={`p-2.5 rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 transform ${
+              className={`p-2.5 rounded-lg transition-all duration-300 ${
                 isDark
-                  ? 'text-gray-300 hover:text-white hover:bg-white/5 hover:-translate-y-0.5'
-                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100 hover:-translate-y-0.5'
+                  ? 'text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800'
+                  : 'text-zinc-500 hover:text-zinc-800 hover:bg-zinc-100'
               }`}
               aria-label="Toggle theme"
             >
               {theme === 'dark' ? <FiSun className="w-5 h-5" /> : <FiMoon className="w-5 h-5" />}
             </button>
             <button
-              className={`md:hidden focus:outline-none p-2 rounded-xl transition-all transform ${
+              className={`md:hidden focus:outline-none p-2.5 rounded-lg transition-all ${
                 isDark
-                  ? 'text-gray-200 hover:text-white hover:bg-white/8 hover:-translate-y-0.5'
-                  : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100 hover:-translate-y-0.5'
+                  ? 'text-zinc-300 hover:text-white hover:bg-zinc-800'
+                  : 'text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100'
               }`}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label="Toggle menu"
@@ -242,11 +233,11 @@ const Navbar = ({ scrollToSection }) => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.28 }}
-            className={`md:hidden overflow-hidden fixed top-16 left-3 right-3 backdrop-blur-2xl shadow-2xl rounded-2xl border ${
+            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            className={`md:hidden overflow-hidden fixed top-16 left-3 right-3 backdrop-blur-2xl shadow-elevated rounded-2xl border ${
               isDark
-                ? 'bg-[#0b1224]/95 border-white/10'
-                : 'bg-white/95 border-gray-200'
+                ? 'bg-[#050508]/95 border-zinc-800/60'
+                : 'bg-white/95 border-zinc-200/80'
             }`}
           >
             <div className="px-5 pt-4 pb-6 space-y-2">
@@ -258,14 +249,14 @@ const Navbar = ({ scrollToSection }) => {
                     e.preventDefault();
                     handleNavClick(link.id, link.offset);
                   }}
-                  className={`block w-full text-left px-6 py-3.5 rounded-xl text-base font-semibold transition-all border ${
+                  className={`block w-full text-left px-5 py-3 rounded-xl text-base font-semibold transition-all duration-200 ${
                     activeSection === link.id
                       ? isDark
-                        ? 'bg-white/10 text-white shadow-glow'
-                        : 'bg-slate-900/5 text-slate-900 border-slate-200'
+                        ? 'bg-accent/10 text-accent'
+                        : 'bg-accent/[0.07] text-accent'
                       : isDark
-                        ? 'text-gray-200 border-transparent hover:bg-white/8 hover:text-white hover:border-white/12'
-                        : 'text-slate-700 border-transparent hover:bg-slate-100 hover:text-slate-900 hover:border-slate-200'
+                        ? 'text-zinc-300 hover:bg-zinc-800/60 hover:text-zinc-100'
+                        : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900'
                   }`}
                   aria-current={activeSection === link.id ? 'page' : undefined}
                 >
@@ -277,16 +268,16 @@ const Navbar = ({ scrollToSection }) => {
                   href={resumeUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 inline-flex justify-center items-center gap-2 px-4 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold shadow-glow"
+                  className="flex-1 inline-flex justify-center items-center gap-2 px-4 py-3 rounded-xl bg-accent text-white font-semibold shadow-glow"
                 >
                   <FiDownload className="w-4 h-4" /> Resume
                 </a>
                 <button
                   onClick={toggleTheme}
-                  className={`p-3 rounded-xl transition-all transform ${
+                  className={`p-3 rounded-xl transition-all ${
                     isDark
-                      ? 'bg-white/8 text-white hover:bg-white/12 hover:-translate-y-0.5'
-                      : 'bg-slate-100 text-slate-800 hover:bg-slate-200 hover:-translate-y-0.5'
+                      ? 'bg-zinc-800 text-zinc-200 hover:bg-zinc-700'
+                      : 'bg-zinc-100 text-zinc-700 hover:bg-zinc-200'
                   }`}
                   aria-label="Toggle theme"
                 >
@@ -294,7 +285,7 @@ const Navbar = ({ scrollToSection }) => {
                 </button>
               </div>
               <div className={`flex justify-center space-x-6 pt-4 mt-3 border-t ${
-                isDark ? 'border-white/5' : 'border-slate-200'
+                isDark ? 'border-zinc-800/60' : 'border-zinc-200'
               }`}>
                 {socialLinks.map((social) => (
                   <a
@@ -302,10 +293,10 @@ const Navbar = ({ scrollToSection }) => {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`transition-colors p-3 rounded-xl transform ${
+                    className={`p-3 rounded-xl transition-all ${
                       isDark
-                        ? 'text-gray-200 hover:text-white hover:bg-white/8 hover:-translate-y-0.5'
-                        : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100 hover:-translate-y-0.5'
+                        ? 'text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/60'
+                        : 'text-zinc-500 hover:text-zinc-800 hover:bg-zinc-100'
                     }`}
                     aria-label={social.name}
                   >

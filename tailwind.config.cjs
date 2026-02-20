@@ -6,36 +6,41 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        display: ['Sora', 'Inter', 'ui-sans-serif', 'system-ui'],
+        display: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
+        body: ['"Inter"', 'system-ui', 'sans-serif'],
+        mono: ['"JetBrains Mono"', '"Fira Code"', 'monospace'],
       },
       colors: {
-        night: '#0b1224',
-        ink: '#0f172a',
-        cloud: '#e2e8f0',
-        primary: '#38bdf8',
-        accent: '#8b5cf6',
-        amber: '#fbbf24',
+        accent: {
+          DEFAULT: '#0ea5e9',
+          hover: '#0284c7',
+          muted: 'rgba(14, 165, 233, 0.06)',
+        },
+        panel: {
+          DEFAULT: '#0c0c14',
+          elevated: '#111119',
+        },
+        line: {
+          DEFAULT: '#1a1a2e',
+          hover: '#252540',
+        },
       },
       boxShadow: {
-        glow: '0 15px 45px -15px rgba(56, 189, 248, 0.35)',
-        card: '0 20px 50px -24px rgba(0,0,0,0.55)',
-      },
-      backdropBlur: {
-        22: '22px',
+        glow: '0 0 30px rgba(14, 165, 233, 0.12)',
+        card: '0 1px 3px rgba(0, 0, 0, 0.2), 0 8px 32px rgba(0, 0, 0, 0.15)',
+        'card-hover': '0 0 0 1px rgba(14, 165, 233, 0.08), 0 8px 40px rgba(14, 165, 233, 0.05)',
+        elevated: '0 0 0 1px rgba(14, 165, 233, 0.04), 0 20px 64px rgba(0, 0, 0, 0.25)',
       },
       animation: {
-        'pulse-slow': 'pulse 3s ease-in-out infinite',
+        'float': 'float 6s ease-in-out infinite',
+      },
+      keyframes: {
+        float: {
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(-10px)' },
+        },
       },
     },
   },
   plugins: [],
-  corePlugins: {
-    preflight: true,
-  },
-  presets: [
-    require('@tailwindcss/typography'),
-    require('@tailwindcss/forms'),
-    require('@tailwindcss/aspect-ratio'),
-  ],
 }

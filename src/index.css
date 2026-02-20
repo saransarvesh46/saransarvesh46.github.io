@@ -1,48 +1,114 @@
 @import "tailwindcss";
 
+/* ═══════════════════════════════════════════════════════════════════
+   Design System — "Industrial AI"
+   Aesthetic: Futuristic · Cold precision · Neural-network depth
+   Typefaces: Space Grotesk (display) + Inter (body) + JetBrains Mono (system)
+   Palette: Deep charcoal + Electric cyan (#00d4ff)
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Tailwind v4 Design Tokens ───────────────────────────────────── */
+@theme {
+	--font-family-display: "Space Grotesk", system-ui, sans-serif;
+	--font-family-body: "Inter", system-ui, sans-serif;
+	--font-family-mono: "JetBrains Mono", "Fira Code", monospace;
+
+	--color-accent: #0ea5e9;
+	--color-accent-hover: #0284c7;
+	--color-accent-muted: rgba(14, 165, 233, 0.06);
+
+	--color-panel: #0c0c14;
+	--color-panel-elevated: #111119;
+	--color-line: #1a1a2e;
+	--color-line-hover: #252540;
+
+	--shadow-glow: 0 0 30px rgba(14, 165, 233, 0.12);
+	--shadow-card: 0 1px 3px rgba(0, 0, 0, 0.2), 0 8px 32px rgba(0, 0, 0, 0.15);
+	--shadow-card-hover: 0 0 0 1px rgba(14, 165, 233, 0.08), 0 8px 40px rgba(14, 165, 233, 0.05);
+	--shadow-elevated: 0 0 0 1px rgba(14, 165, 233, 0.04), 0 20px 64px rgba(0, 0, 0, 0.25);
+
+	--animate-float: float 6s ease-in-out infinite;
+}
+
+/* ── Keyframes ───────────────────────────────────────────────────── */
+@keyframes float {
+	0%, 100% { transform: translateY(0px); }
+	50% { transform: translateY(-10px); }
+}
+
+@keyframes neural-pulse {
+	0%, 100% { opacity: 0.03; }
+	50% { opacity: 0.07; }
+}
+
+@keyframes scan-line {
+	0% { transform: translateY(-100%); opacity: 0; }
+	5% { opacity: 0.4; }
+	95% { opacity: 0.4; }
+	100% { transform: translateY(100vh); opacity: 0; }
+}
+
+@keyframes waveform-scroll {
+	from { transform: translateX(0); }
+	to { transform: translateX(-50%); }
+}
+
+@keyframes grid-fade {
+	0%, 100% { opacity: 0.02; }
+	50% { opacity: 0.05; }
+}
+
+@keyframes data-stream {
+	0% { stroke-dashoffset: 200; }
+	100% { stroke-dashoffset: 0; }
+}
+
+@keyframes glow-breathe {
+	0%, 100% { opacity: 0.4; }
+	50% { opacity: 0.8; }
+}
+
+/* ── Base Styles ─────────────────────────────────────────────────── */
 :root {
-	font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-	color: #0f172a;
-	background-color: #f8f9fa;
+	font-family: "Inter", system-ui, sans-serif;
+	color: #18181b;
+	background-color: #f4f4f5;
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 	scroll-behavior: smooth;
 }
 
 body {
 	min-height: 100vh;
-	background:
-		radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.12), transparent 30%),
-		radial-gradient(circle at 90% 10%, rgba(139, 92, 246, 0.12), transparent 30%),
-		radial-gradient(circle at 30% 80%, rgba(251, 191, 36, 0.12), transparent 30%),
-		linear-gradient(135deg, #f8f9fa 0%, #eff6ff 40%, #e0f2fe 100%);
-	color: #0f172a;
+	background-color: #f4f4f5;
+	color: #18181b;
 	position: relative;
+	overflow-x: hidden;
 }
 
+/* ── Film grain overlay — industrial texture ─────────────────────── */
 body::before {
 	content: '';
 	position: fixed;
 	inset: 0;
-	background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-	opacity: 0.03;
+	background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+	opacity: 0.018;
 	pointer-events: none;
 	z-index: 9999;
+	mix-blend-mode: overlay;
 }
 
+/* ── Dark Mode (primary design target) ───────────────────────────── */
 .dark {
-	color: #e2e8f0;
-	background-color: #030712;
+	color: #e4e4e7;
+	background-color: #050508;
 	color-scheme: dark;
 }
 
 .dark body {
-	background:
-		radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.15), transparent 30%),
-		radial-gradient(circle at 90% 10%, rgba(139, 92, 246, 0.15), transparent 30%),
-		radial-gradient(circle at 30% 80%, rgba(251, 191, 36, 0.12), transparent 30%),
-		linear-gradient(135deg, #030712 0%, #0f172a 40%, #030712 100%);
-	color: #e2e8f0;
+	background-color: #050508;
+	color: #e4e4e7;
 }
 
 #root {
@@ -54,31 +120,117 @@ a {
 	text-decoration: none;
 }
 
+/* ── Text Selection ──────────────────────────────────────────────── */
 ::selection {
-	background: rgba(14, 165, 233, 0.22);
-	color: #0b1224;
+	background: rgba(14, 165, 233, 0.15);
+	color: #18181b;
 }
 
 .dark ::selection {
-	background: rgba(56, 189, 248, 0.3);
-	color: #0b1224;
+	background: rgba(14, 165, 233, 0.2);
+	color: #f4f4f5;
 }
 
-/* Subtle scrollbars */
+/* ── Scrollbar — thin, accent-colored ────────────────────────────── */
 *::-webkit-scrollbar {
-	width: 10px;
-	height: 10px;
+	width: 5px;
+	height: 5px;
 }
 *::-webkit-scrollbar-thumb {
-	background: linear-gradient(180deg, rgba(14, 165, 233, 0.75), rgba(59, 130, 246, 0.7));
+	background: rgba(14, 165, 233, 0.3);
 	border-radius: 999px;
 }
-.dark *::-webkit-scrollbar-thumb {
-	background: linear-gradient(180deg, rgba(56, 189, 248, 0.75), rgba(139, 92, 246, 0.7));
+*::-webkit-scrollbar-thumb:hover {
+	background: rgba(14, 165, 233, 0.5);
 }
 *::-webkit-scrollbar-track {
-	background: rgba(0, 0, 0, 0.04);
+	background: transparent;
 }
 .dark *::-webkit-scrollbar-track {
-	background: rgba(255, 255, 255, 0.03);
+	background: rgba(255, 255, 255, 0.01);
+}
+
+/* ── Neural dot grid — global ambient pattern ────────────────────── */
+.neural-dots {
+	background-image: radial-gradient(circle, currentColor 0.5px, transparent 0.5px);
+	background-size: 28px 28px;
+	animation: grid-fade 8s ease-in-out infinite;
+}
+
+/* ── Neural line pulse (SVG animation class) ─────────────────────── */
+.neural-line-pulse {
+	animation: neural-pulse 4s ease-in-out infinite;
+}
+
+/* ── Waveform scroll container ───────────────────────────────────── */
+.waveform-scroll {
+	animation: waveform-scroll 25s linear infinite;
+}
+
+/* ── Scan line effect on element ─────────────────────────────────── */
+.scan-line {
+	position: relative;
+	overflow: hidden;
+}
+.scan-line::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	right: 0;
+	height: 1px;
+	background: linear-gradient(90deg, transparent, rgba(14, 165, 233, 0.12), transparent);
+	animation: scan-line 8s linear infinite;
+	pointer-events: none;
+}
+
+/* ── Micro label — system status monospace text ──────────────────── */
+.micro-label {
+	font-family: "JetBrains Mono", monospace;
+	font-size: 9px;
+	letter-spacing: 0.2em;
+	text-transform: uppercase;
+	line-height: 1;
+}
+
+/* ── Gradient border on hover ────────────────────────────────────── */
+.gradient-border {
+	position: relative;
+}
+.gradient-border::before {
+	content: '';
+	position: absolute;
+	inset: -1px;
+	border-radius: inherit;
+	padding: 1px;
+	background: linear-gradient(
+		135deg,
+		rgba(14, 165, 233, 0.25),
+		transparent 40%,
+		transparent 60%,
+		rgba(14, 165, 233, 0.1)
+	);
+	-webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+	mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+	-webkit-mask-composite: xor;
+	mask-composite: exclude;
+	pointer-events: none;
+	opacity: 0;
+	transition: opacity 0.5s ease;
+}
+.gradient-border:hover::before {
+	opacity: 1;
+}
+
+/* ── Glow border on hover ────────────────────────────────────────── */
+.glow-border {
+	transition: box-shadow 0.4s ease;
+}
+.glow-border:hover {
+	box-shadow: 0 0 0 1px rgba(14, 165, 233, 0.12), 0 0 30px rgba(14, 165, 233, 0.05);
+}
+
+/* ── Tilt perspective container ──────────────────────────────────── */
+.tilt-container {
+	perspective: 1000px;
+	transform-style: preserve-3d;
 }
