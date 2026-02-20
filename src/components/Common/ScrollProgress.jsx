@@ -63,7 +63,7 @@ const ScrollProgress = () => {
             <button
               key={section}
               onClick={() => document.getElementById(section)?.scrollIntoView({ behavior: 'smooth' })}
-              className="group relative flex items-center"
+              className="group relative flex items-center justify-center w-11 h-11"
               aria-label={`Go to ${section}`}
             >
               <div
@@ -73,7 +73,7 @@ const ScrollProgress = () => {
                     : 'bg-zinc-400/30 dark:bg-zinc-600/25 group-hover:bg-accent/50'
                 }`}
               />
-              <span className="absolute left-4 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 micro-label text-zinc-500 dark:text-zinc-600 capitalize pointer-events-none">
+              <span className="absolute left-6 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 micro-label text-zinc-500 dark:text-zinc-600 capitalize pointer-events-none">
                 {section}
               </span>
             </button>

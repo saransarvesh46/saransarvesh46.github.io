@@ -208,7 +208,7 @@ const Skills = () => {
             <h3 className="text-2xl font-display font-bold text-zinc-900 mb-2 dark:text-zinc-100">
               Tools & Technologies
             </h3>
-            <p className="text-zinc-500 dark:text-zinc-500">
+            <p className="text-zinc-600 dark:text-zinc-400">
               Development tools I use daily
             </p>
           </div>

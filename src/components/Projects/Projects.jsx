@@ -220,8 +220,8 @@ const FeaturedProjectCard = ({ project }) => {
 							<span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
 							Featured Project
 						</span>
-						<span className="micro-label text-zinc-300 dark:text-zinc-700">—</span>
-						<span className="micro-label text-zinc-400/60 dark:text-zinc-700">01</span>
+					<span className="micro-label text-zinc-400 dark:text-zinc-600">—</span>
+					<span className="micro-label text-zinc-400 dark:text-zinc-600">01</span>
 					</div>
 
 					<h3 className="text-2xl md:text-3xl font-display font-bold text-zinc-900 mb-4 group-hover:text-accent transition-colors duration-300 dark:text-zinc-100">

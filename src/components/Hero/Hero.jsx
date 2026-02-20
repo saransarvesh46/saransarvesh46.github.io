@@ -94,8 +94,8 @@ const Hero = ({ scrollToSection }) => {
                 <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
                 <span className="micro-label text-accent/60">System Active</span>
               </div>
-              <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold tracking-[0.2em] uppercase border border-zinc-300/60 text-zinc-400 dark:border-zinc-700/60 dark:text-zinc-500">
-                Hello, I'm
+              <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold tracking-[0.2em] uppercase border border-zinc-300/60 text-zinc-600 dark:border-zinc-700/60 dark:text-zinc-500">
+                Hello, I&apos;m
               </span>
             </motion.div>
 
@@ -127,7 +127,7 @@ const Hero = ({ scrollToSection }) => {
             {/* Subtitle */}
             <motion.p
               variants={item}
-              className="text-xl sm:text-2xl font-medium text-zinc-500 dark:text-zinc-400"
+              className="text-xl sm:text-2xl font-medium text-zinc-600 dark:text-zinc-400"
             >
               Full Stack Developer & AI Enthusiast
             </motion.p>
@@ -135,7 +135,7 @@ const Hero = ({ scrollToSection }) => {
             {/* Description */}
             <motion.p
               variants={item}
-              className="text-base sm:text-lg text-zinc-400 dark:text-zinc-500 max-w-2xl leading-relaxed"
+              className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed"
             >
               I am a passionate technology enthusiast currently in final year of college, with a solid foundation in AI, IoT, and web development. I've worked on various real-world projects and have a strong desire to learn new technologies. My goal is to create smart, efficient solutions using AI and automation while continuously expanding my skills and taking on new challenges.
             </motion.p>
@@ -154,7 +154,7 @@ const Hero = ({ scrollToSection }) => {
 
               <motion.button
                 onClick={() => scrollToSection && scrollToSection('projects')}
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-zinc-300/60 text-zinc-600 bg-white/50 backdrop-blur hover:border-accent hover:text-accent transition-all duration-300 dark:border-zinc-700/50 dark:bg-zinc-900/30 dark:text-zinc-400 dark:hover:border-accent dark:hover:text-accent"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-zinc-300/60 text-zinc-700 bg-white/50 backdrop-blur hover:border-accent hover:text-accent transition-all duration-300 dark:border-zinc-700/50 dark:bg-zinc-900/30 dark:text-zinc-300 dark:hover:border-accent dark:hover:text-accent"
                 whileHover={{ y: -3 }}
                 whileTap={{ scale: 0.98 }}
                 aria-label="Scroll to Projects"

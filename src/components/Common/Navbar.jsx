@@ -163,10 +163,10 @@ const Navbar = ({ scrollToSection }) => {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`p-2 rounded-lg transition-all duration-300 ${
+                  className={`p-2.5 rounded-lg transition-all ${
                     isDark
-                      ? 'text-zinc-600 hover:text-zinc-200 hover:bg-zinc-800/60'
-                      : 'text-zinc-400 hover:text-zinc-700 hover:bg-zinc-100'
+                      ? 'text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800/60'
+                      : 'text-zinc-500 hover:text-zinc-700 hover:bg-zinc-100'
                   }`}
                   aria-label={social.name}
                 >
@@ -175,10 +175,10 @@ const Navbar = ({ scrollToSection }) => {
               ))}
               <button
                 onClick={toggleTheme}
-                className={`p-2 rounded-lg transition-all duration-300 ${
+                className={`p-2.5 rounded-lg transition-all duration-300 ${
                   isDark
-                    ? 'text-zinc-500 hover:text-zinc-200 hover:bg-zinc-800/60'
-                    : 'text-zinc-400 hover:text-zinc-700 hover:bg-zinc-100'
+                    ? 'text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800/60'
+                    : 'text-zinc-500 hover:text-zinc-700 hover:bg-zinc-100'
                 }`}
                 aria-label="Toggle theme"
               >
