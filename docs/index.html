@@ -4,6 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- ── Critical inline styles — prevents FOUC when CSS loads async ── -->
+    <style>
+      *,::before,::after{box-sizing:border-box;margin:0;padding:0}
+      html{background:#050508;color-scheme:dark light}
+      body{background:#050508;font-family:Inter,system-ui,sans-serif;color:#f4f4f5;-webkit-font-smoothing:antialiased}
+      #root{min-height:100vh}
+      @media(prefers-color-scheme:light){
+        html{background:#f9fafb}
+        body{background:#f9fafb;color:#18181b}
+      }
+    </style>
+
     <!-- ── Primary SEO ───────────────────────────────────────────── -->
     <title>Saran Sarvesh A G | Full Stack Developer & AI Engineer</title>
     <meta name="description" content="Portfolio of Saran Sarvesh A G — Full Stack Developer & AI Engineer specializing in deep learning, computer vision, IoT, and modern web apps with React, Python, TensorFlow, and Node.js." />
@@ -97,9 +109,11 @@
     }
     </script>
     <script type="module" crossorigin src="/assets/index-DlKRLKax.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-DCECg_HU.css">
+    <link rel="preload" as="style" crossorigin href="/assets/index-DCECg_HU.css" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" crossorigin href="/assets/index-DCECg_HU.css"></noscript>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"></div>
+
   </body>
 </html>
