@@ -124,25 +124,25 @@ const Hero = ({ scrollToSection }) => {
               />
             </motion.h1>
 
-            {/* Subtitle / H2 Equivalent content */}
+            {/* Subtitle / H2 ── role identity for name + role searches */}
             <motion.h2
               variants={item}
               className="text-xl sm:text-2xl font-medium text-zinc-600 dark:text-zinc-400"
             >
-              Engineering High-Performance Intelligence Systems
+              AI Engineer &amp; Computer Vision Developer — Saran Sarvesh A G
             </motion.h2>
 
-            {/* Description - Hook (150 words) */}
+            {/* Description — natural keyword placement, ~EEAT compliant */}
             <motion.p
               variants={item}
               className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed"
             >
-              I build AI systems that solve mission-critical problems. Transforming complex, unstructured data into high-performance intelligence, I specialize in deep learning architecture, real-time inference, and scalable computer vision deployments. From training state-of-the-art neural networks on A100 GPUs to optimizing model inference for severely constrained, low-power edge IoT devices, my engineering focus is on absolute precision, robust feature extraction, and raw execution speed.
+              I&apos;m <strong className="text-zinc-800 dark:text-zinc-200 font-semibold">Saran Sarvesh A G</strong> — an AI Engineer and Computer Vision Developer who builds systems that solve mission-critical problems. I specialise in deep learning architecture, real-time inference, and scalable computer vision deployments. From training neural networks on A100 GPUs to optimising model inference for low-power edge IoT devices, my engineering focus is on precision, robust feature extraction, and raw execution speed.
 
               <br className="hidden md:block" />
               <br className="hidden md:block" />
 
-              Whether it involves designing autonomous tracking algorithms for physical security, generative AI integrations for hyper-personalized platforms, or leveraging MediaPipe and OpenCV for real-time video analysis, I engineer architectures that are not simply theoretical experiments—they are strictly production-ready systems built for scale.
+              Whether designing autonomous tracking algorithms, integrating generative AI into production platforms, or building real-time video analysis pipelines with MediaPipe and OpenCV — every system I ship is production-ready and built for scale.
             </motion.p>
 
             {/* CTA Buttons — glow effect */}

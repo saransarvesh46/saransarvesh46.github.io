@@ -15,7 +15,7 @@ const Footer = () => {
               Saran Sarvesh A G
             </div>
             <p className="micro-label text-zinc-400 dark:text-zinc-700 mt-1">
-              Full Stack Developer & AI Enthusiast
+              AI Engineer &amp; Computer Vision Developer
             </p>
           </div>
 
