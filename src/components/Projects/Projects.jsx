@@ -139,24 +139,22 @@ const TechTags = ({ technologies, max = 5 }) => (
 
 /* ── Action buttons ── */
 const ActionButtons = ({ project }) => (
-	<div className="flex gap-2.5 pt-5 mt-auto border-t border-zinc-200/40 dark:border-zinc-800/40">
+	<div className="flex flex-wrap gap-3 mt-4">
 		{project.github && (
 			<motion.a
 				href={project.github}
 				target="_blank"
 				rel="noopener noreferrer"
-				className="flex items-center gap-2 px-4 py-2 rounded-lg
-					bg-zinc-100 text-zinc-600 text-sm font-medium
-					border border-zinc-200/60 hover:border-accent hover:bg-accent hover:text-white
-					transition-all duration-300
-					dark:bg-zinc-800/50 dark:text-zinc-400 dark:border-zinc-800
-					dark:hover:bg-accent dark:hover:border-accent dark:hover:text-white"
+				className="flex items-center gap-2 px-5 py-2.5 rounded-xl
+					bg-zinc-800/50 text-zinc-300 text-sm font-semibold
+					border border-zinc-700/50 hover:border-accent hover:bg-accent/10 hover:text-accent
+					transition-all duration-300"
 				aria-label="GitHub"
-				whileHover={{ scale: 1.03 }}
-				whileTap={{ scale: 0.97 }}
+				whileHover={{ scale: 1.05 }}
+				whileTap={{ scale: 0.95 }}
 			>
-				<FiGithub className="w-3.5 h-3.5" />
-				Code
+				<FiGithub className="w-4 h-4" />
+				Source
 			</motion.a>
 		)}
 		{project.demo && (
@@ -164,151 +162,94 @@ const ActionButtons = ({ project }) => (
 				href={project.demo}
 				target="_blank"
 				rel="noopener noreferrer"
-				className="flex items-center gap-2 px-4 py-2 rounded-lg
-					bg-accent text-white text-sm font-medium
-					hover:bg-accent-hover transition-all duration-300 shadow-glow"
+				className="flex items-center gap-2 px-5 py-2.5 rounded-xl
+					bg-accent text-white text-sm font-semibold shadow-glow
+					hover:bg-accent-hover transition-all duration-300"
 				aria-label="Demo"
-				whileHover={{ scale: 1.03 }}
-				whileTap={{ scale: 0.97 }}
+				whileHover={{ scale: 1.05 }}
+				whileTap={{ scale: 0.95 }}
 			>
-				<FiExternalLink className="w-3.5 h-3.5" />
-				Live
+				<FiExternalLink className="w-4 h-4" />
+				Live Demo
 			</motion.a>
 		)}
 	</div>
 );
 
-/* ── Featured hero project card — full width ── */
-const FeaturedProjectCard = ({ project }) => {
+/* ── Overlapping Sticky Case Study Card ── */
+const CaseStudyCard = ({ project, idx, total }) => {
 	const { tilt, spotlight, handleMouseMove, handleMouseLeave } = useTilt();
+
+	// Progressive stickiness - each card stacks sequentially
+	const stickyTop = `calc(12vh + ${idx * 40}px)`;
+	const isFeatured = idx === 0;
 
 	return (
 		<motion.div
-			initial={{ opacity: 0, y: 40 }}
+			initial={{ opacity: 0, y: 80 }}
 			whileInView={{ opacity: 1, y: 0 }}
-			viewport={{ once: true, margin: '-60px' }}
+			viewport={{ once: true, margin: '-50px' }}
 			transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-			className="mb-12"
+			className="sticky z-10 w-full"
+			style={{ top: stickyTop }}
 		>
 			<div
 				onMouseMove={handleMouseMove}
 				onMouseLeave={handleMouseLeave}
 				style={{
-					transform: `perspective(800px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
-					transition: 'transform 0.3s ease-out',
+					transform: `perspective(1000px) rotateX(${tilt.x * 0.4}deg) rotateY(${tilt.y * 0.4}deg)`,
+					transition: 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
 				}}
-				className="group relative overflow-hidden rounded-2xl
-					bg-white/80 backdrop-blur-xl border border-zinc-200/60
-					shadow-card hover:shadow-card-hover transition-all duration-400
-					dark:bg-[#0c0c14]/80 dark:border-zinc-800/50"
+				className="group relative overflow-hidden rounded-[2rem]
+					bg-[#111119]/80 backdrop-blur-xl border border-zinc-800/80
+					shadow-[0_-10px_40px_rgba(0,0,0,0.6)] hover:border-accent/40 transition-all duration-500
+					dark:bg-[#0c0c14]/90 dark:border-zinc-800/60"
 			>
-				{/* Top accent bar */}
-				<div className="h-[2px] w-full bg-gradient-to-r from-transparent via-accent/60 to-transparent" />
+				{/* Gradient Top Lip */}
+				<div className={`absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r ${isFeatured ? 'from-transparent via-accent to-transparent' : 'from-transparent via-accent/30 to-transparent'} opacity-80`} />
 
 				{/* Spotlight */}
 				<div
-					className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+					className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
 					style={{
-						background: `radial-gradient(600px circle at ${spotlight.x}px ${spotlight.y}px, rgba(14,165,233,0.05), transparent 40%)`,
+						background: `radial-gradient(800px circle at ${spotlight.x}px ${spotlight.y}px, rgba(14,165,233,0.08), transparent 40%)`,
 					}}
 				/>
 
-				<div className="relative z-10 p-8 md:p-10">
-					{/* Header row */}
-					<div className="flex items-center gap-3 mb-6">
-						<span className="flex items-center gap-2 micro-label text-accent/80">
-							<span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-							Featured Project
-						</span>
-					<span className="micro-label text-zinc-400 dark:text-zinc-600">—</span>
-					<span className="micro-label text-zinc-400 dark:text-zinc-600">01</span>
-					</div>
-
-					<h3 className="text-2xl md:text-3xl font-display font-bold text-zinc-900 mb-4 group-hover:text-accent transition-colors duration-300 dark:text-zinc-100">
-						{project.title}
-					</h3>
-
-					<p className="text-zinc-500 text-base leading-relaxed mb-6 max-w-3xl dark:text-zinc-500">
-						{project.description}
-					</p>
-
-					<div className="mb-6">
-						<TechTags technologies={project.technologies} max={6} />
-					</div>
-
-					<ActionButtons project={project} />
-				</div>
-			</div>
-		</motion.div>
-	);
-};
-
-/* ── Grid project card ── */
-const ProjectCard = ({ project, idx }) => {
-	const { tilt, spotlight, handleMouseMove, handleMouseLeave } = useTilt();
-
-	return (
-		<motion.div
-			initial={{ opacity: 0, y: 30 }}
-			whileInView={{ opacity: 1, y: 0 }}
-			viewport={{ once: true, margin: '-40px' }}
-			transition={{
-				duration: 0.5,
-				delay: (idx % 2) * 0.1,
-				ease: [0.16, 1, 0.3, 1],
-			}}
-		>
-			<div
-				onMouseMove={handleMouseMove}
-				onMouseLeave={handleMouseLeave}
-				style={{
-					transform: `perspective(800px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
-					transition: 'transform 0.3s ease-out',
-				}}
-				className="group relative h-full overflow-hidden rounded-2xl
-					bg-white/80 backdrop-blur-xl border border-zinc-200/60
-					shadow-card hover:shadow-card-hover transition-all duration-400
-					hover:border-accent/20
-					dark:bg-[#0c0c14]/80 dark:border-zinc-800/50 dark:hover:border-accent/20"
-			>
-				{/* Spotlight */}
-				<div
-					className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-					style={{
-						background: `radial-gradient(400px circle at ${spotlight.x}px ${spotlight.y}px, rgba(14,165,233,0.05), transparent 40%)`,
-					}}
-				/>
-
-				{/* Left accent stripe */}
-				<div className="absolute left-0 top-0 bottom-0 w-[2px] bg-gradient-to-b from-transparent via-accent/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-				<div className="relative z-10 p-7 flex flex-col h-full">
-					{/* Header */}
-					<div className="flex items-center justify-between mb-4">
-						<span className="micro-label text-zinc-400/50 dark:text-zinc-700">
-							{String(idx + 2).padStart(2, '0')}
-						</span>
-						{project.demo && (
-							<span className="flex items-center gap-1.5 micro-label text-accent/50">
-								<span className="w-1 h-1 rounded-full bg-accent/60" />
-								Live
+				<div className="relative z-10 p-8 md:p-12 flex flex-col md:flex-row gap-8 md:gap-16 items-start md:items-center">
+					{/* Content */}
+					<div className="flex-1 space-y-6">
+						<div className="flex items-center gap-4">
+							<span className="text-5xl md:text-7xl font-display font-bold text-zinc-800/60 dark:text-zinc-800/40">
+								{String(idx + 1).padStart(2, '0')}
 							</span>
-						)}
+							<div className="flex flex-col gap-1">
+								{isFeatured && (
+									<span className="flex items-center gap-2 micro-label text-accent">
+										<span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+										Featured AI System
+									</span>
+								)}
+								<span className="text-zinc-500 font-mono text-sm leading-none">
+									Case Study System // {String(total).padStart(2, '0')}
+								</span>
+							</div>
+						</div>
+
+						<h3 className="text-3xl md:text-4xl font-display font-bold text-zinc-100 group-hover:text-accent transition-colors duration-400">
+							{project.title}
+						</h3>
+
+						<p className="text-zinc-400 text-lg leading-relaxed max-w-3xl">
+							{project.description}
+						</p>
+
+						<div className="pt-2">
+							<TechTags technologies={project.technologies} max={8} />
+						</div>
+
+						<ActionButtons project={project} />
 					</div>
-
-					<h3 className="text-lg font-display font-bold text-zinc-900 leading-snug mb-3 group-hover:text-accent transition-colors duration-300 dark:text-zinc-100">
-						{project.title}
-					</h3>
-
-					<p className="text-zinc-500 text-sm leading-relaxed line-clamp-3 mb-5 dark:text-zinc-500">
-						{project.description}
-					</p>
-
-					<div className="mb-5">
-						<TechTags technologies={project.technologies} />
-					</div>
-
-					<ActionButtons project={project} />
 				</div>
 			</div>
 		</motion.div>
@@ -329,7 +270,7 @@ const Projects = () => {
 		<section
 			id="projects"
 			ref={ref}
-			className="relative bg-zinc-100 dark:bg-[#050508] py-28 overflow-hidden"
+			className="relative bg-zinc-100 dark:bg-[#030305] py-28 overflow-hidden"
 		>
 			{/* Ambient gradients */}
 			<div className="absolute inset-0 pointer-events-none">
@@ -376,16 +317,14 @@ const Projects = () => {
 					</motion.p>
 				</motion.div>
 
-				{/* Featured first project */}
-				<FeaturedProjectCard project={projects[0]} />
-
-				{/* Responsive grid for remaining projects */}
-				<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-					{projects.slice(1).map((project, idx) => (
-						<ProjectCard
+				{/* Overlapping Case Studies format */}
+				<div className="flex flex-col gap-6 relative w-full pt-10 pb-[10vh]">
+					{projects.map((project, idx) => (
+						<CaseStudyCard
 							key={project.title}
 							project={project}
 							idx={idx}
+							total={projects.length}
 						/>
 					))}
 				</div>

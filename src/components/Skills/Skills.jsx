@@ -1,12 +1,12 @@
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
 import { useState, useRef, useCallback } from 'react';
-import { 
-  FaPython, FaJava, FaJs, FaReact, FaNodeJs, FaDatabase, FaGithub, 
+import {
+  FaPython, FaJava, FaJs, FaReact, FaNodeJs, FaDatabase, FaGithub,
   FaHtml5, FaCss3Alt, FaGit, FaAndroid, FaChartBar, FaCode
 } from 'react-icons/fa';
-import { 
-  SiC, SiMongodb, SiMysql, SiOracle, SiFlask, SiFastapi, SiTensorflow, 
+import {
+  SiC, SiMongodb, SiMysql, SiOracle, SiFlask, SiFastapi, SiTensorflow,
   SiOpencv, SiPandas, SiNumpy, SiPhp, SiTailwindcss
 } from 'react-icons/si';
 
@@ -155,7 +155,7 @@ const SkillCard = ({ category, index }) => {
 
 const Skills = () => {
   return (
-    <section id="skills" className="py-28 relative overflow-hidden bg-zinc-100 dark:bg-[#050508]">
+    <section id="skills" className="py-28 relative overflow-hidden bg-zinc-100 dark:bg-[#030305]">
       {/* Subtle ambient gradients */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-bl from-accent/[0.02] to-transparent" />

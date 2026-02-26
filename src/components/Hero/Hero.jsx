@@ -36,7 +36,7 @@ const Hero = ({ scrollToSection }) => {
   return (
     <section
       ref={ref}
-      className="relative min-h-screen flex items-center overflow-hidden bg-zinc-100 dark:bg-[#050508]"
+      className="relative min-h-screen flex items-center overflow-hidden bg-zinc-100 dark:bg-[#030305]"
     >
       {/* ── Background layers ── */}
       <motion.div className="absolute inset-0" style={{ y: bgY }}>
@@ -129,7 +129,7 @@ const Hero = ({ scrollToSection }) => {
               variants={item}
               className="text-xl sm:text-2xl font-medium text-zinc-600 dark:text-zinc-400"
             >
-              Full Stack Developer & AI Enthusiast
+              AI Engineer & Computer Vision Developer
             </motion.p>
 
             {/* Description */}
@@ -137,7 +137,7 @@ const Hero = ({ scrollToSection }) => {
               variants={item}
               className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed"
             >
-              I am a passionate technology enthusiast currently in final year of college, with a solid foundation in AI, IoT, and web development. I've worked on various real-world projects and have a strong desire to learn new technologies. My goal is to create smart, efficient solutions using AI and automation while continuously expanding my skills and taking on new challenges.
+              I am an AI Engineer specializing in deep learning, real-time computer vision, and building high-performance intelligence systems. From training models on A100 GPUs to deploying edge-optimized AI solutions, I transform complex data into cutting-edge, scalable applications.
             </motion.p>
 
             {/* CTA Buttons — glow effect */}
@@ -146,10 +146,10 @@ const Hero = ({ scrollToSection }) => {
                 whileHover={{ scale: 1.03, y: -2 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => scrollToSection && scrollToSection('contact')}
-                className="group inline-flex items-center gap-3 px-8 py-3.5 rounded-xl bg-accent text-white font-semibold shadow-glow hover:bg-accent-hover hover:shadow-[0_0_50px_rgba(14,165,233,0.2)] focus:outline-none focus:ring-2 focus:ring-accent/50 focus:ring-offset-2 focus:ring-offset-zinc-100 dark:focus:ring-offset-[#050508] transition-all duration-300"
+                className="group inline-flex items-center gap-3 px-8 py-3.5 rounded-xl bg-accent text-white font-semibold shadow-glow hover:bg-accent-hover hover:shadow-[0_0_50px_rgba(14,165,233,0.2)] focus:outline-none focus:ring-2 focus:ring-accent/50 focus:ring-offset-2 focus:ring-offset-zinc-100 dark:focus:ring-offset-[#030305] transition-all duration-300"
               >
                 <FiMail className="w-5 h-5 group-hover:rotate-6 transition-transform" />
-                Contact Me
+                Discuss AI Solutions
               </motion.button>
 
               <motion.button
@@ -160,7 +160,7 @@ const Hero = ({ scrollToSection }) => {
                 aria-label="Scroll to Projects"
               >
                 <FiChevronDown className="w-5 h-5" />
-                View Projects
+                View Case Studies
               </motion.button>
             </motion.div>
           </motion.div>
@@ -192,9 +192,9 @@ const Hero = ({ scrollToSection }) => {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <span className="h-10 w-10 rounded-xl bg-accent/10 text-accent flex items-center justify-center font-mono font-bold text-sm border border-accent/20">
-                      AI
+                      CV
                     </span>
-                    <span className="text-sm font-medium text-zinc-500">Full Stack & Automation</span>
+                    <span className="text-sm font-medium text-zinc-500">Real-time Inference</span>
                   </div>
                   <span className="micro-label text-zinc-700">v2.0</span>
                 </div>
@@ -210,13 +210,13 @@ const Hero = ({ scrollToSection }) => {
                     />
                   </div>
                   <p className="text-sm text-zinc-600 leading-relaxed">
-                    Full Stack Developer & AI Enthusiast
+                    AI Engineer & Computer Vision Dev
                   </p>
                 </div>
 
                 {/* Tags — animated stagger entrance */}
                 <div className="grid grid-cols-2 gap-2.5">
-                  {['AI', 'IoT', 'Web Dev', 'Automation'].map((tag, idx) => (
+                  {['Deep Learning', 'Computer Vision', 'PyTorch & TF', 'Edge AI'].map((tag, idx) => (
                     <motion.div
                       key={tag}
                       initial={{ opacity: 0, x: -10 }}
@@ -233,6 +233,20 @@ const Hero = ({ scrollToSection }) => {
                     </motion.div>
                   ))}
                 </div>
+
+                {/* Performance Metrics Indicator */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+                  transition={{ duration: 0.5, delay: 1.2 }}
+                  className="pt-4 mt-2 border-t border-zinc-800/50 flex justify-between items-center"
+                >
+                  <span className="micro-label text-zinc-500">Perf Score 100/100</span>
+                  <div className="flex gap-3">
+                    <span className="micro-label text-emerald-400">TTI 0.4s</span>
+                    <span className="micro-label text-accent">LCP 0.6s</span>
+                  </div>
+                </motion.div>
               </div>
             </div>
           </motion.div>

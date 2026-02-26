@@ -102,12 +102,12 @@ body::before {
 /* ── Dark Mode (primary design target) ───────────────────────────── */
 .dark {
 	color: #e4e4e7;
-	background-color: #050508;
+	background-color: #030305;
 	color-scheme: dark;
 }
 
 .dark body {
-	background-color: #050508;
+	background-color: #030305;
 	color: #e4e4e7;
 }
 

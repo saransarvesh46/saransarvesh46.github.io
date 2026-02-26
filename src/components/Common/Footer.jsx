@@ -4,9 +4,9 @@ import { FiGithub, FiLinkedin, FiMail } from 'react-icons/fi';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-  
+
   return (
-    <footer className="py-10 border-t border-zinc-200/60 bg-white/40 backdrop-blur-lg text-zinc-600 dark:bg-[#050508]/80 dark:text-zinc-400 dark:border-zinc-800/40 transition-colors duration-500">
+    <footer className="py-10 border-t border-zinc-200/60 bg-white/40 backdrop-blur-lg text-zinc-600 dark:bg-[#030305]/80 dark:text-zinc-400 dark:border-zinc-800/40 transition-colors duration-500">
       <div className="container mx-auto px-6 max-w-7xl">
         <div className="flex flex-col items-center justify-between md:flex-row gap-6">
           <div className="text-center md:text-left">
@@ -18,7 +18,7 @@ const Footer = () => {
               Full Stack Developer & AI Enthusiast
             </p>
           </div>
-          
+
           <div className="flex items-center space-x-2">
             {[
               { icon: <FiGithub className="w-5 h-5" />, href: 'https://github.com/saran887', label: 'GitHub' },
@@ -38,7 +38,7 @@ const Footer = () => {
             ))}
           </div>
         </div>
-        
+
         <div className="mt-6 pt-5 border-t border-zinc-200/40 dark:border-zinc-800/30 flex items-center justify-center gap-3">
           <span className="w-1 h-1 rounded-full bg-accent/40 animate-pulse" />
           <p className="micro-label text-zinc-400 dark:text-zinc-700">

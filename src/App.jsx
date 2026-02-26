@@ -1,15 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import React from 'react';
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'framer-motion';
 import Hero from './components/Hero/Hero';
-import Contact from './components/Contact/Contact';
-import Projects from './components/Projects/Projects';
-import Skills from './components/Skills/Skills';
 import Navbar from './components/Common/Navbar';
 import Footer from './components/Common/Footer';
 import ScrollProgress from './components/Common/ScrollProgress';
 import NeuralGrid from './components/Common/NeuralGrid';
+
+const Contact = lazy(() => import('./components/Contact/Contact'));
+const Projects = lazy(() => import('./components/Projects/Projects'));
+const Blog = lazy(() => import('./components/Blog/Blog'));
+const Skills = lazy(() => import('./components/Skills/Skills'));
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -26,7 +28,7 @@ class ErrorBoundary extends React.Component {
   render() {
     if (this.state.hasError) {
       return (
-        <div className="flex items-center justify-center min-h-screen bg-zinc-100 dark:bg-[#050508] text-zinc-900 dark:text-zinc-100">
+        <div className="flex items-center justify-center min-h-screen bg-zinc-100 dark:bg-[#030305] text-zinc-900 dark:text-zinc-100">
           <div className="text-center">
             <h2 className="text-2xl font-display font-bold mb-4">Something went wrong.</h2>
             <pre className="bg-zinc-200 dark:bg-zinc-900 p-4 rounded-xl text-sm">{this.state.error && this.state.error.toString()}</pre>
@@ -59,7 +61,7 @@ function App() {
   /* ── Loading Screen — industrial with cyan accent ── */
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-zinc-100 dark:bg-[#050508]">
+      <div className="flex items-center justify-center min-h-screen bg-zinc-100 dark:bg-[#030305]">
         <motion.div
           className="flex flex-col items-center gap-5"
           initial={{ opacity: 0, scale: 0.9 }}
@@ -88,7 +90,7 @@ function App() {
     <ErrorBoundary>
       <ScrollProgress />
       {/* ── Main shell — industrial dark-first palette ── */}
-      <div className="min-h-screen bg-zinc-100 dark:bg-[#050508] transition-colors duration-500">
+      <div className="min-h-screen bg-zinc-100 dark:bg-[#030305] transition-colors duration-500">
         {/* Global neural network background */}
         <NeuralGrid />
         <Navbar scrollToSection={scrollToSection} />
@@ -99,12 +101,20 @@ function App() {
               <Hero scrollToSection={scrollToSection} />
             </section>
 
-            <Skills />
+            <Suspense fallback={
+              <div className="flex justify-center items-center py-20">
+                <div className="w-8 h-8 border-2 border-accent border-t-transparent rounded-full animate-spin" />
+              </div>
+            }>
+              <Skills />
 
-            {/* Projects — no z-index wrapper, sticky needs clean ancestry */}
-            <Projects />
+              {/* Projects — no z-index wrapper, sticky needs clean ancestry */}
+              <Projects />
 
-            <Contact />
+              <Blog />
+
+              <Contact />
+            </Suspense>
           </main>
         </AnimatePresence>
         <Footer scrollToSection={scrollToSection} />

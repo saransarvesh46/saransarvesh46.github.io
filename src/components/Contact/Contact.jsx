@@ -55,7 +55,7 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="py-28 relative overflow-hidden bg-zinc-50 dark:bg-[#050508]"
+      className="py-28 relative overflow-hidden bg-zinc-50 dark:bg-[#030305]"
     >
       {/* Ambient gradients */}
       <div className="absolute inset-0 pointer-events-none">
