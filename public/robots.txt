@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Disallow crawling of internal or hidden paths if they exist
+Disallow: /private/
+Disallow: /api/
+
+Sitemap: https://saransarvesh.me/sitemap.xml
