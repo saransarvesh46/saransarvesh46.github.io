@@ -124,20 +124,25 @@ const Hero = ({ scrollToSection }) => {
               />
             </motion.h1>
 
-            {/* Subtitle */}
-            <motion.p
+            {/* Subtitle / H2 Equivalent content */}
+            <motion.h2
               variants={item}
               className="text-xl sm:text-2xl font-medium text-zinc-600 dark:text-zinc-400"
             >
-              AI Engineer & Computer Vision Developer
-            </motion.p>
+              Engineering High-Performance Intelligence Systems
+            </motion.h2>
 
-            {/* Description */}
+            {/* Description - Hook (150 words) */}
             <motion.p
               variants={item}
               className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed"
             >
-              I am an AI Engineer specializing in deep learning, real-time computer vision, and building high-performance intelligence systems. From training models on A100 GPUs to deploying edge-optimized AI solutions, I transform complex data into cutting-edge, scalable applications.
+              I build AI systems that solve mission-critical problems. Transforming complex, unstructured data into high-performance intelligence, I specialize in deep learning architecture, real-time inference, and scalable computer vision deployments. From training state-of-the-art neural networks on A100 GPUs to optimizing model inference for severely constrained, low-power edge IoT devices, my engineering focus is on absolute precision, robust feature extraction, and raw execution speed.
+
+              <br className="hidden md:block" />
+              <br className="hidden md:block" />
+
+              Whether it involves designing autonomous tracking algorithms for physical security, generative AI integrations for hyper-personalized platforms, or leveraging MediaPipe and OpenCV for real-time video analysis, I engineer architectures that are not simply theoretical experiments—they are strictly production-ready systems built for scale.
             </motion.p>
 
             {/* CTA Buttons — glow effect */}
