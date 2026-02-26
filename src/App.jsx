@@ -10,7 +10,6 @@ import NeuralGrid from './components/Common/NeuralGrid';
 
 const Contact = lazy(() => import('./components/Contact/Contact'));
 const Projects = lazy(() => import('./components/Projects/Projects'));
-const Blog = lazy(() => import('./components/Blog/Blog'));
 const Skills = lazy(() => import('./components/Skills/Skills'));
 
 class ErrorBoundary extends React.Component {
@@ -110,8 +109,6 @@ function App() {
 
               {/* Projects — no z-index wrapper, sticky needs clean ancestry */}
               <Projects />
-
-              <Blog />
 
               <Contact />
             </Suspense>

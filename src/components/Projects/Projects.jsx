@@ -200,7 +200,7 @@ const CaseStudyCard = ({ project, idx, total }) => {
 					transform: `perspective(1000px) rotateX(${tilt.x * 0.4}deg) rotateY(${tilt.y * 0.4}deg)`,
 					transition: 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
 				}}
-				className="group relative overflow-hidden rounded-[2rem]
+				className="group relative overflow-hidden rounded-[2rem] mx-auto max-w-5xl
 					bg-[#111119]/80 backdrop-blur-xl border border-zinc-800/80
 					shadow-[0_-10px_40px_rgba(0,0,0,0.6)] hover:border-accent/40 transition-all duration-500
 					dark:bg-[#0c0c14]/90 dark:border-zinc-800/60"
@@ -216,11 +216,11 @@ const CaseStudyCard = ({ project, idx, total }) => {
 					}}
 				/>
 
-				<div className="relative z-10 p-8 md:p-12 flex flex-col md:flex-row gap-8 md:gap-16 items-start md:items-center">
-					{/* Content */}
-					<div className="flex-1 space-y-6">
+				<div className="relative z-10 p-6 md:p-10 flex flex-col gap-6 items-start">
+					{/* Header Content */}
+					<div className="flex flex-col md:flex-row md:items-center justify-between w-full gap-4">
 						<div className="flex items-center gap-4">
-							<span className="text-5xl md:text-7xl font-display font-bold text-zinc-800/60 dark:text-zinc-800/40">
+							<span className="text-4xl md:text-6xl font-display font-bold text-zinc-800/60 dark:text-zinc-800/40">
 								{String(idx + 1).padStart(2, '0')}
 							</span>
 							<div className="flex flex-col gap-1">
@@ -230,22 +230,25 @@ const CaseStudyCard = ({ project, idx, total }) => {
 										Featured AI System
 									</span>
 								)}
-								<span className="text-zinc-500 font-mono text-sm leading-none">
+								<span className="text-zinc-500 font-mono text-xs md:text-sm leading-none">
 									Case Study System // {String(total).padStart(2, '0')}
 								</span>
 							</div>
 						</div>
+					</div>
 
-						<h3 className="text-3xl md:text-4xl font-display font-bold text-zinc-100 group-hover:text-accent transition-colors duration-400">
+					{/* Body Content */}
+					<div className="flex-1 w-full space-y-5">
+						<h3 className="text-2xl md:text-3xl font-display font-bold text-zinc-100 group-hover:text-accent transition-colors duration-400">
 							{project.title}
 						</h3>
 
-						<p className="text-zinc-400 text-lg leading-relaxed max-w-3xl">
+						<p className="text-zinc-400 text-sm md:text-base leading-relaxed">
 							{project.description}
 						</p>
 
 						<div className="pt-2">
-							<TechTags technologies={project.technologies} max={8} />
+							<TechTags technologies={project.technologies} max={6} />
 						</div>
 
 						<ActionButtons project={project} />
