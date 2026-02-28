@@ -173,7 +173,7 @@ const Skills = () => {
         >
           <span className="micro-label text-accent/50 mb-4 block">Deep Learning & Computer Vision Tech Stack</span>
           <h2 className="text-5xl md:text-6xl font-display font-bold tracking-[-0.03em] text-zinc-900 mb-6 dark:text-zinc-100">
-            Engineering Philosophy
+            Skills & Tech Stack
           </h2>
 
           <motion.div
@@ -182,26 +182,6 @@ const Skills = () => {
             transition={{ duration: 0.8, delay: 0.3 }}
             viewport={{ once: true }}
           />
-
-          <div className="text-zinc-600 dark:text-zinc-400 text-lg leading-relaxed space-y-6 max-w-3xl">
-            <p>
-              My approach to AI engineering bridges the gap between theoretical data science and hardcore software engineering. Building an intelligence system requires more than just calling an API or training a standard ResNet model. It demands a rigorous understanding of the entire pipeline—from data acquisition and highly optimized synthetic data generation to the final stages of model quantization and edge deployment.
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
-              <div>
-                <h3 className="text-zinc-900 dark:text-zinc-100 font-bold mb-2">Model Training & Optimization</h3>
-                <p className="text-base text-zinc-500">
-                  I prioritize mathematical rigor and architectural efficiency. Utilizing <strong>PyTorch</strong> and <strong>TensorFlow</strong>, I engineer custom architectures tailored to specific latency and throughput constraints. By implementing advanced techniques such as mixed-precision training, aggressive weight pruning, and post-training static quantization (PTSQ), I ensure that the neural networks I deploy are exceptionally lean without compromising on detection accuracy or robust feature extraction.
-                </p>
-              </div>
-              <div>
-                <h3 className="text-zinc-900 dark:text-zinc-100 font-bold mb-2">Edge Deployment & Inference</h3>
-                <p className="text-base text-zinc-500">
-                  The true test of a Computer Vision Developer lies in production. I specialize in taking heavy, cloud-bound models and compacting them for real-time inference on edge hardware (e.g., Raspberry Pi, Jetson Nano). By leveraging <strong>TensorFlow Lite</strong>, <strong>ONNX Runtime</strong>, and highly optimized C++ wrappers over <strong>OpenCV</strong>, I drastically reduce inference latency—often shrinking response times to the low milliseconds required for mission-critical automation and autonomous robotics.
-                </p>
-              </div>
-            </div>
-          </div>
         </motion.div>
 
         {/* Skill cards — 2-col with offset for visual rhythm */}

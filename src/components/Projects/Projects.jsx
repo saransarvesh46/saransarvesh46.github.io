@@ -3,11 +3,10 @@ import { useInView, motion, useScroll, useTransform } from 'framer-motion';
 import { useRef, useState, useCallback } from 'react';
 import { FiGithub, FiExternalLink } from 'react-icons/fi';
 
-/* ── Projects — Clean responsive grid with featured hero card ────────
-   First project: featured full-width hero card.
-   Remaining projects: 2-column grid on desktop, single column on mobile.
-   Mouse tilt + cursor spotlight + glow borders on hover.
-   Staggered scroll-triggered entrance animations.
+/* ── Projects — Pure CSS sticky overlapping cards ────────────────────
+   Each card uses `position: sticky` with incrementing `top` values.
+   No JS scroll listeners, no RAF loops, zero buffering.
+   GPU-accelerated via will-change: transform.
    ──────────────────────────────────────────────────────────────────── */
 
 const projects = [
@@ -176,22 +175,28 @@ const ActionButtons = ({ project }) => (
 	</div>
 );
 
-/* ── Overlapping Sticky Case Study Card ── */
+/* ── Sticky Case Study Card ──
+   Uses pure CSS `position: sticky` with incrementing top values.
+   Each successive card "covers" the previous as you scroll.
+   Zero JS scroll listeners = zero buffering. ── */
 const CaseStudyCard = ({ project, idx, total }) => {
 	const { tilt, spotlight, handleMouseMove, handleMouseLeave } = useTilt();
-
-	// Progressive stickiness - each card stacks sequentially
-	const stickyTop = `calc(12vh + ${idx * 40}px)`;
 	const isFeatured = idx === 0;
+
+	// Each card sticks progressively lower so they stack
+	const stickyTop = 80 + idx * 30; // 80px base (below nav) + 30px per card
 
 	return (
 		<motion.div
-			initial={{ opacity: 0, y: 80 }}
+			initial={{ opacity: 0, y: 60 }}
 			whileInView={{ opacity: 1, y: 0 }}
-			viewport={{ once: true, margin: '-50px' }}
-			transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-			className="sticky z-10 w-full"
-			style={{ top: stickyTop }}
+			viewport={{ once: true, margin: '-80px' }}
+			transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+			className="sticky z-10"
+			style={{
+				top: `${stickyTop}px`,
+				willChange: 'transform',
+			}}
 		>
 			<div
 				onMouseMove={handleMouseMove}
@@ -200,15 +205,15 @@ const CaseStudyCard = ({ project, idx, total }) => {
 					transform: `perspective(1000px) rotateX(${tilt.x * 0.4}deg) rotateY(${tilt.y * 0.4}deg)`,
 					transition: 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
 				}}
-				className="group relative overflow-hidden rounded-[2rem] mx-auto max-w-5xl
-					bg-[#111119]/80 backdrop-blur-xl border border-zinc-800/80
+				className="group relative overflow-hidden rounded-[2rem] mx-auto w-full max-w-7xl
+					bg-[#111119]/95 backdrop-blur-xl border border-zinc-800/80
 					shadow-[0_-10px_40px_rgba(0,0,0,0.6)] hover:border-accent/40 transition-all duration-500
-					dark:bg-[#0c0c14]/90 dark:border-zinc-800/60"
+					dark:bg-[#0c0c14]/95 dark:border-zinc-800/60 min-h-[450px] md:min-h-[500px] flex flex-col justify-center"
 			>
 				{/* Gradient Top Lip */}
 				<div className={`absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r ${isFeatured ? 'from-transparent via-accent to-transparent' : 'from-transparent via-accent/30 to-transparent'} opacity-80`} />
 
-				{/* Spotlight */}
+				{/* Spotlight on hover */}
 				<div
 					className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
 					style={{
@@ -216,41 +221,44 @@ const CaseStudyCard = ({ project, idx, total }) => {
 					}}
 				/>
 
-				<div className="relative z-10 p-6 md:p-10 flex flex-col gap-6 items-start">
-					{/* Header Content */}
-					<div className="flex flex-col md:flex-row md:items-center justify-between w-full gap-4">
-						<div className="flex items-center gap-4">
-							<span className="text-4xl md:text-6xl font-display font-bold text-zinc-800/60 dark:text-zinc-800/40">
-								{String(idx + 1).padStart(2, '0')}
-							</span>
-							<div className="flex flex-col gap-1">
+				<div className="relative z-10 p-8 md:p-14 w-full h-full flex flex-col justify-center">
+					{/* Header — number + title side by side */}
+					<div className="flex items-start gap-6 mb-8">
+						<span className="text-6xl md:text-7xl font-display font-bold text-zinc-800/30 leading-none select-none flex-shrink-0 tracking-tighter">
+							{String(idx + 1).padStart(2, '0')}
+						</span>
+						<div className="flex flex-col gap-3 pt-1 min-w-0">
+							<h3 className="text-2xl md:text-4xl font-display font-bold text-zinc-100 group-hover:text-accent transition-colors duration-500 leading-tight">
+								{project.title}
+							</h3>
+							<div className="flex flex-wrap items-center gap-2">
 								{isFeatured && (
-									<span className="flex items-center gap-2 micro-label text-accent">
+									<span className="flex items-center gap-1.5 text-[10px] uppercase tracking-wider font-semibold text-accent bg-accent/10 px-2 py-0.5 rounded">
 										<span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-										Featured AI System
+										Featured
 									</span>
 								)}
-								<span className="text-zinc-500 font-mono text-xs md:text-sm leading-none">
-									Case Study System // {String(total).padStart(2, '0')}
+								<span className="text-zinc-600 font-mono text-[11px]">
+									{String(idx + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
 								</span>
 							</div>
 						</div>
 					</div>
 
-					{/* Body Content */}
-					<div className="flex-1 w-full space-y-5">
-						<h3 className="text-2xl md:text-3xl font-display font-bold text-zinc-100 group-hover:text-accent transition-colors duration-400">
-							{project.title}
-						</h3>
+					{/* Description */}
+					<div className="text-zinc-400 text-base md:text-lg leading-relaxed mb-10 max-w-none font-body space-y-4">
+						{project.description.split('\n').map((paragraph, i) => (
+							<p key={i}>{paragraph}</p>
+						))}
+					</div>
 
-						<p className="text-zinc-400 text-sm md:text-base leading-relaxed">
-							{project.description}
-						</p>
+					{/* Tech tags */}
+					<div className="mb-8">
+						<TechTags technologies={project.technologies} max={8} />
+					</div>
 
-						<div className="pt-2">
-							<TechTags technologies={project.technologies} max={6} />
-						</div>
-
+					{/* Buttons */}
+					<div className="mt-auto pt-6 border-t border-zinc-800/50">
 						<ActionButtons project={project} />
 					</div>
 				</div>
@@ -273,10 +281,10 @@ const Projects = () => {
 		<section
 			id="projects"
 			ref={ref}
-			className="relative bg-zinc-100 dark:bg-[#030305] py-28 overflow-hidden"
+			className="relative bg-zinc-100 dark:bg-[#030305] py-28 overflow-x-clip"
 		>
 			{/* Ambient gradients */}
-			<div className="absolute inset-0 pointer-events-none">
+			<div className="absolute inset-0 pointer-events-none overflow-hidden">
 				<div className="absolute top-1/4 left-0 w-1/3 h-1/2 bg-gradient-to-r from-accent/[0.02] to-transparent" />
 				<div className="absolute bottom-0 right-0 w-1/2 h-1/3 bg-gradient-to-tl from-zinc-200/15 to-transparent dark:from-zinc-900/20" />
 			</div>
@@ -285,7 +293,7 @@ const Projects = () => {
 			<div className="absolute top-32 right-12 w-px h-16 bg-gradient-to-b from-transparent via-accent/10 to-transparent hidden lg:block" />
 			<div className="absolute bottom-40 left-16 w-20 h-px bg-gradient-to-r from-transparent via-accent/8 to-transparent hidden lg:block" />
 
-			<div className="container mx-auto px-6 max-w-6xl relative z-10">
+			<div className="container mx-auto px-4 md:px-6 max-w-7xl relative z-10">
 				{/* Section heading */}
 				<motion.div style={{ y: headingY }} className="mb-14 max-w-2xl">
 					<motion.span
@@ -320,8 +328,8 @@ const Projects = () => {
 					</motion.p>
 				</motion.div>
 
-				{/* Overlapping Case Studies format */}
-				<div className="flex flex-col gap-6 relative w-full pt-10 pb-[10vh]">
+				{/* Pure CSS Sticky Stack — no JS scroll logic */}
+				<div className="flex flex-col gap-8 relative w-full pb-20">
 					{projects.map((project, idx) => (
 						<CaseStudyCard
 							key={project.title}
