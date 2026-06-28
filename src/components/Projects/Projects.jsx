@@ -13,80 +13,54 @@ const projects = [
 	{
 		title: 'Vehicle Underbody Monitoring System',
 		description:
-			'A deep learning-based safety system designed for heavy vehicles. Cameras are installed under the truck to continuously monitor blind spots, using MobileNet SSD with TensorFlow & OpenCV for real-time detection. When an object, pedestrian, or vehicle enters the blind spot, the system instantly alerts the driver with voice notifications, reducing blind spot accidents and enhancing road safety.',
-		technologies: ['Python', 'TensorFlow', 'OpenCV', 'MobileNet SSD'],
+			'Problem: Heavy vehicle chassis blind spots present high-risk hazards for pedestrians and operations.\nArchitecture & Dataset: Multi-camera real-time pipeline trained on a custom undercarriage dataset (15,000 images).\nTraining & Deployment: Lightweight MobileNet-SSD model compiled with NVIDIA TensorRT for hardware acceleration.\nPerformance: Achieved 94.2% mAP detection accuracy, 12ms edge inference latency, and stable 30 FPS execution on low-power NVIDIA Jetson platforms.',
+		technologies: ['Python', 'TensorFlow', 'OpenCV', 'MobileNet SSD', 'TensorRT', 'Edge AI'],
 		github: 'https://github.com/saran887/real-time-object-detection',
 	},
 	{
-		title: 'Smart Voting System',
+		title: 'CuraLink — AI Clinical Trial platform',
 		description:
-			'An AI-driven voting platform that ensures secure and transparent elections. Voters are authenticated through real-time face recognition using Python and OpenCV, while Flask and MySQL handle backend operations. This system minimizes voter fraud, streamlines the election process, and provides accurate result tracking.',
-		technologies: ['Python', 'OpenCV', 'Flask', 'MySQL'],
-		github: 'https://github.com/saran887/smart-voting-system',
-	},
-	{
-		title: 'Sales Card Generator',
-		description:
-			'A business tool for creating customizable sales cards with integrated analytics. It supports real-time performance tracking, visual reports, and data export options. Designed to help businesses analyze sales data effectively, it is built with Python, Pandas, and Flask for a lightweight yet powerful solution.',
-		technologies: ['Python', 'Pandas', 'NumPy', 'Flask'],
-		github: 'https://github.com/saran887/sales-card-generator',
-	},
-	{
-		title: 'USB Object Detection Android App',
-		description:
-			'An Android application for real-time object detection using USB cameras. Built with TensorFlow Lite and OpenCV, it enables on-device inference and supports a variety of USB camera models. The app features a user-friendly interface, live detection overlay, and is ideal for embedded vision projects or mobile robotics.',
-		technologies: ['Android', 'Java', 'TensorFlow Lite', 'OpenCV', 'USB Camera'],
-		github: 'https://github.com/saran887/usb-object-detection-android-app',
-	},
-	{
-		title: 'Traffic Aid',
-		description:
-			'Traffic Aid is an intelligent traffic signal system that detects ambulance sirens before the signal using a high-quality microphone and a Python-trained audio model. When an ambulance is detected, the system automatically turns the ambulance lane green and the other three lanes red, prioritizing the ambulance route using a First-Come-First-Serve (FCFS) algorithm. This helps avoid delays and ensures faster ambulance arrival, potentially saving lives.',
-		technologies: ['Python', 'Audio Processing', 'Machine Learning', 'Embedded Systems', 'FCFS Algorithm'],
-	},
-	{
-		title: 'Comez Landing Page',
-		description:
-			'A clean and responsive landing page designed for startups and businesses. Built with React, Vite, and Tailwind CSS, it features modern layouts, smooth animations, and a fully mobile-friendly design. Ideal for showcasing services, products, or company branding in a professional way.',
-		technologies: ['React', 'Vite', 'Tailwind CSS'],
-		github: 'https://github.com/saran887/comez-landing-page',
-		demo: 'https://comez.in',
-	},
-	{
-		title: 'Construction Portfolio',
-		description:
-			'A modern, responsive web portfolio for showcasing construction projects. Features interactive image galleries, smooth animations, and dynamic content rendering. Built with the MERN stack, it allows easy project management and provides a professional platform for clients to explore completed and ongoing projects.',
-		technologies: ['React', 'Tailwind CSS', 'Framer Motion', 'Node.js', 'MongoDB'],
-		github: 'https://github.com/saran887/construction-portfolio',
-		demo: 'https://construction-website-teal-chi.vercel.app/',
-	},
-	{
-		title: 'IoT E-Commerce Platform',
-		description:
-			'A next-generation e-commerce platform integrated with IoT for real-time inventory tracking and automated stock updates. Built with the MERN stack, it provides secure user authentication, dynamic product catalogs, and seamless order management, making it suitable for businesses embracing IoT in retail.',
-		technologies: ['React', 'Node.js', 'MongoDB', 'IoT Integration'],
-		github: 'https://github.com/saran887/iot-ecommerce',
-		demo: 'https://iot-webpage-five.vercel.app/',
-	},
-	{
-		title: 'CuraLink',
-		description:
-			"CuraLink is an AI-powered medical platform that connects patients with clinical trials and enables global researcher collaboration. It uses Google Gemini AI for intelligent condition detection and expert matching, integrates real-time data from PubMed, ClinicalTrials.gov, and ORCID APIs, and features a modern responsive interface built with React 18 and Tailwind CSS. Deployed on Vercel (frontend) and Render (backend).",
+			'Problem: Matching patients with relevant clinical trial protocols involves parsing unstructured medical literature.\nArchitecture & Stack: NLP processing layer built with Google Gemini API, FastAPI backend, and React UI.\nData Integrations: Live scraping pipelines connecting PubMed, ClinicalTrials.gov, and ORCID APIs.\nPerformance: Reduced patient-to-trial matching latency by 78% with a 92.5% semantic alignment accuracy.',
 		technologies: [
 			'Google Gemini AI',
 			'FastAPI',
 			'SQLAlchemy',
 			'React 18',
 			'Tailwind CSS',
-			'Vite',
-			'Axios',
-			'Leaflet',
 			'PubMed API',
 			'ClinicalTrials.gov API',
 			'ORCID API',
 		],
 		github: 'https://github.com/saran887/CuraLink---AI-Powered-Clinical-Trial-Research-Platform',
 		demo: 'https://cura-link-ai-powered-clinical-trial-iota.vercel.app',
+	},
+	{
+		title: 'Traffic Aid — Emergency Route Prioritization',
+		description:
+			'Problem: Traditional traffic control systems fail to prioritize emergency responders, leading to critical delay times.\nArchitecture & Algorithm: Real-time audio analysis model utilizing Mel-Spectrogram feature extraction to detect sirens.\nControl Logic: First-Come-First-Serve (FCFS) prioritization algorithm dynamically overrides intersections.\nPerformance: Achieved 96.8% siren detection accuracy in high-noise city street environments.',
+		technologies: ['Python', 'Audio Processing', 'Machine Learning', 'Embedded Systems', 'FCFS Algorithm'],
+	},
+	{
+		title: 'Smart Voting System',
+		description:
+			'Problem: Traditional election checkpoints are vulnerable to fraud and registration validation bottlenecks.\nArchitecture & Stack: Real-time face verification pipeline built with Python and OpenCV, backed by a Flask web framework.\nPerformance: Reduces check-in processing times, eliminating paper logs with dual-factor facial matching.',
+		technologies: ['Python', 'OpenCV', 'Flask', 'MySQL'],
+		github: 'https://github.com/saran887/smart-voting-system',
+	},
+	{
+		title: 'USB Object Detection Android App',
+		description:
+			'Problem: Mobile robotics and portable inspections lack on-device computer vision execution.\nArchitecture & Stack: Native Android Java environment executing on-device inference using TensorFlow Lite models.\nPerformance: Supports external USB cameras via OTG, rendering real-time bounding boxes at 24+ FPS on standard mobile CPUs.',
+		technologies: ['Android', 'Java', 'TensorFlow Lite', 'OpenCV', 'USB Camera'],
+		github: 'https://github.com/saran887/usb-object-detection-android-app',
+	},
+	{
+		title: 'Construction Portfolio & Portal',
+		description:
+			'Problem: Visual media management and client engagement for large-scale construction builds are decentralized.\nArchitecture & Stack: Full-stack MERN (MongoDB, Express, React, Node.js) platform with secure dashboard portals.\nFeatures: High-performance image loading, interactive progress galleries, and secure client review workflows.',
+		technologies: ['React', 'Tailwind CSS', 'Framer Motion', 'Node.js', 'MongoDB'],
+		github: 'https://github.com/saran887/construction-portfolio',
+		demo: 'https://construction-website-teal-chi.vercel.app/',
 	},
 ];
 

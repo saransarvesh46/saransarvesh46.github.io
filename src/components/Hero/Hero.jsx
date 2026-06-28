@@ -132,17 +132,11 @@ const Hero = ({ scrollToSection }) => {
               AI Engineer &amp; Computer Vision Developer — Saran Sarvesh A G
             </motion.h2>
 
-            {/* Description — natural keyword placement, ~EEAT compliant */}
             <motion.p
               variants={item}
               className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed"
             >
-              I&apos;m <strong className="text-zinc-800 dark:text-zinc-200 font-semibold">Saran Sarvesh A G</strong> — an AI Engineer and Computer Vision Developer who builds systems that solve mission-critical problems. I specialise in deep learning architecture, real-time inference, and scalable computer vision deployments. From training neural networks on A100 GPUs to optimising model inference for low-power edge IoT devices, my engineering focus is on precision, robust feature extraction, and raw execution speed.
-
-              <br className="hidden md:block" />
-              <br className="hidden md:block" />
-
-              Whether designing autonomous tracking algorithms, integrating generative AI into production platforms, or building real-time video analysis pipelines with MediaPipe and OpenCV — every system I ship is production-ready and built for scale.
+              I design and deploy real-time computer vision pipelines and deep learning models optimized for edge environments. Specializing in high-throughput object detection, custom neural network acceleration, and scalable backend integrations, I bridge the gap between complex research architectures and robust production deployments.
             </motion.p>
 
             {/* CTA Buttons — glow effect */}

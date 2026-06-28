@@ -2,14 +2,12 @@
 import { motion } from 'framer-motion';
 import { memo, useRef, useCallback } from 'react';
 import {
-  FaPython, FaJava, FaJs, FaReact, FaNodeJs, FaDatabase, FaGithub,
-  FaHtml5, FaCss3Alt, FaGit, FaAndroid, FaChartBar, FaCode
+  FaPython, FaNodeJs, FaDatabase, FaGithub, FaGit, FaAndroid
 } from 'react-icons/fa';
 import {
-  SiC, SiMongodb, SiMysql, SiFlask, SiFastapi, SiTensorflow,
-  SiOpencv, SiPandas, SiNumpy, SiPhp, SiTailwindcss
+  SiC, SiCplusplus, SiMongodb, SiMysql, SiFlask, SiFastapi, SiTensorflow,
+  SiOpencv, SiPytorch, SiDocker, SiMediapipe
 } from 'react-icons/si';
-import { GrOracle } from 'react-icons/gr';
 
 /* ── Skills — Industrial cards with mouse tilt + spotlight ───────────
    Grid of skill category cards with perspective tilt on mouse move.
@@ -18,44 +16,36 @@ import { GrOracle } from 'react-icons/gr';
 
 const skillsByCategory = [
   {
-    category: 'Programming Languages',
+    category: 'Deep Learning & Computer Vision',
     skills: [
-      { name: 'Python', level: 90, icon: <FaPython className="w-6 h-6" /> },
-      { name: 'Java', level: 85, icon: <FaJava className="w-6 h-6" /> },
-      { name: 'C', level: 80, icon: <SiC className="w-6 h-6" /> },
-      { name: 'JavaScript', level: 85, icon: <FaJs className="w-6 h-6" /> },
-      { name: 'PHP', level: 75, icon: <SiPhp className="w-6 h-6" /> },
-      { name: 'SQL', level: 85, icon: <FaDatabase className="w-6 h-6" /> },
+      { name: 'PyTorch', level: 90, icon: <SiPytorch className="w-6 h-6" /> },
+      { name: 'TensorFlow', level: 85, icon: <SiTensorflow className="w-6 h-6" /> },
+      { name: 'OpenCV', level: 90, icon: <SiOpencv className="w-6 h-6" /> },
+      { name: 'MediaPipe', level: 85, icon: <SiMediapipe className="w-6 h-6" /> },
+      { name: 'Python', level: 95, icon: <FaPython className="w-6 h-6" /> },
+      { name: 'C++', level: 80, icon: <SiCplusplus className="w-6 h-6" /> },
     ]
   },
   {
-    category: 'Frontend',
+    category: 'Backend & MLOps Infrastructure',
     skills: [
-      { name: 'React', level: 85, icon: <FaReact className="w-6 h-6" /> },
-      { name: 'HTML5', level: 90, icon: <FaHtml5 className="w-6 h-6" /> },
-      { name: 'CSS3', level: 85, icon: <FaCss3Alt className="w-6 h-6" /> },
-      { name: 'Tailwind CSS', level: 80, icon: <SiTailwindcss className="w-6 h-6" /> },
+      { name: 'FastAPI', level: 85, icon: <SiFastapi className="w-6 h-6" /> },
+      { name: 'Flask', level: 80, icon: <SiFlask className="w-6 h-6" /> },
+      { name: 'Docker Containerization', level: 75, icon: <SiDocker className="w-6 h-6" /> },
+      { name: 'Node.js Systems', level: 80, icon: <FaNodeJs className="w-6 h-6" /> },
+      { name: 'MongoDB', level: 80, icon: <SiMongodb className="w-6 h-6" /> },
+      { name: 'MySQL Databases', level: 85, icon: <SiMysql className="w-6 h-6" /> },
     ]
   },
   {
-    category: 'Backend & Databases',
+    category: 'Edge AI & Embedded Systems',
     skills: [
-      { name: 'Node.js', level: 80, icon: <FaNodeJs className="w-6 h-6" /> },
-      { name: 'Flask', level: 75, icon: <SiFlask className="w-6 h-6" /> },
-      { name: 'FastAPI', level: 70, icon: <SiFastapi className="w-6 h-6" /> },
-      { name: 'MongoDB', level: 75, icon: <SiMongodb className="w-6 h-6" /> },
-      { name: 'MySQL', level: 80, icon: <SiMysql className="w-6 h-6" /> },
-      { name: 'Oracle', level: 70, icon: <GrOracle className="w-6 h-6" /> },
-    ]
-  },
-  {
-    category: 'AI/ML & Data Science',
-    skills: [
-      { name: 'TensorFlow', level: 80, icon: <SiTensorflow className="w-6 h-6" /> },
-      { name: 'Data Visualization', level: 75, icon: <FaChartBar className="w-6 h-6" /> },
-      { name: 'OpenCV', level: 80, icon: <SiOpencv className="w-6 h-6" /> },
-      { name: 'Pandas', level: 85, icon: <SiPandas className="w-6 h-6" /> },
-      { name: 'NumPy', level: 85, icon: <SiNumpy className="w-6 h-6" /> },
+      { name: 'TensorFlow Lite', level: 80, icon: <SiTensorflow className="w-6 h-6" /> },
+      { name: 'Embedded C Coding', level: 85, icon: <SiC className="w-6 h-6" /> },
+      { name: 'Android Studio (Java)', level: 75, icon: <FaAndroid className="w-6 h-6" /> },
+      { name: 'SQL Databases', level: 85, icon: <FaDatabase className="w-6 h-6" /> },
+      { name: 'Git Version Control', level: 90, icon: <FaGit className="w-6 h-6" /> },
+      { name: 'GitHub Integration', level: 90, icon: <FaGithub className="w-6 h-6" /> },
     ]
   }
 ];
