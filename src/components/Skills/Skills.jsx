@@ -2,7 +2,7 @@
 import { motion } from 'framer-motion';
 import { memo, useRef, useCallback } from 'react';
 import {
-  FaPython, FaNodeJs, FaDatabase, FaGithub, FaGit, FaAndroid
+  FaPython, FaNodeJs, FaDatabase, FaGithub, FaGit, FaAndroid, FaCode, FaChartBar
 } from 'react-icons/fa';
 import {
   SiC, SiCplusplus, SiMongodb, SiMysql, SiFlask, SiFastapi, SiTensorflow,
