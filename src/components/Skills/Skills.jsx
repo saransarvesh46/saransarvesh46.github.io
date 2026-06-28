@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
-import { useState, useRef, useCallback } from 'react';
+import { memo, useRef, useCallback } from 'react';
 import {
   FaPython, FaJava, FaJs, FaReact, FaNodeJs, FaDatabase, FaGithub,
   FaHtml5, FaCss3Alt, FaGit, FaAndroid, FaChartBar, FaCode
@@ -69,7 +69,7 @@ const tools = [
 ];
 
 /* ── Skill row item with accent hover ── */
-const SkillItem = ({ name, icon }) => (
+const SkillItem = memo(({ name, icon }) => (
   <motion.div
     className="group/item flex items-center gap-3 p-3 rounded-lg border border-transparent hover:border-zinc-200/60 hover:bg-zinc-50/50 transition-all duration-200 dark:hover:border-zinc-800 dark:hover:bg-zinc-800/30"
     whileHover={{ x: 4 }}
@@ -81,12 +81,10 @@ const SkillItem = ({ name, icon }) => (
       className="h-[2px] w-0 group-hover/item:w-5 bg-accent rounded-full transition-all duration-300"
     />
   </motion.div>
-);
+));
 
 /* ── Skill card with mouse-follow tilt + spotlight ── */
-const SkillCard = ({ category, index }) => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+const SkillCard = memo(({ category, index }) => {
   const cardRef = useRef(null);
 
   const handleMouseMove = useCallback((e) => {
@@ -96,15 +94,19 @@ const SkillCard = ({ category, index }) => {
     const y = e.clientY - rect.top;
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
-    setMousePosition({ x, y });
-    setTilt({
-      x: ((y - centerY) / centerY) * -4,
-      y: ((x - centerX) / centerX) * 4,
-    });
+    const tiltX = ((y - centerY) / centerY) * -4;
+    const tiltY = ((x - centerX) / centerX) * 4;
+
+    cardRef.current.style.setProperty('--mouse-x', `${x}px`);
+    cardRef.current.style.setProperty('--mouse-y', `${y}px`);
+    cardRef.current.style.setProperty('--tilt-x', `${tiltX}deg`);
+    cardRef.current.style.setProperty('--tilt-y', `${tiltY}deg`);
   }, []);
 
   const handleMouseLeave = () => {
-    setTilt({ x: 0, y: 0 });
+    if (!cardRef.current) return;
+    cardRef.current.style.setProperty('--tilt-x', '0deg');
+    cardRef.current.style.setProperty('--tilt-y', '0deg');
   };
 
   return (
@@ -117,7 +119,7 @@ const SkillCard = ({ category, index }) => {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{
-        transform: `perspective(800px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
+        transform: 'perspective(800px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg))',
         transition: 'transform 0.3s ease-out',
       }}
       className={`group relative overflow-hidden rounded-2xl p-7
@@ -131,7 +133,7 @@ const SkillCard = ({ category, index }) => {
       <div
         className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
         style={{
-          background: `radial-gradient(400px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(14, 165, 233, 0.04), transparent 40%)`,
+          background: 'radial-gradient(400px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(14, 165, 233, 0.04), transparent 40%)',
         }}
       />
       {/* Micro-label */}
@@ -152,7 +154,7 @@ const SkillCard = ({ category, index }) => {
       </div>
     </motion.div>
   );
-};
+});
 
 const Skills = () => {
   return (

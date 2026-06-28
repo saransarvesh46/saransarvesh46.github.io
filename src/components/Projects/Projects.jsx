@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import { useInView, motion, useScroll, useTransform } from 'framer-motion';
-import { useRef, useState, useCallback } from 'react';
+import { useRef, memo, useCallback } from 'react';
 import { FiGithub, FiExternalLink } from 'react-icons/fi';
 
 /* ── Projects — Pure CSS sticky overlapping cards ────────────────────
@@ -90,33 +90,8 @@ const projects = [
 	},
 ];
 
-/* ── Mouse tilt hook ── */
-const useTilt = () => {
-	const [tilt, setTilt] = useState({ x: 0, y: 0 });
-	const [spotlight, setSpotlight] = useState({ x: 0, y: 0 });
-
-	const handleMouseMove = useCallback((e) => {
-		const rect = e.currentTarget.getBoundingClientRect();
-		const x = e.clientX - rect.left;
-		const y = e.clientY - rect.top;
-		const centerX = rect.width / 2;
-		const centerY = rect.height / 2;
-		setTilt({
-			x: ((y - centerY) / centerY) * -3,
-			y: ((x - centerX) / centerX) * 3,
-		});
-		setSpotlight({ x, y });
-	}, []);
-
-	const handleMouseLeave = useCallback(() => {
-		setTilt({ x: 0, y: 0 });
-	}, []);
-
-	return { tilt, spotlight, handleMouseMove, handleMouseLeave };
-};
-
 /* ── Tech tags ── */
-const TechTags = ({ technologies, max = 5 }) => (
+const TechTags = memo(({ technologies, max = 5 }) => (
 	<div className="flex flex-wrap gap-1.5">
 		{technologies.slice(0, max).map((tech) => (
 			<span
@@ -134,10 +109,10 @@ const TechTags = ({ technologies, max = 5 }) => (
 			</span>
 		)}
 	</div>
-);
+));
 
 /* ── Action buttons ── */
-const ActionButtons = ({ project }) => (
+const ActionButtons = memo(({ project }) => (
 	<div className="flex flex-wrap gap-3 mt-4">
 		{project.github && (
 			<motion.a
@@ -173,18 +148,39 @@ const ActionButtons = ({ project }) => (
 			</motion.a>
 		)}
 	</div>
-);
+));
 
 /* ── Sticky Case Study Card ──
    Uses pure CSS `position: sticky` with incrementing top values.
    Each successive card "covers" the previous as you scroll.
    Zero JS scroll listeners = zero buffering. ── */
-const CaseStudyCard = ({ project, idx, total }) => {
-	const { tilt, spotlight, handleMouseMove, handleMouseLeave } = useTilt();
+const CaseStudyCard = memo(({ project, idx, total }) => {
 	const isFeatured = idx === 0;
 
 	// Each card sticks progressively lower so they stack
 	const stickyTop = 80 + idx * 30; // 80px base (below nav) + 30px per card
+
+	const handleMouseMove = useCallback((e) => {
+		const card = e.currentTarget;
+		const rect = card.getBoundingClientRect();
+		const x = e.clientX - rect.left;
+		const y = e.clientY - rect.top;
+		const centerX = rect.width / 2;
+		const centerY = rect.height / 2;
+		const tiltX = ((y - centerY) / centerY) * -1.2;
+		const tiltY = ((x - centerX) / centerX) * 1.2;
+
+		card.style.setProperty('--mouse-x', `${x}px`);
+		card.style.setProperty('--mouse-y', `${y}px`);
+		card.style.setProperty('--tilt-x', `${tiltX}deg`);
+		card.style.setProperty('--tilt-y', `${tiltY}deg`);
+	}, []);
+
+	const handleMouseLeave = useCallback((e) => {
+		const card = e.currentTarget;
+		card.style.setProperty('--tilt-x', '0deg');
+		card.style.setProperty('--tilt-y', '0deg');
+	}, []);
 
 	return (
 		<motion.div
@@ -202,7 +198,7 @@ const CaseStudyCard = ({ project, idx, total }) => {
 				onMouseMove={handleMouseMove}
 				onMouseLeave={handleMouseLeave}
 				style={{
-					transform: `perspective(1000px) rotateX(${tilt.x * 0.4}deg) rotateY(${tilt.y * 0.4}deg)`,
+					transform: 'perspective(1000px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg))',
 					transition: 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
 				}}
 				className="group relative overflow-hidden rounded-[2rem] mx-auto w-full max-w-7xl
@@ -217,7 +213,7 @@ const CaseStudyCard = ({ project, idx, total }) => {
 				<div
 					className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
 					style={{
-						background: `radial-gradient(800px circle at ${spotlight.x}px ${spotlight.y}px, rgba(14,165,233,0.08), transparent 40%)`,
+						background: 'radial-gradient(800px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(14,165,233,0.08), transparent 40%)',
 					}}
 				/>
 
@@ -265,7 +261,7 @@ const CaseStudyCard = ({ project, idx, total }) => {
 			</div>
 		</motion.div>
 	);
-};
+});
 
 const Projects = () => {
 	const ref = useRef(null);

@@ -1,5 +1,6 @@
 import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import { rafThrottle } from '../../utils/throttle';
 
 /* ── Vertical Scroll Progress — Industrial AI Style ──────────────────
    Desktop: Glowing vertical line with section markers + status label.
@@ -30,9 +31,10 @@ const ScrollProgress = () => {
         }
       }
     };
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    const throttledScroll = rafThrottle(handleScroll);
+    window.addEventListener('scroll', throttledScroll, { passive: true });
     handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', throttledScroll);
   }, []);
 
   return (

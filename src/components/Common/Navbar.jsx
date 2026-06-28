@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FiGithub, FiLinkedin, FiMail, FiMenu, FiX, FiSun, FiMoon, FiDownload } from 'react-icons/fi';
 import { useTheme } from '../../context/ThemeContext';
 import PillNav from '../PillNav/PillNav';
+import { rafThrottle } from '../../utils/throttle';
 
 /* ── Navbar — PillNav (compact) + floating action bar ──────────────── */
 
@@ -37,9 +38,10 @@ const Navbar = ({ scrollToSection }) => {
         }
       }
     };
+    const throttledScroll = rafThrottle(handleScroll);
     handleScroll();
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', throttledScroll, { passive: true });
+    return () => window.removeEventListener('scroll', throttledScroll);
   }, []);
 
   const navItems = [
