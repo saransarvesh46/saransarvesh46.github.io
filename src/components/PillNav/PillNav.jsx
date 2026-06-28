@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-
 import { gsap } from 'gsap';
+import { useGSAP } from '@gsap/react';
 
 const PillNav = ({
   logo,
@@ -31,7 +31,7 @@ const PillNav = ({
   const navItemsRef = useRef(null);
   const logoRef = useRef(null);
 
-  useEffect(() => {
+  useGSAP(() => {
     const layout = () => {
       circleRefs.current.forEach(circle => {
         if (!circle?.parentElement) return;
@@ -119,7 +119,7 @@ const PillNav = ({
     }
 
     return () => window.removeEventListener('resize', onResize);
-  }, [items, ease, initialLoadAnimation]);
+  }, { dependencies: [items, ease, initialLoadAnimation] });
 
   const handleEnter = i => {
     const tl = tlRefs.current[i];

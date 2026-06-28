@@ -7,6 +7,7 @@ import Navbar from './components/Common/Navbar';
 import Footer from './components/Common/Footer';
 import ScrollProgress from './components/Common/ScrollProgress';
 import NeuralGrid from './components/Common/NeuralGrid';
+import { useLenis } from './hooks/useLenis';
 
 const Contact = lazy(() => import('./components/Contact/Contact'));
 const Projects = lazy(() => import('./components/Projects/Projects'));
@@ -41,6 +42,7 @@ class ErrorBoundary extends React.Component {
 }
 
 function App() {
+  useLenis();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
