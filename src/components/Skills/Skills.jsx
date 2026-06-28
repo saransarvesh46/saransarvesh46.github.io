@@ -6,9 +6,10 @@ import {
   FaHtml5, FaCss3Alt, FaGit, FaAndroid, FaChartBar, FaCode
 } from 'react-icons/fa';
 import {
-  SiC, SiMongodb, SiMysql, SiOracle, SiFlask, SiFastapi, SiTensorflow,
+  SiC, SiMongodb, SiMysql, SiFlask, SiFastapi, SiTensorflow,
   SiOpencv, SiPandas, SiNumpy, SiPhp, SiTailwindcss
 } from 'react-icons/si';
+import { GrOracle } from 'react-icons/gr';
 
 /* ── Skills — Industrial cards with mouse tilt + spotlight ───────────
    Grid of skill category cards with perspective tilt on mouse move.
@@ -44,7 +45,7 @@ const skillsByCategory = [
       { name: 'FastAPI', level: 70, icon: <SiFastapi className="w-6 h-6" /> },
       { name: 'MongoDB', level: 75, icon: <SiMongodb className="w-6 h-6" /> },
       { name: 'MySQL', level: 80, icon: <SiMysql className="w-6 h-6" /> },
-      { name: 'Oracle', level: 70, icon: <SiOracle className="w-6 h-6" /> },
+      { name: 'Oracle', level: 70, icon: <GrOracle className="w-6 h-6" /> },
     ]
   },
   {
