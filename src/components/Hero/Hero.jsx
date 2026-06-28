@@ -232,20 +232,6 @@ const Hero = ({ scrollToSection }) => {
                     </motion.div>
                   ))}
                 </div>
-
-                {/* Performance Metrics Indicator */}
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-                  transition={{ duration: 0.5, delay: 1.2 }}
-                  className="pt-4 mt-2 border-t border-zinc-800/50 flex justify-between items-center"
-                >
-                  <span className="micro-label text-zinc-500">Perf Score 100/100</span>
-                  <div className="flex gap-3">
-                    <span className="micro-label text-emerald-400">TTI 0.4s</span>
-                    <span className="micro-label text-accent">LCP 0.6s</span>
-                  </div>
-                </motion.div>
               </div>
             </div>
           </motion.div>

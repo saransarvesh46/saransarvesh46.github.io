@@ -126,13 +126,13 @@ const Navbar = ({ scrollToSection }) => {
             activeColor="#0ea5e9"
             pillTextColor={isDark ? '#d4d4d8' : '#3f3f46'}
             hoveredPillTextColor="#fff"
-            className={`backdrop-blur-xl rounded-full transition-shadow duration-500 ${isScrolled
+            className={`md:backdrop-blur-xl md:rounded-full md:transition-shadow md:duration-500 ${isScrolled
                 ? isDark
-                  ? 'shadow-[0_4px_30px_rgba(0,0,0,0.4)] border border-zinc-600/30'
-                  : 'shadow-[0_4px_20px_rgba(0,0,0,0.08)] border border-zinc-200/80 bg-white/40'
+                  ? 'md:shadow-[0_4px_30px_rgba(0,0,0,0.4)] md:border md:border-zinc-600/30'
+                  : 'md:shadow-[0_4px_20px_rgba(0,0,0,0.08)] md:border md:border-zinc-200/80 md:bg-white/40'
                 : isDark
-                  ? 'shadow-lg border border-zinc-600/10'
-                  : 'shadow-md border border-zinc-200/40 bg-white/20'
+                  ? 'md:shadow-lg md:border md:border-zinc-600/10'
+                  : 'md:shadow-md md:border md:border-zinc-200/40 md:bg-white/20'
               }`}
           />
         </div>
