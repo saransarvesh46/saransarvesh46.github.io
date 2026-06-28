@@ -218,13 +218,13 @@ const PillNav = ({
     ['--nav-h']: '42px',
     ['--logo']: '34px',
     ['--pill-pad-x']: '18px',
-    ['--pill-gap']: '4px'
+    ['--pill-gap']: '8px'
   };
 
   return (
     <>
       <nav
-        className={`w-full md:w-max flex flex-wrap md:flex-nowrap items-center justify-between md:justify-start box-border px-4 py-3 md:py-0 md:px-0 ${className}`}
+        className={`relative w-full md:w-max flex flex-wrap md:flex-nowrap items-center justify-center md:justify-start box-border px-4 py-3 md:py-0 md:px-0 ${className}`}
         aria-label="Primary"
         style={cssVars}
       >

@@ -8,6 +8,19 @@ import { rafThrottle } from '../../utils/throttle';
 
 /* ── Navbar — PillNav (compact) + floating action bar ──────────────── */
 
+const navItems = [
+  { label: 'Home', href: '#home' },
+  { label: 'Skills', href: '#skills' },
+  { label: 'Projects', href: '#projects' },
+  { label: 'Contact', href: '#contact' },
+];
+
+const socialLinks = [
+  { name: 'GitHub', icon: <FiGithub className="w-[18px] h-[18px]" />, href: 'https://github.com/saran887' },
+  { name: 'LinkedIn', icon: <FiLinkedin className="w-[18px] h-[18px]" />, href: 'https://linkedin.com/in/saran-sarvesh-a-g-950357285' },
+  { name: 'Email', icon: <FiMail className="w-[18px] h-[18px]" />, href: 'mailto:saransarvesh213@gmail.com' },
+];
+
 const Navbar = ({ scrollToSection }) => {
   const { theme, toggleTheme } = useTheme();
   const isDark = theme === 'dark';
@@ -44,18 +57,6 @@ const Navbar = ({ scrollToSection }) => {
     return () => window.removeEventListener('scroll', throttledScroll);
   }, []);
 
-  const navItems = [
-    { label: 'Home', href: '#home' },
-    { label: 'Skills', href: '#skills' },
-    { label: 'Projects', href: '#projects' },
-    { label: 'Contact', href: '#contact' },
-  ];
-
-  const socialLinks = [
-    { name: 'GitHub', icon: <FiGithub className="w-[18px] h-[18px]" />, href: 'https://github.com/saran887' },
-    { name: 'LinkedIn', icon: <FiLinkedin className="w-[18px] h-[18px]" />, href: 'https://linkedin.com/in/saran-sarvesh-a-g-950357285' },
-    { name: 'Email', icon: <FiMail className="w-[18px] h-[18px]" />, href: 'mailto:saransarvesh213@gmail.com' },
-  ];
 
   /* ── Mobile menu actions ── */
   const mobileActions = (
@@ -85,7 +86,7 @@ const Navbar = ({ scrollToSection }) => {
 
   /* ── Small right-side action cluster (only icons, no full social bar) ── */
   const rightActions = (
-    <div className="flex items-center gap-1.5 px-1">
+    <div className="flex items-center gap-3 px-1">
       <button onClick={toggleTheme}
         className={`p-2 rounded-full transition-all duration-300 ${isDark ? 'text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/60' : 'text-zinc-500 hover:text-zinc-900 hover:bg-zinc-200/80'}`}
         aria-label="Toggle theme">
@@ -102,9 +103,17 @@ const Navbar = ({ scrollToSection }) => {
 
   return (
     <>
-      {/* ── Floating PillNav (compact — just nav items + theme + resume) ── */}
-      <div className="fixed top-4 left-1/2 -translate-x-1/2 z-[1000] pointer-events-none">
-        <div className="pointer-events-auto">
+      <div
+        style={{
+          position: 'fixed',
+          top: '1rem',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          zIndex: 1000,
+        }}
+        className="pointer-events-none w-full max-w-[calc(100vw-2rem)] md:w-auto"
+      >
+        <div className="pointer-events-auto flex justify-center w-full">
           <PillNav
             logo={false}
             logoAlt="Saran"

@@ -162,7 +162,7 @@ const CaseStudyCard = memo(({ project, idx, total }) => {
 			whileInView={{ opacity: 1, y: 0 }}
 			viewport={{ once: true, margin: '-80px' }}
 			transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-			className="sticky z-10"
+			className="sticky-card z-10"
 			style={{
 				top: `${stickyTop}px`,
 				willChange: 'transform',
@@ -178,7 +178,7 @@ const CaseStudyCard = memo(({ project, idx, total }) => {
 				className="group relative overflow-hidden rounded-[2rem] mx-auto w-full max-w-7xl
 					bg-[#111119]/95 backdrop-blur-xl border border-zinc-800/80
 					shadow-[0_-10px_40px_rgba(0,0,0,0.6)] hover:border-accent/40 transition-all duration-500
-					dark:bg-[#0c0c14]/95 dark:border-zinc-800/60 min-h-[450px] md:min-h-[500px] flex flex-col justify-center"
+					dark:bg-[#0c0c14]/95 dark:border-zinc-800/60 min-h-[auto] md:min-h-[500px] py-10 md:py-0 flex flex-col justify-center"
 			>
 				{/* Gradient Top Lip */}
 				<div className={`absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r ${isFeatured ? 'from-transparent via-accent to-transparent' : 'from-transparent via-accent/30 to-transparent'} opacity-80`} />
@@ -191,7 +191,7 @@ const CaseStudyCard = memo(({ project, idx, total }) => {
 					}}
 				/>
 
-				<div className="relative z-10 p-8 md:p-14 w-full h-full flex flex-col justify-center">
+				<div className="relative z-10 p-6 sm:p-8 md:p-14 w-full h-full flex flex-col justify-center">
 					{/* Header — number + title side by side */}
 					<div className="flex items-start gap-6 mb-8">
 						<span className="text-6xl md:text-7xl font-display font-bold text-zinc-800/30 leading-none select-none flex-shrink-0 tracking-tighter">
