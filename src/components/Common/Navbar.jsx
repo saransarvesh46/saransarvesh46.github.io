@@ -92,7 +92,7 @@ const Navbar = ({ scrollToSection }) => {
         {theme === 'dark' ? <FiSun className="w-4 h-4" /> : <FiMoon className="w-4 h-4" />}
       </button>
       <a href={resumeUrl} target="_blank" rel="noopener noreferrer"
-        className="px-4 py-2 rounded-full bg-accent text-white text-[13px] font-semibold hover:bg-accent-hover shadow-glow active:scale-[0.97] transition-all duration-300">
+        className="px-4 py-2 rounded-full bg-accent text-white text-[13px] font-semibold hover:bg-accent-hover shadow-glow active:scale-[0.97] transition-all duration-300 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-100 dark:focus-visible:ring-offset-[#030305] focus-visible:ring-accent focus-visible:outline-none">
         <span className="inline-flex items-center gap-1.5">
           <FiDownload className="w-3.5 h-3.5" /> Resume
         </span>

@@ -107,7 +107,9 @@ const Contact = () => {
                 shadow-sm hover:shadow-md
                 hover:-translate-y-1.5 transition-all duration-300
                 dark:bg-zinc-900 dark:border-zinc-800 dark:hover:border-accent/30
-                dark:hover:bg-zinc-800/80"
+                dark:hover:bg-zinc-800/80
+                focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent focus-visible:outline-none
+                focus-visible:ring-offset-zinc-50 dark:focus-visible:ring-offset-[#030305]"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
