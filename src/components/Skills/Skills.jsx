@@ -127,7 +127,7 @@ const SkillCard = memo(({ category, index }) => {
         }}
       />
       {/* Micro-label */}
-      <span className="micro-label text-zinc-400/60 dark:text-zinc-700 mb-4 block relative z-10">Tech Stack</span>
+      <span className="micro-label text-zinc-500 dark:text-zinc-400 mb-4 block relative z-10">Tech Stack</span>
 
       <h3 className="text-xl font-display font-bold text-zinc-900 mb-5 flex items-center gap-3 dark:text-zinc-100 relative z-10">
         <span className="text-accent">{category.skills[0].icon}</span>
@@ -164,14 +164,15 @@ const Skills = () => {
           viewport={{ once: true, margin: "-100px" }}
           className="mb-16 max-w-2xl"
         >
-          <span className="micro-label text-accent/50 mb-4 block">Deep Learning & Computer Vision Tech Stack</span>
+          <span className="micro-label text-accent mb-4 block">Machine Learning, Deep Learning & CV Tech Stack</span>
           <h2 className="text-5xl md:text-6xl font-display font-bold tracking-[-0.03em] text-zinc-900 mb-6 dark:text-zinc-100">
-            Skills & Tech Stack
+            ML & AI Engineering Tech Stack
           </h2>
 
           <motion.div
-            className="h-[2px] w-0 bg-accent rounded-full mb-8"
-            whileInView={{ width: '60px' }}
+            className="h-[2px] w-[60px] bg-accent rounded-full mb-8 origin-left"
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
             viewport={{ once: true }}
           />
@@ -195,7 +196,7 @@ const Skills = () => {
             dark:bg-[#0c0c14]/60 dark:border-zinc-800/40"
         >
           <div className="text-center mb-8">
-            <span className="micro-label text-accent/50 mb-2 block">Workflow</span>
+            <span className="micro-label text-accent mb-2 block">Workflow</span>
             <h3 className="text-2xl font-display font-bold text-zinc-900 mb-2 dark:text-zinc-100">
               Tools & Technologies
             </h3>

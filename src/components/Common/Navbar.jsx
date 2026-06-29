@@ -75,7 +75,7 @@ const Navbar = ({ scrollToSection }) => {
       <div className={`flex justify-center space-x-6 pt-4 border-t ${isDark ? 'border-zinc-800/60' : 'border-zinc-200'}`}>
         {socialLinks.map((s) => (
           <a key={s.name} href={s.href} target="_blank" rel="noopener noreferrer"
-            className={`p-3 rounded-xl transition-all ${isDark ? 'text-zinc-400 hover:text-zinc-100' : 'text-zinc-500 hover:text-zinc-800'}`}
+            className={`p-3 rounded-xl transition-all ${isDark ? 'text-zinc-400 hover:text-zinc-100' : 'text-zinc-600 hover:text-zinc-800'}`}
             aria-label={s.name}>
             {s.icon}
           </a>
@@ -88,7 +88,7 @@ const Navbar = ({ scrollToSection }) => {
   const rightActions = (
     <div className="flex items-center gap-3 px-1">
       <button onClick={toggleTheme}
-        className={`p-2 rounded-full transition-all duration-300 ${isDark ? 'text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/60' : 'text-zinc-500 hover:text-zinc-900 hover:bg-zinc-200/80'}`}
+        className={`p-2 rounded-full transition-all duration-300 ${isDark ? 'text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/60' : 'text-zinc-600 hover:text-zinc-900 hover:bg-zinc-200/80'}`}
         aria-label="Toggle theme">
         {theme === 'dark' ? <FiSun className="w-4 h-4" /> : <FiMoon className="w-4 h-4" />}
       </button>
@@ -125,7 +125,7 @@ const Navbar = ({ scrollToSection }) => {
             pillColor={isDark ? 'rgba(39, 39, 42, 0.8)' : 'rgba(244, 244, 245, 0.9)'}
             activeColor="#0ea5e9"
             pillTextColor={isDark ? '#d4d4d8' : '#3f3f46'}
-            hoveredPillTextColor="#fff"
+            hoveredPillTextColor={isDark ? '#ffffff' : '#09090b'}
             className={`md:backdrop-blur-xl md:rounded-full md:transition-shadow md:duration-500 ${isScrolled
                 ? isDark
                   ? 'md:shadow-[0_4px_30px_rgba(0,0,0,0.4)] md:border md:border-zinc-600/30'
@@ -153,7 +153,7 @@ const Navbar = ({ scrollToSection }) => {
           >
             {socialLinks.map((s) => (
               <a key={s.name} href={s.href} target="_blank" rel="noopener noreferrer"
-                className={`p-2.5 rounded-xl transition-all ${isDark ? 'text-zinc-400 hover:text-accent hover:bg-zinc-800/60' : 'text-zinc-500 hover:text-accent hover:bg-zinc-100'
+                className={`p-2.5 rounded-xl transition-all ${isDark ? 'text-zinc-400 hover:text-accent hover:bg-zinc-800/60' : 'text-zinc-600 hover:text-accent hover:bg-zinc-100'
                   }`}
                 aria-label={s.name}>
                 {s.icon}

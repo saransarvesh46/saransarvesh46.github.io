@@ -44,18 +44,18 @@ const ScrollProgress = () => {
         {/* SYSTEM ACTIVE micro-label */}
         <div className="flex items-center gap-1.5 mb-1">
           <span className="w-1 h-1 rounded-full bg-accent animate-pulse" />
-          <span className="micro-label text-accent/50">Active</span>
+          <span className="micro-label text-accent">Active</span>
         </div>
 
         {/* Glow track + fill */}
         <div className="relative w-[1.5px] h-36 bg-zinc-300/20 dark:bg-zinc-700/15 rounded-full overflow-hidden">
           <motion.div
-            className="absolute top-0 left-1/2 -translate-x-1/2 w-3 rounded-full bg-accent/15 blur-sm"
-            style={{ height: fillHeight }}
+            className="absolute top-0 left-1/2 -translate-x-1/2 w-3 h-full rounded-full bg-accent/15 blur-sm origin-top"
+            style={{ scaleY: smoothProgress }}
           />
           <motion.div
-            className="absolute top-0 left-0 w-full rounded-full bg-accent"
-            style={{ height: fillHeight }}
+            className="absolute top-0 left-0 w-full h-full rounded-full bg-accent origin-top"
+            style={{ scaleY: smoothProgress }}
           />
         </div>
 

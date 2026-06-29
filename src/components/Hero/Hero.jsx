@@ -56,6 +56,7 @@ const Hero = ({ scrollToSection }) => {
           width="140" height="140" viewBox="0 0 140 140"
           animate={{ rotate: 360 }}
           transition={{ duration: 40, repeat: Infinity, ease: 'linear' }}
+          aria-hidden="true"
         >
           <circle cx="70" cy="70" r="55" fill="none" stroke="currentColor" className="text-accent" strokeWidth="0.8" strokeDasharray="10 6" />
           <circle cx="70" cy="70" r="38" fill="none" stroke="currentColor" className="text-accent" strokeWidth="0.5" />
@@ -66,7 +67,7 @@ const Hero = ({ scrollToSection }) => {
         {/* Waveform — subtle horizontal animated wave */}
         <div className="absolute bottom-[15%] left-0 right-0 h-16 overflow-hidden opacity-[0.04] dark:opacity-[0.03] hidden md:block">
           <div className="waveform-scroll w-[200%] h-full">
-            <svg viewBox="0 0 2000 60" className="w-full h-full" preserveAspectRatio="none">
+            <svg viewBox="0 0 2000 60" className="w-full h-full" preserveAspectRatio="none" aria-hidden="true">
               <path
                 d="M0,30 Q50,10 100,30 Q150,50 200,30 Q250,10 300,30 Q350,50 400,30 Q450,10 500,30 Q550,50 600,30 Q650,10 700,30 Q750,50 800,30 Q850,10 900,30 Q950,50 1000,30 Q1050,10 1100,30 Q1150,50 1200,30 Q1250,10 1300,30 Q1350,50 1400,30 Q1450,10 1500,30 Q1550,50 1600,30 Q1650,10 1700,30 Q1750,50 1800,30 Q1850,10 1900,30 Q1950,50 2000,30"
                 fill="none"
@@ -129,14 +130,14 @@ const Hero = ({ scrollToSection }) => {
               variants={item}
               className="text-xl sm:text-2xl font-medium text-zinc-600 dark:text-zinc-400"
             >
-              AI Engineer &amp; Computer Vision Developer — Saran Sarvesh A G
+              Machine Learning Engineer, AI Developer &amp; Computer Vision Specialist — Saran Sarvesh A G
             </motion.h2>
 
             <motion.p
               variants={item}
               className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed"
             >
-              I design and deploy real-time computer vision pipelines and deep learning models optimized for edge environments. Specializing in high-throughput object detection, custom neural network acceleration, and scalable backend integrations, I bridge the gap between complex research architectures and robust production deployments.
+              Welcome to my ML engineering portfolio. I design, train, and deploy real-time machine learning systems, computer vision pipelines, and deep learning models optimized for edge environments. Specializing in high-throughput object detection, custom neural network acceleration, and scalable MLOps backend integrations, I bridge the gap between complex research architectures and robust production deployments.
             </motion.p>
 
             {/* CTA Buttons — glow effect */}
@@ -193,7 +194,7 @@ const Hero = ({ scrollToSection }) => {
                     <span className="h-10 w-10 rounded-xl bg-accent/10 text-accent flex items-center justify-center font-mono font-bold text-sm border border-accent/20">
                       CV
                     </span>
-                    <span className="text-sm font-medium text-zinc-500">Real-time Inference</span>
+                    <span className="text-sm font-medium text-zinc-400">Real-time Inference</span>
                   </div>
                   <span className="micro-label text-zinc-700">v2.0</span>
                 </div>
@@ -202,13 +203,13 @@ const Hero = ({ scrollToSection }) => {
                 <div className="space-y-3">
                   <div className="h-1 rounded-full bg-zinc-800 overflow-hidden">
                     <motion.div
-                      initial={{ width: 0 }}
-                      animate={isInView ? { width: '100%' } : { width: 0 }}
+                      initial={{ scaleX: 0 }}
+                      animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
                       transition={{ duration: 1.4, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                      className="h-full bg-gradient-to-r from-accent to-cyan-300 rounded-full"
+                      className="h-full w-full bg-gradient-to-r from-accent to-cyan-300 rounded-full origin-left"
                     />
                   </div>
-                  <p className="text-sm text-zinc-600 leading-relaxed">
+                  <p className="text-sm text-zinc-400 leading-relaxed">
                     AI Engineer & Computer Vision Dev
                   </p>
                 </div>

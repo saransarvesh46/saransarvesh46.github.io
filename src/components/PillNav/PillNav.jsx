@@ -109,9 +109,10 @@ const PillNav = ({
       }
 
       if (navItems) {
-        gsap.set(navItems, { width: 0, overflow: 'hidden' });
+        gsap.set(navItems, { opacity: 0, scale: 0.95 });
         gsap.to(navItems, {
-          width: 'auto',
+          opacity: 1,
+          scale: 1,
           duration: 0.6,
           ease
         });
@@ -256,7 +257,6 @@ const PillNav = ({
           }}
         >
           <ul
-            role="menubar"
             className="list-none flex items-stretch m-0 p-[3px] h-full"
             style={{ gap: 'var(--pill-gap)' }}
           >
@@ -315,9 +315,8 @@ const PillNav = ({
                 'relative overflow-hidden inline-flex items-center justify-center h-full no-underline rounded-full box-border font-semibold text-[14px] leading-[0] tracking-[0.3px] whitespace-nowrap cursor-pointer px-0 focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:outline-none';
 
               return (
-                <li key={item.href} role="none" className="flex h-full">
+                <li key={item.href} className="flex h-full">
                   <a
-                    role="menuitem"
                     href={item.href}
                     className={basePillClasses}
                     style={pillStyle}
@@ -361,59 +360,59 @@ const PillNav = ({
             style={{ background: 'var(--pill-bg, #fff)' }}
           />
         </button>
+
+        <div
+          ref={mobileMenuRef}
+          className="md:hidden absolute top-[3em] left-4 right-4 rounded-[27px] shadow-[0_8px_32px_rgba(0,0,0,0.12)] z-[998] origin-top"
+          style={{
+            ...cssVars,
+            background: 'var(--base, #f0f0f0)'
+          }}
+        >
+          <ul className="list-none m-0 p-[3px] flex flex-col gap-[3px]">
+            {items.map(item => {
+              const defaultStyle = {
+                background: 'var(--pill-bg, #fff)',
+                color: 'var(--pill-text, #fff)'
+              };
+              const hoverIn = e => {
+                e.currentTarget.style.background = 'var(--base)';
+                e.currentTarget.style.color = 'var(--hover-text, #fff)';
+              };
+              const hoverOut = e => {
+                e.currentTarget.style.background = 'var(--pill-bg, #fff)';
+                e.currentTarget.style.color = 'var(--pill-text, #fff)';
+              };
+
+              const linkClasses =
+                'block py-3 px-4 text-[16px] font-medium rounded-[50px] transition-all duration-200 ease-[cubic-bezier(0.25,0.1,0.25,1)]';
+
+              return (
+                <li key={item.href}>
+                  <a
+                    href={item.href}
+                    className={linkClasses}
+                    style={defaultStyle}
+                    onMouseEnter={hoverIn}
+                    onMouseLeave={hoverOut}
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      onMobileMenuClick?.();
+                    }}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+          {mobileActions && (
+            <div className="mt-2 text-center">
+              {mobileActions}
+            </div>
+          )}
+        </div>
       </nav>
-
-      <div
-        ref={mobileMenuRef}
-        className="md:hidden absolute top-[3em] left-4 right-4 rounded-[27px] shadow-[0_8px_32px_rgba(0,0,0,0.12)] z-[998] origin-top"
-        style={{
-          ...cssVars,
-          background: 'var(--base, #f0f0f0)'
-        }}
-      >
-        <ul className="list-none m-0 p-[3px] flex flex-col gap-[3px]">
-          {items.map(item => {
-            const defaultStyle = {
-              background: 'var(--pill-bg, #fff)',
-              color: 'var(--pill-text, #fff)'
-            };
-            const hoverIn = e => {
-              e.currentTarget.style.background = 'var(--base)';
-              e.currentTarget.style.color = 'var(--hover-text, #fff)';
-            };
-            const hoverOut = e => {
-              e.currentTarget.style.background = 'var(--pill-bg, #fff)';
-              e.currentTarget.style.color = 'var(--pill-text, #fff)';
-            };
-
-            const linkClasses =
-              'block py-3 px-4 text-[16px] font-medium rounded-[50px] transition-all duration-200 ease-[cubic-bezier(0.25,0.1,0.25,1)]';
-
-            return (
-              <li key={item.href}>
-                <a
-                  href={item.href}
-                  className={linkClasses}
-                  style={defaultStyle}
-                  onMouseEnter={hoverIn}
-                  onMouseLeave={hoverOut}
-                  onClick={() => {
-                    setIsMobileMenuOpen(false);
-                    onMobileMenuClick?.();
-                  }}
-                >
-                  {item.label}
-                </a>
-              </li>
-            );
-          })}
-        </ul>
-        {mobileActions && (
-          <div className="mt-2 text-center">
-            {mobileActions}
-          </div>
-        )}
-      </div>
     </>
   );
 };

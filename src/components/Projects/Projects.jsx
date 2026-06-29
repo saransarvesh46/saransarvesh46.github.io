@@ -71,14 +71,14 @@ const TechTags = memo(({ technologies, max = 5 }) => (
 			<span
 				key={tech}
 				className="px-2.5 py-1 text-[11px] rounded-md font-medium tracking-wide uppercase
-					bg-zinc-100 text-zinc-500 border border-zinc-200/60
-					dark:bg-zinc-800/50 dark:text-zinc-500 dark:border-zinc-800"
+					bg-zinc-100 text-zinc-600 border border-zinc-200/60
+					dark:bg-zinc-800/50 dark:text-zinc-400 dark:border-zinc-800"
 			>
 				{tech}
 			</span>
 		))}
 		{technologies.length > max && (
-			<span className="px-2.5 py-1 text-[11px] text-zinc-400 dark:text-zinc-600">
+			<span className="px-2.5 py-1 text-[11px] text-zinc-500 dark:text-zinc-400">
 				+{technologies.length - max}
 			</span>
 		)}
@@ -97,7 +97,7 @@ const ActionButtons = memo(({ project }) => (
 					bg-zinc-800/50 text-zinc-300 text-sm font-semibold
 					border border-zinc-700/50 hover:border-accent hover:bg-accent/10 hover:text-accent
 					transition-all duration-300"
-				aria-label="GitHub"
+				aria-label={`View source code for ${project.title}`}
 				whileHover={{ scale: 1.05 }}
 				whileTap={{ scale: 0.95 }}
 			>
@@ -113,7 +113,7 @@ const ActionButtons = memo(({ project }) => (
 				className="flex items-center gap-2 px-5 py-2.5 rounded-xl
 					bg-accent text-white text-sm font-semibold shadow-glow
 					hover:bg-accent-hover transition-all duration-300"
-				aria-label="Demo"
+				aria-label={`View live demo for ${project.title}`}
 				whileHover={{ scale: 1.05 }}
 				whileTap={{ scale: 0.95 }}
 			>
@@ -208,7 +208,7 @@ const CaseStudyCard = memo(({ project, idx, total }) => {
 										Featured
 									</span>
 								)}
-								<span className="text-zinc-600 font-mono text-[11px]">
+								<span className="text-zinc-400 font-mono text-[11px]">
 									{String(idx + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
 								</span>
 							</div>
@@ -270,7 +270,7 @@ const Projects = () => {
 						initial={{ opacity: 0 }}
 						animate={isInView ? { opacity: 1 } : { opacity: 0 }}
 						transition={{ duration: 0.4 }}
-						className="micro-label text-accent/50 mb-4 block"
+						className="micro-label text-accent mb-4 block"
 					>
 						Portfolio
 					</motion.span>
@@ -283,18 +283,18 @@ const Projects = () => {
 						Projects
 					</motion.h2>
 					<motion.div
-						className="h-[2px] bg-accent rounded-full mb-4"
-						initial={{ width: 0 }}
-						animate={isInView ? { width: '60px' } : { width: 0 }}
+						className="h-[2px] w-[60px] bg-accent rounded-full mb-4 origin-left"
+						initial={{ scaleX: 0 }}
+						animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
 						transition={{ duration: 0.8, delay: 0.3 }}
 					/>
 					<motion.p
 						initial={{ opacity: 0 }}
 						animate={isInView ? { opacity: 1 } : { opacity: 0 }}
 						transition={{ duration: 0.5, delay: 0.15 }}
-						className="text-zinc-500 text-lg dark:text-zinc-500"
+						className="text-zinc-600 text-lg dark:text-zinc-400"
 					>
-						Selected builds mixing AI, 3D, and fast web stacks.
+						Selected machine learning, computer vision, and AI engineering case studies.
 					</motion.p>
 				</motion.div>
 

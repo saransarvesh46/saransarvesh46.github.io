@@ -24,6 +24,7 @@ const NeuralGrid = () => {
         className="absolute inset-0 w-full h-full opacity-[0.025] dark:opacity-[0.02]"
         viewBox="0 0 1000 1000"
         preserveAspectRatio="xMidYMid slice"
+        aria-hidden="true"
       >
         {/* Flowing neural connection lines */}
         <path

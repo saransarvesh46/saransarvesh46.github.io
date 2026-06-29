@@ -14,7 +14,7 @@ const Footer = () => {
               <span className="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0" />
               Saran Sarvesh A G
             </div>
-            <p className="micro-label text-zinc-400 dark:text-zinc-700 mt-1">
+            <p className="micro-label text-zinc-500 dark:text-zinc-400 mt-1">
               AI Engineer &amp; Computer Vision Developer
             </p>
           </div>
@@ -30,7 +30,7 @@ const Footer = () => {
                 href={link.href}
                 target={link.href.startsWith('mailto') ? '_self' : '_blank'}
                 rel="noopener noreferrer"
-                className="p-2.5 rounded-lg text-zinc-400 hover:text-accent hover:bg-zinc-100 transition-all duration-300 dark:text-zinc-600 dark:hover:text-accent dark:hover:bg-zinc-800/40"
+                className="p-2.5 rounded-lg text-zinc-500 hover:text-accent hover:bg-zinc-100 transition-all duration-300 dark:text-zinc-400 dark:hover:text-accent dark:hover:bg-zinc-800/40"
                 aria-label={link.label}
               >
                 {link.icon}
@@ -41,7 +41,7 @@ const Footer = () => {
 
         <div className="mt-6 pt-5 border-t border-zinc-200/40 dark:border-zinc-800/30 flex items-center justify-center gap-3">
           <span className="w-1 h-1 rounded-full bg-accent/40 animate-pulse" />
-          <p className="micro-label text-zinc-400 dark:text-zinc-700">
+          <p className="micro-label text-zinc-500 dark:text-zinc-400">
             © {currentYear} Saran Sarvesh A G. All rights reserved.
           </p>
         </div>

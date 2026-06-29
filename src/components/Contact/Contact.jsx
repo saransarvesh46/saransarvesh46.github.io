@@ -77,7 +77,7 @@ const Contact = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <span className="micro-label text-accent/60 mb-4 block">Connect</span>
+          <span className="micro-label text-accent mb-4 block">Connect</span>
           <h2 className="text-5xl md:text-6xl font-display font-bold tracking-[-0.03em] text-zinc-900 dark:text-zinc-100 mb-4">
             Get In Touch
           </h2>
@@ -88,7 +88,7 @@ const Contact = () => {
             transition={{ duration: 0.8, delay: 0.3 }}
             viewport={{ once: true }}
           />
-          <p className="text-lg text-zinc-500 dark:text-zinc-400 max-w-xl mx-auto">
+          <p className="text-lg text-zinc-600 dark:text-zinc-400 max-w-xl mx-auto">
             Feel free to reach out through any of the following channels
           </p>
         </motion.div>
@@ -120,7 +120,7 @@ const Contact = () => {
 
               {/* Icon */}
               <div className="flex items-center justify-center w-14 h-14 rounded-xl mb-4
-                bg-zinc-100 text-zinc-500
+                bg-zinc-100 text-zinc-600
                 group-hover:bg-accent group-hover:text-white
                 transition-all duration-300
                 dark:bg-zinc-800 dark:text-zinc-400
@@ -137,7 +137,7 @@ const Contact = () => {
 
               {/* Value */}
               <p className="text-sm text-center break-all leading-relaxed
-                text-zinc-500 dark:text-zinc-400">
+                text-zinc-600 dark:text-zinc-400">
                 {contact.value}
               </p>
             </motion.a>
