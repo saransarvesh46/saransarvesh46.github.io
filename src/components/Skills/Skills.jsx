@@ -2,11 +2,11 @@
 import { motion } from 'framer-motion';
 import { memo, useRef, useCallback } from 'react';
 import {
-  FaPython, FaNodeJs, FaDatabase, FaGithub, FaGit, FaAndroid, FaCode, FaChartBar
+  FaPython, FaNodeJs, FaDatabase, FaGithub, FaGit, FaAndroid, FaCode, FaChartBar, FaReact, FaHtml5
 } from 'react-icons/fa';
 import {
-  SiC, SiCplusplus, SiMongodb, SiMysql, SiFlask, SiFastapi, SiTensorflow,
-  SiOpencv, SiPytorch, SiDocker, SiMediapipe
+  SiMongodb, SiMysql, SiFlask, SiFastapi, SiTensorflow,
+  SiOpencv, SiPytorch, SiDocker, SiMediapipe, SiArduino, SiScikitlearn, SiTailwindcss
 } from 'react-icons/si';
 
 /* ── Skills — Industrial cards with mouse tilt + spotlight ───────────
@@ -16,36 +16,43 @@ import {
 
 const skillsByCategory = [
   {
-    category: 'Deep Learning & Computer Vision',
+    category: 'AI & Deep Learning Systems',
     skills: [
       { name: 'PyTorch', level: 90, icon: <SiPytorch className="w-6 h-6" /> },
       { name: 'TensorFlow', level: 85, icon: <SiTensorflow className="w-6 h-6" /> },
-      { name: 'OpenCV', level: 90, icon: <SiOpencv className="w-6 h-6" /> },
-      { name: 'MediaPipe', level: 85, icon: <SiMediapipe className="w-6 h-6" /> },
-      { name: 'Python', level: 95, icon: <FaPython className="w-6 h-6" /> },
-      { name: 'C++', level: 80, icon: <SiCplusplus className="w-6 h-6" /> },
+      { name: 'Computer Vision (OpenCV)', level: 90, icon: <SiOpencv className="w-6 h-6" /> },
+      { name: 'MediaPipe & Tracking', level: 85, icon: <SiMediapipe className="w-6 h-6" /> },
+      { name: 'Python Programming', level: 95, icon: <FaPython className="w-6 h-6" /> },
     ]
   },
   {
-    category: 'Backend & MLOps Infrastructure',
+    category: 'Machine Learning & MLOps',
     skills: [
-      { name: 'FastAPI', level: 85, icon: <SiFastapi className="w-6 h-6" /> },
-      { name: 'Flask', level: 80, icon: <SiFlask className="w-6 h-6" /> },
+      { name: 'Scikit-Learn', level: 85, icon: <SiScikitlearn className="w-6 h-6" /> },
+      { name: 'TensorFlow Lite (Edge)', level: 80, icon: <SiTensorflow className="w-6 h-6" /> },
       { name: 'Docker Containerization', level: 75, icon: <SiDocker className="w-6 h-6" /> },
-      { name: 'Node.js Systems', level: 80, icon: <FaNodeJs className="w-6 h-6" /> },
-      { name: 'MongoDB', level: 80, icon: <SiMongodb className="w-6 h-6" /> },
-      { name: 'MySQL Databases', level: 85, icon: <SiMysql className="w-6 h-6" /> },
+      { name: 'Data Visualization', level: 85, icon: <FaChartBar className="w-6 h-6" /> },
+      { name: 'Git & Version Control', level: 90, icon: <FaGit className="w-6 h-6" /> },
     ]
   },
   {
-    category: 'Edge AI & Embedded Systems',
+    category: 'Full Stack Development',
     skills: [
-      { name: 'TensorFlow Lite', level: 80, icon: <SiTensorflow className="w-6 h-6" /> },
-      { name: 'Embedded C Coding', level: 85, icon: <SiC className="w-6 h-6" /> },
-      { name: 'Android Studio (Java)', level: 75, icon: <FaAndroid className="w-6 h-6" /> },
-      { name: 'SQL Databases', level: 85, icon: <FaDatabase className="w-6 h-6" /> },
-      { name: 'Git Version Control', level: 90, icon: <FaGit className="w-6 h-6" /> },
-      { name: 'GitHub Integration', level: 90, icon: <FaGithub className="w-6 h-6" /> },
+      { name: 'React Frontend', level: 85, icon: <FaReact className="w-6 h-6" /> },
+      { name: 'Tailwind CSS / HTML5', level: 90, icon: <SiTailwindcss className="w-6 h-6" /> },
+      { name: 'Node.js Systems', level: 80, icon: <FaNodeJs className="w-6 h-6" /> },
+      { name: 'FastAPI / Flask APIs', level: 85, icon: <SiFastapi className="w-6 h-6" /> },
+      { name: 'MongoDB & MySQL', level: 80, icon: <SiMongodb className="w-6 h-6" /> },
+    ]
+  },
+  {
+    category: 'IoT & Embedded Systems',
+    skills: [
+      { name: 'Arduino Prototyping', level: 90, icon: <SiArduino className="w-6 h-6" /> },
+      { name: 'IoT Systems Design', level: 80, icon: <FaDatabase className="w-6 h-6" /> },
+      { name: 'Android Studio Integration', level: 75, icon: <FaAndroid className="w-6 h-6" /> },
+      { name: 'Hardware Interface', level: 85, icon: <FaCode className="w-6 h-6" /> },
+      { name: 'GitHub Collaboration', level: 90, icon: <FaGithub className="w-6 h-6" /> },
     ]
   }
 ];

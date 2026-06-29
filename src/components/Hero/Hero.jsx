@@ -192,9 +192,9 @@ const Hero = ({ scrollToSection }) => {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <span className="h-10 w-10 rounded-xl bg-accent/10 text-accent flex items-center justify-center font-mono font-bold text-sm border border-accent/20">
-                      CV
+                      AI
                     </span>
-                    <span className="text-sm font-medium text-zinc-400">Real-time Inference</span>
+                    <span className="text-sm font-medium text-zinc-400">AI &amp; Full Stack Systems</span>
                   </div>
                   <span className="micro-label text-zinc-700">v2.0</span>
                 </div>
@@ -210,13 +210,13 @@ const Hero = ({ scrollToSection }) => {
                     />
                   </div>
                   <p className="text-sm text-zinc-400 leading-relaxed">
-                    AI Engineer & Computer Vision Dev
+                    AI Engineer, ML &amp; Full Stack Developer
                   </p>
                 </div>
 
                 {/* Tags — animated stagger entrance */}
                 <div className="grid grid-cols-2 gap-2.5">
-                  {['Deep Learning', 'Computer Vision', 'PyTorch & TF', 'Edge AI'].map((tag, idx) => (
+                  {['AI Engineering', 'Machine Learning', 'Full Stack Dev', 'IoT & Arduino'].map((tag, idx) => (
                     <motion.div
                       key={tag}
                       initial={{ opacity: 0, x: -10 }}
