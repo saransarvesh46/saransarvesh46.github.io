@@ -35,29 +35,35 @@ const Navbar = ({ scrollToSection }) => {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
-      const sections = ['home', 'about', 'experience', 'skills', 'projects', 'research', 'contact'];
-      const scrollPosition = window.scrollY + 100;
-
-      for (let i = 0; i < sections.length; i++) {
-        const section = sections[i];
-        const element = document.getElementById(section);
-        if (element) {
-          const sectionTop = element.offsetTop;
-          const sectionHeight = element.offsetHeight;
-          const sectionBottom = sectionTop + sectionHeight;
-          if (i === sections.length - 1 || scrollPosition < document.getElementById(sections[i + 1])?.offsetTop) {
-            if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-              setActiveHref(`#${section}`);
-              break;
-            }
-          }
-        }
-      }
     };
     const throttledScroll = rafThrottle(handleScroll);
-    handleScroll();
     window.addEventListener('scroll', throttledScroll, { passive: true });
-    return () => window.removeEventListener('scroll', throttledScroll);
+    handleScroll();
+
+    const sections = ['home', 'about', 'experience', 'skills', 'projects', 'research', 'contact'];
+    const observerOptions = {
+      root: null,
+      rootMargin: '-30% 0px -60% 0px',
+      threshold: 0,
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveHref(`#${entry.target.id}`);
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => {
+      window.removeEventListener('scroll', throttledScroll);
+      observer.disconnect();
+    };
   }, []);
 
 

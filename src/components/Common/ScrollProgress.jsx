@@ -21,20 +21,29 @@ const ScrollProgress = () => {
   const [activeIdx, setActiveIdx] = useState(0);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollPos = window.scrollY + window.innerHeight / 3;
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const el = document.getElementById(sections[i]);
-        if (el && scrollPos >= el.offsetTop) {
-          setActiveIdx(i);
-          break;
-        }
-      }
+    const observerOptions = {
+      root: null,
+      rootMargin: '-35% 0px -55% 0px',
+      threshold: 0,
     };
-    const throttledScroll = rafThrottle(handleScroll);
-    window.addEventListener('scroll', throttledScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener('scroll', throttledScroll);
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const idx = sections.indexOf(entry.target.id);
+          if (idx !== -1) {
+            setActiveIdx(idx);
+          }
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach((section) => {
+      const el = document.getElementById(section);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
   }, []);
 
   return (
@@ -43,8 +52,8 @@ const ScrollProgress = () => {
       <div className="fixed left-6 top-1/2 -translate-y-1/2 z-50 hidden lg:flex flex-col items-center gap-3">
         {/* SYSTEM ACTIVE micro-label */}
         <div className="flex items-center gap-1.5 mb-1">
-          <span className="w-1 h-1 rounded-full bg-accent animate-pulse" />
-          <span className="micro-label text-accent">Active</span>
+          <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+          <span className="micro-label text-sky-700 dark:text-accent">Active</span>
         </div>
 
         {/* Glow track + fill */}
@@ -75,7 +84,7 @@ const ScrollProgress = () => {
                     : 'bg-zinc-400/30 dark:bg-zinc-600/25 group-hover:bg-accent/50'
                 }`}
               />
-              <span className="absolute left-6 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 micro-label text-zinc-500 dark:text-zinc-600 capitalize pointer-events-none">
+              <span className="absolute left-6 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 micro-label text-zinc-600 dark:text-zinc-400 capitalize pointer-events-none">
                 {section}
               </span>
             </button>

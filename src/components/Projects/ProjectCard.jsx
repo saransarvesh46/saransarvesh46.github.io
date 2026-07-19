@@ -59,13 +59,13 @@ const ProjectCard = memo(({ project, idx }) => {
             <h3 className="text-xl font-bold font-display text-zinc-900 dark:text-zinc-100 group-hover:text-accent transition-colors duration-300">
               {project.title}
             </h3>
-            <span className="font-mono text-xs text-zinc-400 font-semibold">
+            <span className="font-mono text-xs text-zinc-600 dark:text-zinc-400 font-semibold">
               {String(idx + 1).padStart(2, '0')}
             </span>
           </div>
 
           {/* Description Grid */}
-          <div className="space-y-3.5 text-sm leading-relaxed font-body text-zinc-600 dark:text-zinc-400">
+          <div className="space-y-3.5 text-sm leading-relaxed font-body text-zinc-650 dark:text-zinc-400">
             <div>
               <span className="font-mono text-[10px] font-bold text-accent uppercase tracking-wider block">Problem:</span>
               <p className="mt-0.5">{project.problem}</p>
@@ -87,7 +87,7 @@ const ProjectCard = memo(({ project, idx }) => {
             {project.technologies.map((tech) => (
               <span
                 key={tech}
-                className="px-2.5 py-1 text-[10px] font-mono rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400 border border-zinc-200/40 dark:border-zinc-800/40 uppercase tracking-wide"
+                className="px-2.5 py-1 text-[10px] font-mono rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 border border-zinc-200/40 dark:border-zinc-800/40 uppercase tracking-wide"
               >
                 {tech}
               </span>
@@ -102,6 +102,7 @@ const ProjectCard = memo(({ project, idx }) => {
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={`Source code for ${project.title}`}
               className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 text-xs font-semibold hover:border-accent hover:text-accent border border-transparent transition-all duration-300 font-mono"
             >
               <FiGithub className="w-4 h-4" /> Code
@@ -112,6 +113,7 @@ const ProjectCard = memo(({ project, idx }) => {
               href={project.demo}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={`Live demo of ${project.title}`}
               className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-accent text-white text-xs font-semibold hover:bg-accent-hover shadow-glow transition-all duration-300 font-mono"
             >
               <FiExternalLink className="w-4 h-4" /> Demo

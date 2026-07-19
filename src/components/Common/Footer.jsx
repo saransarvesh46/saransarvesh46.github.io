@@ -59,11 +59,11 @@ const Footer = ({ scrollToSection }) => {
             <h4 className="text-xs font-mono font-bold text-zinc-400 uppercase tracking-wider">
               Verification &amp; Links
             </h4>
-            <div className="space-y-2 text-xs font-mono">
-              <p className="flex items-center gap-2"><FiMapPin className="text-accent" /> India</p>
-              <p className="flex items-center gap-2"><FiBriefcase className="text-accent" /> Status: Open for Role</p>
-              <a href={resumeUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-accent transition-colors">
-                <FiDownload className="text-accent" /> Resume PDF
+            <div className="space-y-2 text-xs font-mono text-zinc-650 dark:text-zinc-400">
+              <p className="flex items-center gap-2"><FiMapPin className="text-accent" aria-hidden="true" /> India</p>
+              <p className="flex items-center gap-2"><FiBriefcase className="text-accent" aria-hidden="true" /> Status: Open for Role</p>
+              <a href={resumeUrl} target="_blank" rel="noopener noreferrer" aria-label="Download Resume PDF" className="flex items-center gap-2 hover:text-accent transition-colors">
+                <FiDownload className="text-accent" aria-hidden="true" /> Resume PDF
               </a>
             </div>
 
@@ -78,7 +78,7 @@ const Footer = ({ scrollToSection }) => {
                   href={link.href}
                   target={link.href.startsWith('mailto') ? '_self' : '_blank'}
                   rel="noopener noreferrer"
-                  className="p-2.5 rounded-lg text-zinc-500 hover:text-accent hover:bg-zinc-150 transition-all duration-300 dark:text-zinc-400 dark:hover:text-accent dark:hover:bg-zinc-800/40 border border-zinc-200/40 dark:border-zinc-800/40 bg-zinc-50/50 dark:bg-zinc-950/20"
+                  className="p-2.5 rounded-lg text-zinc-600 hover:text-accent hover:bg-zinc-150 transition-all duration-300 dark:text-zinc-400 dark:hover:text-accent dark:hover:bg-zinc-800/40 border border-zinc-200/40 dark:border-zinc-800/40 bg-zinc-50/50 dark:bg-zinc-950/20"
                   aria-label={link.label}
                 >
                   {link.icon}
@@ -89,7 +89,7 @@ const Footer = ({ scrollToSection }) => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 pt-6 border-t border-zinc-200/40 dark:border-zinc-800/30 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-[10px] text-zinc-400">
+        <div className="mt-12 pt-6 border-t border-zinc-200/40 dark:border-zinc-800/30 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-[10px] text-zinc-600 dark:text-zinc-400">
           <div className="flex items-center gap-2">
             <span className="w-1 h-1 rounded-full bg-accent/40 animate-pulse" />
             <p>© {currentYear} Saran Sarvesh A G. All rights reserved.</p>

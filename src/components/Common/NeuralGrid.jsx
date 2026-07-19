@@ -26,50 +26,74 @@ const NeuralGrid = () => {
         preserveAspectRatio="xMidYMid slice"
         aria-hidden="true"
       >
-        {/* Flowing neural connection lines */}
-        <path
-          d="M80,180 Q250,120 450,220 T900,160"
-          stroke="currentColor"
-          strokeWidth="0.6"
-          fill="none"
-          className="text-accent neural-line-pulse"
-          strokeDasharray="12 8"
-        />
-        <path
-          d="M0,480 Q200,420 480,530 T1000,460"
-          stroke="currentColor"
-          strokeWidth="0.4"
-          fill="none"
-          className="text-accent neural-line-pulse"
-          style={{ animationDelay: '2s' }}
-          strokeDasharray="8 12"
-        />
-        <path
-          d="M150,780 Q400,720 650,810 T1000,750"
-          stroke="currentColor"
-          strokeWidth="0.5"
-          fill="none"
-          className="text-accent neural-line-pulse"
-          style={{ animationDelay: '4s' }}
-          strokeDasharray="10 6"
-        />
-
-        {/* Node dots along the paths */}
-        {[
-          [80, 180], [450, 220], [900, 160],
-          [0, 480], [480, 530], [1000, 460],
-          [150, 780], [650, 810], [1000, 750],
-          [300, 350], [700, 600], [500, 100],
-        ].map(([cx, cy], i) => (
-          <circle
-            key={i}
-            cx={cx}
-            cy={cy}
-            r={1.5 + (i % 3) * 0.5}
-            className="fill-accent neural-line-pulse"
-            style={{ animationDelay: `${i * 0.6}s` }}
+        {/* Group 1: Pulse delay 0s */}
+        <g className="neural-line-pulse">
+          <path
+            d="M80,180 Q250,120 450,220 T900,160"
+            stroke="currentColor"
+            strokeWidth="0.6"
+            fill="none"
+            className="text-accent"
+            strokeDasharray="12 8"
           />
-        ))}
+          {[
+            [80, 180, 1.5], [450, 220, 2.0], [900, 160, 2.5], [300, 350, 1.5]
+          ].map(([cx, cy, r], i) => (
+            <circle
+              key={`g1-${i}`}
+              cx={cx}
+              cy={cy}
+              r={r}
+              className="fill-accent"
+            />
+          ))}
+        </g>
+
+        {/* Group 2: Pulse delay 2s */}
+        <g className="neural-line-pulse" style={{ animationDelay: '2s' }}>
+          <path
+            d="M0,480 Q200,420 480,530 T1000,460"
+            stroke="currentColor"
+            strokeWidth="0.4"
+            fill="none"
+            className="text-accent"
+            strokeDasharray="8 12"
+          />
+          {[
+            [0, 480, 1.5], [480, 530, 2.0], [1000, 460, 2.5], [500, 100, 2.5]
+          ].map(([cx, cy, r], i) => (
+            <circle
+              key={`g2-${i}`}
+              cx={cx}
+              cy={cy}
+              r={r}
+              className="fill-accent"
+            />
+          ))}
+        </g>
+
+        {/* Group 3: Pulse delay 4s */}
+        <g className="neural-line-pulse" style={{ animationDelay: '4s' }}>
+          <path
+            d="M150,780 Q400,720 650,810 T1000,750"
+            stroke="currentColor"
+            strokeWidth="0.5"
+            fill="none"
+            className="text-accent"
+            strokeDasharray="10 6"
+          />
+          {[
+            [150, 780, 1.5], [650, 810, 2.0], [1000, 750, 2.5], [700, 600, 2.0]
+          ].map(([cx, cy, r], i) => (
+            <circle
+              key={`g3-${i}`}
+              cx={cx}
+              cy={cy}
+              r={r}
+              className="fill-accent"
+            />
+          ))}
+        </g>
       </svg>
 
       {/* Central radial glow — very subtle */}

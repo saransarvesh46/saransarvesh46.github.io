@@ -64,10 +64,10 @@ const Hero = ({ scrollToSection }) => {
             <motion.div variants={item} className="flex flex-wrap items-center gap-3">
               <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white/40 dark:bg-zinc-950/40">
                 <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-                <span className="micro-label text-accent">Active Trainee</span>
+                <span className="micro-label text-sky-700 dark:text-accent">Active Trainee</span>
               </div>
               <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white/40 dark:bg-zinc-950/40">
-                <span className="micro-label text-zinc-500 dark:text-zinc-400">Open to Opportunities</span>
+                <span className="micro-label text-zinc-600 dark:text-zinc-400">Open to Opportunities</span>
               </div>
             </motion.div>
 
@@ -114,18 +114,18 @@ const Hero = ({ scrollToSection }) => {
             {/* Metadata Info Row */}
             <motion.div
               variants={item}
-              className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-4 border-t border-zinc-200/60 dark:border-zinc-800/40 text-xs font-mono text-zinc-500 dark:text-zinc-400"
+              className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-4 border-t border-zinc-200/60 dark:border-zinc-800/40 text-xs font-mono text-zinc-600 dark:text-zinc-400"
             >
               <div className="space-y-1">
-                <span className="flex items-center gap-1.5 text-zinc-400 font-semibold"><FiMapPin className="text-accent" /> Location</span>
+                <span className="flex items-center gap-1.5 text-zinc-600 dark:text-zinc-400 font-semibold"><FiMapPin className="text-accent" aria-hidden="true" /> Location</span>
                 <span className="text-zinc-800 dark:text-zinc-200">Erode, Tamil Nadu, India</span>
               </div>
               <div className="space-y-1">
-                <span className="flex items-center gap-1.5 text-zinc-400 font-semibold"><FiBriefcase className="text-accent" /> Experience</span>
+                <span className="flex items-center gap-1.5 text-zinc-600 dark:text-zinc-400 font-semibold"><FiBriefcase className="text-accent" aria-hidden="true" /> Experience</span>
                 <span className="text-zinc-800 dark:text-zinc-200">Trainee / Intern</span>
               </div>
               <div className="space-y-1 col-span-2 sm:col-span-1">
-                <span className="flex items-center gap-1.5 text-zinc-400 font-semibold"><FiBookOpen className="text-accent" /> Interests</span>
+                <span className="flex items-center gap-1.5 text-zinc-600 dark:text-zinc-400 font-semibold"><FiBookOpen className="text-accent" aria-hidden="true" /> Interests</span>
                 <span className="text-zinc-800 dark:text-zinc-200">Edge AI, IoT, MERN Stack</span>
               </div>
             </motion.div>
@@ -156,19 +156,19 @@ const Hero = ({ scrollToSection }) => {
                   href="https://github.com/saran887"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 rounded-xl border border-zinc-200 dark:border-zinc-800 text-zinc-500 hover:text-accent dark:text-zinc-400 dark:hover:text-accent hover:bg-white dark:hover:bg-zinc-900 transition-all duration-300"
+                  className="p-3 rounded-xl border border-zinc-200 dark:border-zinc-800 text-zinc-600 hover:text-accent dark:text-zinc-400 dark:hover:text-accent hover:bg-white dark:hover:bg-zinc-900 transition-all duration-300"
                   aria-label="GitHub"
                 >
-                  <FiGithub className="w-5 h-5" />
+                  <FiGithub className="w-5 h-5" aria-hidden="true" />
                 </a>
                 <a
                   href="https://www.linkedin.com/in/saransarvesh/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 rounded-xl border border-zinc-200 dark:border-zinc-800 text-zinc-500 hover:text-accent dark:text-zinc-400 dark:hover:text-accent hover:bg-white dark:hover:bg-zinc-900 transition-all duration-300"
+                  className="p-3 rounded-xl border border-zinc-200 dark:border-zinc-800 text-zinc-600 hover:text-accent dark:text-zinc-400 dark:hover:text-accent hover:bg-white dark:hover:bg-zinc-900 transition-all duration-300"
                   aria-label="LinkedIn"
                 >
-                  <FiLinkedin className="w-5 h-5" />
+                  <FiLinkedin className="w-5 h-5" aria-hidden="true" />
                 </a>
               </div>
             </motion.div>

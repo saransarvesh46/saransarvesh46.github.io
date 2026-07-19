@@ -138,32 +138,32 @@ const Experience = () => {
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 pb-6 border-b border-zinc-100 dark:border-zinc-800/60">
                 <div className="flex items-start gap-4">
                   <div className="p-3.5 rounded-xl bg-accent/10 text-accent">
-                    <FiBriefcase className="w-6 h-6" />
+                    <FiBriefcase className="w-6 h-6" aria-hidden="true" />
                   </div>
                   <div>
                     <h3 className="text-2xl font-display font-bold text-zinc-900 dark:text-zinc-100">
                       {exp.role}
                     </h3>
-                    <p className="text-base text-zinc-500 dark:text-zinc-400 font-medium">
+                    <p className="text-base text-zinc-650 dark:text-zinc-400 font-medium">
                       {exp.company}
                     </p>
                   </div>
                 </div>
                 
-                <div className="flex items-center gap-4 text-sm font-mono text-zinc-400">
+                <div className="flex items-center gap-4 text-sm font-mono text-zinc-600 dark:text-zinc-400">
                   <span className="flex items-center gap-1.5">
-                    <FiCalendar className="w-4 h-4" />
+                    <FiCalendar className="w-4 h-4" aria-hidden="true" />
                     {exp.period}
                   </span>
                   <span className="flex items-center gap-1.5">
-                    <FiMapPin className="w-4 h-4" />
+                    <FiMapPin className="w-4 h-4" aria-hidden="true" />
                     {exp.location}
                   </span>
                 </div>
               </div>
 
               {/* Description */}
-              <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-8 leading-relaxed font-body">
+              <p className="text-lg text-zinc-700 dark:text-zinc-400 mb-8 leading-relaxed font-body">
                 {exp.description}
               </p>
 
@@ -179,13 +179,13 @@ const Experience = () => {
                         <h5 className="text-base font-bold text-zinc-800 dark:text-zinc-200 mb-2 font-display">
                           {item.title}
                         </h5>
-                        <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed font-body">
+                        <p className="text-sm text-zinc-650 dark:text-zinc-400 leading-relaxed font-body">
                           {item.detail}
                         </p>
                       </div>
                       <div className="flex flex-wrap gap-1.5 mt-4 pt-3 border-t border-zinc-200/30 dark:border-zinc-800/30">
                         {item.tools.map((t, tidx) => (
-                          <span key={tidx} className="text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-zinc-200/50 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400">
+                          <span key={tidx} className="text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-zinc-200/50 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-400">
                             {t}
                           </span>
                         ))}

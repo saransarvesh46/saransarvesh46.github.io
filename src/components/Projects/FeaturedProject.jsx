@@ -57,11 +57,11 @@ const FeaturedProject = memo(({ project }) => {
           {/* Left Column: Metadata and Case Study Content */}
           <div className="lg:col-span-7 space-y-6">
             <div className="flex items-center gap-3">
-              <span className="flex items-center gap-1.5 text-[10px] font-mono uppercase tracking-wider font-semibold text-accent bg-accent/10 px-2.5 py-1 rounded">
+              <span className="flex items-center gap-1.5 text-[10px] font-mono uppercase tracking-wider font-semibold text-sky-700 dark:text-accent bg-accent/10 px-2.5 py-1 rounded">
                 <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
                 Featured Case Study
               </span>
-              <span className="text-xs font-mono text-zinc-400">FPS: 30 / Latency: 12ms</span>
+              <span className="text-xs font-mono text-zinc-600 dark:text-zinc-400">FPS: 30 / Latency: 12ms</span>
             </div>
 
             <h3 className="text-3xl md:text-4xl font-display font-bold text-zinc-900 dark:text-zinc-100 group-hover:text-accent transition-colors duration-500">
@@ -69,7 +69,7 @@ const FeaturedProject = memo(({ project }) => {
             </h3>
 
             {/* Structured Specifications Grid */}
-            <div className="space-y-4 text-base leading-relaxed text-zinc-600 dark:text-zinc-400 font-body">
+            <div className="space-y-4 text-base leading-relaxed text-zinc-700 dark:text-zinc-400 font-body">
               <div>
                 <span className="font-mono text-xs font-bold text-accent uppercase tracking-wider block">Problem:</span>
                 <p className="mt-1">{project.problem}</p>
@@ -81,19 +81,19 @@ const FeaturedProject = memo(({ project }) => {
               
               <div className="grid grid-cols-2 gap-4 pt-4 border-t border-zinc-200/40 dark:border-zinc-800/40 text-xs font-mono">
                 <div className="space-y-1">
-                  <span className="text-zinc-400 block font-semibold">DATASET SPEC:</span>
+                  <span className="text-zinc-600 dark:text-zinc-400 block font-semibold">DATASET SPEC:</span>
                   <span className="text-zinc-800 dark:text-zinc-200 font-bold">{project.dataset}</span>
                 </div>
                 <div className="space-y-1">
-                  <span className="text-zinc-400 block font-semibold">ACCURACY RATE:</span>
+                  <span className="text-zinc-600 dark:text-zinc-400 block font-semibold">ACCURACY RATE:</span>
                   <span className="text-zinc-800 dark:text-zinc-200 font-bold">{project.accuracy}</span>
                 </div>
                 <div className="space-y-1">
-                  <span className="text-zinc-400 block font-semibold">EDGE TARGET HARDWARE:</span>
+                  <span className="text-zinc-600 dark:text-zinc-400 block font-semibold">EDGE TARGET HARDWARE:</span>
                   <span className="text-zinc-800 dark:text-zinc-200 font-bold">{project.hardware}</span>
                 </div>
                 <div className="space-y-1">
-                  <span className="text-zinc-400 block font-semibold">COMPILER PIPELINE:</span>
+                  <span className="text-zinc-600 dark:text-zinc-400 block font-semibold">COMPILER PIPELINE:</span>
                   <span className="text-zinc-800 dark:text-zinc-200 font-bold">{project.model}</span>
                 </div>
               </div>
@@ -118,6 +118,7 @@ const FeaturedProject = memo(({ project }) => {
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label={`Source code for featured study ${project.title}`}
                   className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 text-sm font-semibold border border-transparent hover:border-accent/40 hover:text-accent transition-all duration-300 font-mono"
                 >
                   <FiGithub className="w-4 h-4" /> Source Code

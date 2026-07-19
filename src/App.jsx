@@ -68,12 +68,6 @@ class ErrorBoundary extends React.Component {
 
 function App() {
   useLenis();
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 800);
-    return () => clearTimeout(timer);
-  }, []);
 
   const scrollToSection = (sectionId, offset = 0) => {
     const element = document.getElementById(sectionId);
@@ -83,20 +77,6 @@ function App() {
       window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
     }
   };
-
-  if (isLoading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen bg-zinc-100 dark:bg-[#030305]">
-        <div className="flex flex-col items-center gap-5">
-          <div className="relative">
-            <div className="absolute inset-[-8px] rounded-full bg-accent/15 blur-xl animate-pulse" />
-            <div className="w-12 h-12 border-2 border-accent border-t-transparent rounded-full animate-spin" />
-          </div>
-          <span className="micro-label text-zinc-500 dark:text-zinc-600">Initializing Core Systems</span>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <ErrorBoundary>

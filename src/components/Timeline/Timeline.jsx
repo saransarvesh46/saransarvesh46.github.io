@@ -51,8 +51,7 @@ const Timeline = () => {
   return (
     <section id="timeline" className="py-28 relative overflow-hidden bg-zinc-100 dark:bg-[#030305] border-t border-zinc-200/40 dark:border-zinc-800/20">
       <div className="container mx-auto px-6 max-w-5xl relative z-10">
-        
-        {/* Section Heading */}
+                 {/* Section Heading */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -60,7 +59,7 @@ const Timeline = () => {
           viewport={{ once: true }}
           className="mb-16"
         >
-          <span className="micro-label text-accent mb-4 block">Milestones</span>
+          <span className="micro-label text-sky-700 dark:text-accent mb-4 block">Milestones</span>
           <h2 className="text-4xl md:text-5xl font-display font-bold tracking-[-0.02em] text-zinc-900 dark:text-zinc-100 mb-6">
             Interactive Career Timeline
           </h2>
@@ -75,14 +74,15 @@ const Timeline = () => {
             {timelineEvents.map((evt, idx) => {
               const isSelected = selectedIdx === idx;
               return (
-                <div
+                <button
                   key={idx}
+                  type="button"
                   onClick={() => setSelectedIdx(idx)}
-                  className="relative group cursor-pointer"
+                  className="w-full text-left relative group cursor-pointer block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 dark:focus-visible:ring-offset-[#030305] rounded-xl p-2 -m-2"
                 >
                   {/* Indicator Dot */}
                   <div
-                    className={`absolute -left-[31px] top-1.5 w-4 h-4 rounded-full border-2 bg-[#f4f4f5] dark:bg-[#030305] transition-all duration-300 ${
+                    className={`absolute -left-[23px] top-3.5 w-4 h-4 rounded-full border-2 bg-[#f4f4f5] dark:bg-[#030305] transition-all duration-300 ${
                       isSelected
                         ? 'border-accent scale-125 shadow-[0_0_8px_rgba(14,165,233,0.4)]'
                         : 'border-zinc-300 dark:border-zinc-700 group-hover:border-accent/60'
@@ -90,18 +90,18 @@ const Timeline = () => {
                   />
                   
                   {/* Summary Text */}
-                  <div className="space-y-1">
-                    <span className={`font-mono text-xs tracking-wider uppercase font-semibold ${isSelected ? 'text-accent' : 'text-zinc-400'}`}>
+                  <div className="space-y-1 pl-4 lg:pl-2">
+                    <span className={`font-mono text-xs tracking-wider uppercase font-semibold ${isSelected ? 'text-accent' : 'text-zinc-600 dark:text-zinc-400'}`}>
                       {evt.year}
                     </span>
-                    <h3 className={`text-base font-bold font-display transition-colors duration-300 ${isSelected ? 'text-zinc-900 dark:text-zinc-100' : 'text-zinc-500 hover:text-zinc-700 dark:text-zinc-500 dark:hover:text-zinc-400'}`}>
+                    <h3 className={`text-base font-bold font-display transition-colors duration-300 ${isSelected ? 'text-zinc-900 dark:text-zinc-100' : 'text-zinc-600 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-200'}`}>
                       {evt.title}
                     </h3>
-                    <span className="inline-block text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-zinc-200/50 text-zinc-500 dark:bg-zinc-800/80 dark:text-zinc-500">
+                    <span className="inline-block text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-zinc-200/60 text-zinc-700 dark:bg-zinc-800/80 dark:text-zinc-400">
                       {evt.category}
                     </span>
                   </div>
-                </div>
+                </button>
               );
             })}
           </div>
@@ -137,12 +137,12 @@ const Timeline = () => {
                       {timelineEvents[selectedIdx].short}
                     </p>
                     
-                    <p className="text-base text-zinc-500 dark:text-zinc-400 leading-relaxed font-body">
+                    <p className="text-base text-zinc-650 dark:text-zinc-400 leading-relaxed font-body">
                       {timelineEvents[selectedIdx].details}
                     </p>
                   </div>
                   
-                  <div className="pt-6 border-t border-zinc-100 dark:border-zinc-800/60 flex items-center justify-between text-xs text-zinc-400 font-mono">
+                  <div className="pt-6 border-t border-zinc-100 dark:border-zinc-800/60 flex items-center justify-between text-xs text-zinc-600 dark:text-zinc-400 font-mono">
                     <span>SELECTION INDEX: {String(selectedIdx + 1).padStart(2, '0')}</span>
                     <span className="flex items-center gap-1">
                       Explore next <FiChevronRight />
