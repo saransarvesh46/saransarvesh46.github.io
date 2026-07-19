@@ -3,26 +3,98 @@ import { FiCalendar, FiMapPin, FiBriefcase, FiLayers } from 'react-icons/fi';
 
 const experiences = [
   {
-    role: 'AI Engineer Trainee & ML Developer',
-    company: 'Self-Directed / Academic Project Collaborator',
-    location: 'India',
-    period: '2024 - Present',
-    description: 'Developed real-time computer vision pipelines and web integrations optimized for edge devices and production environments.',
+    role: 'AI & Automation Trainee',
+    company: 'SKM Egg Products Export',
+    location: 'Erode, Tamil Nadu, India',
+    period: 'June 2026 - Present',
+    description: 'Engineering real-time monitoring and automation workflows combining Edge AI, computer vision, and embedded sensor systems to optimize egg processing plant floors.',
     contributions: [
       {
-        title: 'Chassis Object Detection Acceleration',
-        detail: 'Engineered a real-time vehicle underbody monitoring pipeline using MobileNet-SSD. Integrated NVIDIA TensorRT acceleration on Jetson boards, reducing edge inference latency to 12ms and achieving 30 FPS at 94.2% mAP.',
-        tools: ['TensorRT', 'MobileNet-SSD', 'NVIDIA Jetson']
+        title: 'Edge AI & Vision Detection',
+        detail: 'Developing and optimizing computer vision models using Python and OpenCV to automate real-time floor monitoring and obstacle/defect checks.',
+        tools: ['Python', 'OpenCV', 'Deep Learning', 'Edge AI']
       },
       {
-        title: 'Clinical Trial NLP Pipeline',
-        detail: 'Developed CuraLink, an AI matchmaker linking patient records with clinical trials. Designed parsing layer using Google Gemini API and structured the API using FastAPI, decreasing semantic match latency by 78%.',
-        tools: ['Google Gemini API', 'FastAPI', 'React 18']
+        title: 'Embedded Sensor Integration',
+        detail: 'Programming ESP32 microcontrollers to interface with industrial sensors for continuous environmental monitoring (temperature, humidity, etc.).',
+        tools: ['ESP32', 'C/C++', 'Sensor Integration', 'Hardware Protocols']
       },
       {
-        title: 'Acoustic Siren Prioritization',
-        detail: 'Created an emergency siren traffic prioritization node (Traffic Aid). Extracted audio Mel-Spectrogram features, classifying siren acoustics with 96.8% accuracy to dynamically control lane signaling.',
-        tools: ['Python', 'Librosa', 'FCFS Logic']
+        title: 'Relay Automation Logic',
+        detail: 'Integrating hardware relay modules and writing automation triggers to activate floor mechanisms automatically based on sensor inputs.',
+        tools: ['Relay Controls', 'Automation Logic', 'Microcontrollers']
+      }
+    ]
+  },
+  {
+    role: 'Web Developer Intern',
+    company: 'SKM Egg Products Export',
+    location: 'Erode, Tamil Nadu, India',
+    period: 'March 2026 - May 2026',
+    description: 'Developed an internal intranet system containing a HR portal, employee management modules, and internal audit tracking tools.',
+    contributions: [
+      {
+        title: 'Intranet Portal Development',
+        detail: 'Designed and built employee management pages, employee portals, and tracking systems using Laravel.',
+        tools: ['PHP', 'Laravel', 'Bootstrap', 'HTML/CSS']
+      },
+      {
+        title: 'Backend & DB Logic',
+        detail: 'Managed database operations, structured schemas, and optimized queries using MySQL to store staff logs securely.',
+        tools: ['MySQL', 'REST APIs', 'Database Design']
+      },
+      {
+        title: 'Internal Audit Tracking',
+        detail: 'Implemented audit portals for tracking and reporting internal plant operations, optimizing reporting speed.',
+        tools: ['Laravel', 'RESTful Services', 'Audit Systems']
+      }
+    ]
+  },
+  {
+    role: 'IoT Intern',
+    company: 'CubeAI Solutions',
+    location: 'Erode, India',
+    period: 'December 2025 - February 2026',
+    description: 'Designed and prototyped an IoT-based poultry automation system for automated environmental control.',
+    contributions: [
+      {
+        title: 'Poultry Automation Logic',
+        detail: 'Programmed ESP32 processors to poll DHT22 environmental sensors and trigger fans, foggers, and sprinklers automatically.',
+        tools: ['ESP32', 'C/C++', 'Relay Modules', 'DHT22 Sensors']
+      },
+      {
+        title: 'Real-time Telemetry Dashboard',
+        detail: 'Built web and mobile dashboards for live telemetry monitoring and manual remote overrides of device states.',
+        tools: ['React.js', 'WebSockets', 'REST APIs', 'Dashboard Dev']
+      },
+      {
+        title: 'Remote Device Control',
+        detail: 'Enabled remote device management, providing live state synchronization and alerts for critical temperature spikes.',
+        tools: ['IoT Networking', 'WiFi/HTTP protocols', 'Device Sync']
+      }
+    ]
+  },
+  {
+    role: 'Web Developer Intern',
+    company: 'Nutz Technovation Private Limited',
+    location: 'Erode, India',
+    period: 'August 2025 - October 2025',
+    description: 'Built React-based landing pages, admin dashboards, and secure backend RESTful APIs.',
+    contributions: [
+      {
+        title: 'React Admin Dashboard',
+        detail: 'Developed fully responsive client landing interfaces and administrative panel views with state management.',
+        tools: ['React.js', 'Tailwind CSS', 'Framer Motion']
+      },
+      {
+        title: 'Backend RESTful APIs',
+        detail: 'Created server-side APIs and router controllers using Node.js and Express.js, connecting frontend with database.',
+        tools: ['Node.js', 'Express.js', 'REST APIs', 'JSON Web Tokens']
+      },
+      {
+        title: 'Database Management',
+        detail: 'Managed structured data storage, table schemas, and relational queries using MySQL.',
+        tools: ['MySQL', 'SQL Queries', 'Relational Databases']
       }
     ]
   }

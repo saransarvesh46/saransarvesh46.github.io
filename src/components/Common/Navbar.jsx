@@ -20,7 +20,7 @@ const navItems = [
 
 const socialLinks = [
   { name: 'GitHub', icon: <FiGithub className="w-[18px] h-[18px]" />, href: 'https://github.com/saran887' },
-  { name: 'LinkedIn', icon: <FiLinkedin className="w-[18px] h-[18px]" />, href: 'https://linkedin.com/in/saran-sarvesh-a-g-950357285' },
+  { name: 'LinkedIn', icon: <FiLinkedin className="w-[18px] h-[18px]" />, href: 'https://www.linkedin.com/in/saransarvesh/' },
   { name: 'Email', icon: <FiMail className="w-[18px] h-[18px]" />, href: 'mailto:saransarvesh213@gmail.com' },
 ];
 

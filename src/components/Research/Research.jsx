@@ -3,24 +3,24 @@ import { FiBookOpen, FiCpu, FiTrendingUp, FiSettings } from 'react-icons/fi';
 
 const researchTopics = [
   {
-    topic: 'Computer Vision & Multi-Object Tracking',
-    icon: <FiBookOpen className="w-5 h-5" />,
-    detail: 'Researching multi-camera alignment methods and low-overhead object trackers (e.g. ByteTrack, DeepSORT). Focus is on reducing ID-switch frequencies and handling occlusions during real-time edge streaming.'
-  },
-  {
-    topic: 'Edge AI & Hardware-Aware Optimization',
+    topic: 'Edge AI & Embedded Systems',
     icon: <FiCpu className="w-5 h-5" />,
-    detail: 'Optimizing standard deep networks for edge microcontrollers (ESP32) and specialized accelerators (NVIDIA Jetson, TensorRT). Investigating layer pruning and INT8 post-training quantization.'
+    detail: 'Investigating lightweight neural network deployments on edge microcontrollers (ESP32) and systems-on-chip (NVIDIA Jetson). Optimizing inference speeds through layer pruning and post-training quantization.'
   },
   {
-    topic: 'Vision Transformers (ViTs) on Edge Hardware',
-    icon: <FiTrendingUp className="w-5 h-5" />,
-    detail: 'Exploring lightweight attention architectures to run spatial Vision Transformers on resource-constrained platforms, aiming to bypass the standard quadratic latency penalty of global self-attention.'
+    topic: 'Computer Vision & Object Detection',
+    icon: <FiBookOpen className="w-5 h-5" />,
+    detail: 'Researching real-time object tracking, facial matching gates, and camera-based anomaly detection algorithms. Focus is on reducing latencies and improving mAP accuracy under highly variable industrial environments.'
   },
   {
-    topic: 'Autonomy & Robotics Vision Systems',
+    topic: 'Robotics & Industrial Automation',
     icon: <FiSettings className="w-5 h-5" />,
-    detail: 'Developing robust visual SLAM (Simultaneous Localization and Mapping) frameworks that execute under variable lighting and dusty environments, catering specifically to automated vehicular inspections.'
+    detail: 'Designing automated feedback loops, smart sensor networks, and relay-driven mechanism triggers. Interested in visual feedback loops for autonomous platforms and plant automation.'
+  },
+  {
+    topic: 'MLOps, LLMs & Vision Transformers',
+    icon: <FiTrendingUp className="w-5 h-5" />,
+    detail: 'Exploring robust model compilation pipelines, deployment frameworks, and applications of Vision Transformers (ViTs) and Large Language Models (LLMs) to build resilient, end-to-end intelligent architectures.'
   }
 ];
 

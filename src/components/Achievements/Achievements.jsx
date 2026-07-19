@@ -3,21 +3,21 @@ import { FiAward, FiStar, FiCpu, FiTrendingUp } from 'react-icons/fi';
 
 const achievements = [
   {
-    title: 'Project Expo Winner',
-    subtitle: 'Autonomous Systems category',
-    description: 'Awarded 1st place in the National level Project Expo for demonstrating a real-time smart voter validation pipeline incorporating dual-factor verification.',
-    icon: <FiAward className="w-5 h-5" />
-  },
-  {
-    title: 'Spark Fund Recipient',
-    subtitle: 'Undergraduate Project Grant',
-    description: 'Secured academic research funding under the Spark Fund initiative to prototype micro-controller IoT sensor grids.',
+    title: 'SPARK Fund Winner',
+    subtitle: '₹20,000 Project Grant',
+    description: 'Awarded the SPARK Fund for developing an automated vehicle underbody monitoring system using computer vision to enhance safety and obstacle check operations.',
     icon: <FiCpu className="w-5 h-5" />
   },
   {
-    title: 'Top Team Award',
-    subtitle: 'National Smart Cities Hackathon',
-    description: 'Placed in the Top Teams for designing a siren-recognition intersection prioritization routing node (Traffic Aid) that dynamically resolved lane signaling.',
+    title: 'Website Development Competition',
+    subtitle: '2nd Place (2024)',
+    description: 'Secured 2nd place out of 15+ competing teams in the Inter-Department Website Development Competition by developing a responsive, high-performance web app.',
+    icon: <FiAward className="w-5 h-5" />
+  },
+  {
+    title: 'Industrial AI & IoT Deployments',
+    subtitle: 'Real-world Implementations',
+    description: 'Successfully developed and deployed multiple real-time edge, IoT, and full-stack projects integrated directly into industrial floor operations.',
     icon: <FiStar className="w-5 h-5" />
   }
 ];

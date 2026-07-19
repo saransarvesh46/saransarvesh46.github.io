@@ -10,39 +10,52 @@ import {
 
 const skillsByCategory = [
   {
-    category: 'Languages & Core Systems',
+    category: 'Programming Languages',
     skills: [
-      { name: 'Python', level: 95, icon: <FaPython className="w-5 h-5" /> },
-      { name: 'C++', level: 75, icon: <FaCode className="w-5 h-5" /> },
-      { name: 'Java Programming', level: 80, icon: <FaCode className="w-5 h-5" /> },
-      { name: 'JavaScript (ES6+)', level: 80, icon: <FaCode className="w-5 h-5" /> },
+      { name: 'Python', level: 90, icon: <FaPython className="w-5 h-5" /> },
+      { name: 'Java', level: 80, icon: <FaCode className="w-5 h-5" /> },
+      { name: 'C Language', level: 80, icon: <FaCode className="w-5 h-5" /> },
+      { name: 'JavaScript', level: 85, icon: <FaCode className="w-5 h-5" /> },
     ]
   },
   {
-    category: 'AI, Deep Learning & CV',
+    category: 'Web Development',
     skills: [
-      { name: 'PyTorch', level: 90, icon: <SiPytorch className="w-5 h-5" /> },
-      { name: 'TensorFlow / Lite', level: 85, icon: <SiTensorflow className="w-5 h-5" /> },
-      { name: 'OpenCV (Vision)', level: 90, icon: <SiOpencv className="w-5 h-5" /> },
-      { name: 'MediaPipe & Tracking', level: 85, icon: <SiMediapipe className="w-5 h-5" /> },
+      { name: 'React.js', level: 85, icon: <FaReact className="w-5 h-5" /> },
+      { name: 'Node.js & Express', level: 80, icon: <FaNodeJs className="w-5 h-5" /> },
+      { name: 'PHP (Laravel)', level: 80, icon: <FaCode className="w-5 h-5" /> },
+      { name: 'HTML & CSS', level: 90, icon: <SiTailwindcss className="w-5 h-5" /> },
     ]
   },
   {
-    category: 'APIs & Full-Stack Systems',
+    category: 'Database & Query',
     skills: [
-      { name: 'FastAPI / Flask', level: 85, icon: <SiFastapi className="w-5 h-5" /> },
-      { name: 'React Frontend', level: 85, icon: <FaReact className="w-5 h-5" /> },
-      { name: 'Node.js Systems', level: 80, icon: <FaNodeJs className="w-5 h-5" /> },
-      { name: 'MongoDB & SQL', level: 80, icon: <SiMongodb className="w-5 h-5" /> },
+      { name: 'MySQL', level: 85, icon: <SiMysql className="w-5 h-5" /> },
+      { name: 'MongoDB', level: 80, icon: <SiMongodb className="w-5 h-5" /> },
     ]
   },
   {
-    category: 'Embedded & Infrastructure',
+    category: 'AI & Computer Vision',
     skills: [
-      { name: 'Arduino Prototyping', level: 90, icon: <SiArduino className="w-5 h-5" /> },
-      { name: 'ESP32 / Hardware', level: 85, icon: <FaDatabase className="w-5 h-5" /> },
-      { name: 'Docker Containerization', level: 75, icon: <SiDocker className="w-5 h-5" /> },
-      { name: 'Git / GitHub Devops', level: 90, icon: <FaGithub className="w-5 h-5" /> },
+      { name: 'OpenCV', level: 85, icon: <SiOpencv className="w-5 h-5" /> },
+      { name: 'Object Detection', level: 85, icon: <SiOpencv className="w-5 h-5" /> },
+      { name: 'Deep Learning Basics', level: 80, icon: <SiPytorch className="w-5 h-5" /> },
+    ]
+  },
+  {
+    category: 'IoT & Embedded Systems',
+    skills: [
+      { name: 'ESP32 Control', level: 90, icon: <FaDatabase className="w-5 h-5" /> },
+      { name: 'Arduino Prototyping', level: 85, icon: <SiArduino className="w-5 h-5" /> },
+      { name: 'Sensor & Relay Automation', level: 90, icon: <SiArduino className="w-5 h-5" /> },
+    ]
+  },
+  {
+    category: 'Developer Tools',
+    skills: [
+      { name: 'Git & GitHub', level: 90, icon: <FaGithub className="w-5 h-5" /> },
+      { name: 'VS Code', level: 95, icon: <FaCode className="w-5 h-5" /> },
+      { name: 'Android Studio', level: 75, icon: <FaAndroid className="w-5 h-5" /> },
     ]
   }
 ];

@@ -41,7 +41,7 @@ const Contact = () => {
 
   const contactLinks = [
     { name: 'GitHub', href: 'https://github.com/saran887', icon: <FiGithub className="w-5 h-5" /> },
-    { name: 'LinkedIn', href: 'https://linkedin.com/in/saran-sarvesh-a-g-950357285', icon: <FiLinkedin className="w-5 h-5" /> },
+    { name: 'LinkedIn', href: 'https://www.linkedin.com/in/saransarvesh/', icon: <FiLinkedin className="w-5 h-5" /> },
     { name: 'LeetCode', href: 'https://leetcode.com/u/saransarvesh_51', icon: <SiLeetcode className="w-5 h-5" /> },
     { name: 'Email', href: 'mailto:saransarvesh213@gmail.com', icon: <FiMail className="w-5 h-5" /> },
   ];

@@ -43,12 +43,12 @@ const Resume = () => {
                     Saran Sarvesh A G
                   </h3>
                   <p className="text-xs font-mono text-accent font-semibold tracking-wider uppercase mt-1">
-                    AI Engineer &amp; ML Developer
+                    AI Engineer &amp; Full-Stack Developer
                   </p>
                 </div>
                 <div className="text-right text-[10px] font-mono text-zinc-400 space-y-0.5">
                   <p className="flex items-center gap-1"><FiMail className="w-3.5 h-3.5" /> saransarvesh213@gmail.com</p>
-                  <p className="flex items-center gap-1"><FiMapPin className="w-3.5 h-3.5" /> India</p>
+                  <p className="flex items-center gap-1"><FiMapPin className="w-3.5 h-3.5" /> Erode, TN, India</p>
                 </div>
               </div>
 
@@ -59,10 +59,10 @@ const Resume = () => {
                 </h4>
                 <div>
                   <p className="text-sm font-bold text-zinc-900 dark:text-zinc-100">
-                    Bachelor of Engineering / Technology
+                    B.Sc. Computer Technology (UG Information Systems)
                   </p>
                   <p className="text-xs text-zinc-500 dark:text-zinc-400">
-                    CGPA: 8.44/10 | Coursework: ML, Deep Learning, CV
+                    CGPA: 7.78/10 | Coursework: ML, Computer Vision, MERN, IoT
                   </p>
                 </div>
               </div>
@@ -75,11 +75,11 @@ const Resume = () => {
                 <div className="space-y-2">
                   <div>
                     <div className="flex justify-between text-sm font-bold text-zinc-900 dark:text-zinc-100">
-                      <span>AI Trainee &amp; ML Developer</span>
-                      <span className="font-mono text-xs text-zinc-400">2024 - Pres.</span>
+                      <span>AI &amp; Automation Trainee / Intern</span>
+                      <span className="font-mono text-xs text-zinc-400">2025 - Pres.</span>
                     </div>
                     <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-1 leading-relaxed">
-                      Deployed vehicle inspection models (TensorRT 94.2% mAP), NLP trial matchers (Gemini API 78% reduction), and acoustic classification sirens (96.8% mAP).
+                      Deployed underbody inspection vision pipelines (94.2% mAP), environmental poultry controllers, blockchain facial-voting portals, and MERN admin dashboards.
                     </p>
                   </div>
                 </div>
@@ -91,7 +91,7 @@ const Resume = () => {
                   Skills Snapshot
                 </h4>
                 <div className="flex flex-wrap gap-1.5">
-                  {['Python', 'PyTorch', 'TensorRT', 'YOLO', 'OpenCV', 'FastAPI', 'React'].map((s) => (
+                  {['Python', 'React.js', 'Node.js', 'OpenCV', 'YOLO', 'ESP32', 'MySQL'].map((s) => (
                     <span key={s} className="text-[10px] font-mono px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 border border-zinc-200/40 dark:border-zinc-800/40">
                       {s}
                     </span>

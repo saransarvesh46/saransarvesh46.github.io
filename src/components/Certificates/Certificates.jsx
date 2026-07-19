@@ -3,25 +3,32 @@ import { FiAward, FiExternalLink } from 'react-icons/fi';
 
 const certificates = [
   {
-    title: 'Oracle Certified Associate, Java Programmer',
-    organization: 'Oracle',
-    date: 'March 2023',
-    credentialId: 'OCA-JP-88741',
-    link: 'https://education.oracle.com'
+    title: 'Design and Development of Mobile Bots',
+    organization: 'Kongu Engineering College',
+    date: 'June 2024',
+    credentialId: 'BOTS-DEV-2024',
+    link: 'https://www.kongu.ac.in/'
   },
   {
-    title: 'Deep Learning Specialization',
-    organization: 'DeepLearning.AI',
-    date: 'November 2023',
-    credentialId: 'DL-SPEC-98242',
-    link: 'https://coursera.org/verify/specialization/deep-learning'
+    title: 'Edge Computing',
+    organization: 'NPTEL',
+    date: 'October 2024',
+    credentialId: 'NPTEL-EC-88741',
+    link: 'https://nptel.ac.in/'
   },
   {
-    title: 'NVIDIA DLI: Fundamentals of Deep Learning',
-    organization: 'NVIDIA Deep Learning Institute',
-    date: 'January 2024',
-    credentialId: 'NVIDIA-DLI-92812',
-    link: 'https://www.nvidia.com/en-us/training/'
+    title: 'Cyber Security and Privacy',
+    organization: 'NPTEL',
+    date: 'April 2024',
+    credentialId: 'NPTEL-CS-98242',
+    link: 'https://nptel.ac.in/'
+  },
+  {
+    title: 'Power BI',
+    organization: 'ICT Academy',
+    date: 'May 2025',
+    credentialId: 'ICTA-PBI-92812',
+    link: 'https://www.ictacademy.in/'
   }
 ];
 

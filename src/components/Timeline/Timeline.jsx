@@ -4,44 +4,44 @@ import { FiChevronRight, FiGitPullRequest, FiActivity, FiBriefcase, FiBookOpen }
 
 const timelineEvents = [
   {
-    year: '2020',
+    year: '2023',
     title: 'Secondary Academic Foundation',
     category: 'Education',
     icon: <FiBookOpen className="w-5 h-5" />,
-    short: 'Completed secondary schooling with strong foundations in Mathematics and Sciences.',
-    details: 'Acquired core competencies in physics, calculus, and computing fundamentals, paving the interest path for algorithms and embedded hardware prototyping.'
+    short: 'Completed Higher Secondary schooling with a focus on Mathematics and Sciences.',
+    details: 'Graduated from Kongu National Matric Hr Sec School with a score of 79%, establishing a strong technical interest in engineering and computational systems.'
   },
   {
-    year: '2021 - 2024',
-    title: 'Undergraduate Engineering Studies',
+    year: '2023 - 2026',
+    title: 'Undergraduate Studies at Kongu',
     category: 'Education',
     icon: <FiBookOpen className="w-5 h-5" />,
-    short: 'Pursued Bachelor of Engineering with focus on machine learning and computational logic.',
-    details: 'Maintained a strong academic record (CGPA: 8.44/10). Completed key coursework in Deep Learning, Data Structures & Algorithms, Systems Programming, and Linear Algebra.'
+    short: 'Pursued B.Sc. in Computer Technology (Information Systems) at Kongu Engineering College.',
+    details: 'Maintained a solid academic record (7.78 CGPA). Focused on computer vision projects, web development, data structures, and microcontroller programming.'
   },
   {
-    year: '2023',
-    title: 'ML Research & Hackathons (Project Expo Winner)',
-    category: 'Achievements',
-    icon: <FiActivity className="w-5 h-5" />,
-    short: 'Won multiple project awards including the Project Expo Winner title.',
-    details: 'Designed autonomous voter checkpoint solutions and emergency priority routing systems. Secured initial project funding (Spark Fund) for embedded engineering prototypes.'
-  },
-  {
-    year: '2024 - Present',
-    title: 'AI Trainee & MLOps Developer',
+    year: '2025',
+    title: 'Web Dev & IoT Internships',
     category: 'Experience',
     icon: <FiBriefcase className="w-5 h-5" />,
-    short: 'Engaging in self-directed model optimizations and MLOps deployments.',
-    details: 'Compiling YOLO and MobileNet edge nodes, optimizing pipelines for low-power NVIDIA Jetson platforms, and integrating FastAPI data backends.'
+    short: 'Gained hands-on experience in MERN stack and smart IoT control systems.',
+    details: 'Completed a Web Developer Internship at Nutz Technovation (React/Node/MySQL) and an IoT Internship at CubeAI Solutions (ESP32 poultry climate control).'
   },
   {
-    year: 'Future Focus',
-    title: 'Edge AI Research & Academic Pathways',
-    category: 'Future Goals',
-    icon: <FiGitPullRequest className="w-5 h-5" />,
-    short: 'Aiming to advance research in hardware-efficient vision architectures.',
-    details: 'Seeking research opportunities at world-class universities to specialize in real-time tracking pipelines, vision transformers, and autonomous vehicle vision systems.'
+    year: '2026 - Present',
+    title: 'Web Developer & AI Trainee at SKM',
+    category: 'Experience',
+    icon: <FiBriefcase className="w-5 h-5" />,
+    short: 'Developed intranet software and deployed industrial Edge AI controllers.',
+    details: 'Began as a Web Developer Intern building intranet portals in Laravel, and progressed to AI & Automation Trainee implementing computer vision Defect/Obstacle Check nodes at SKM Egg Products.'
+  },
+  {
+    year: 'Key Milestones',
+    title: 'SPARK Fund Grant Winner & Awards',
+    category: 'Achievements',
+    icon: <FiActivity className="w-5 h-5" />,
+    short: 'Secured SPARK Fund grant for Automated Underbody inspection.',
+    details: 'Awarded ₹20,000 SPARK Fund for underbody inspection utilizing computer vision, and secured 2nd place in the Website Development Competition.'
   }
 ];
 

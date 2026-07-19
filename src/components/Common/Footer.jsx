@@ -27,7 +27,7 @@ const Footer = ({ scrollToSection }) => {
                 Saran Sarvesh A G
               </div>
               <p className="text-xs font-mono text-zinc-400 dark:text-zinc-500 mt-1">
-                AI Engineer &amp; ML Developer
+                AI Engineer &amp; Full-Stack Developer
               </p>
             </div>
             <p className="text-xs leading-relaxed text-zinc-500 dark:text-zinc-400 font-body">
@@ -70,7 +70,7 @@ const Footer = ({ scrollToSection }) => {
             <div className="flex items-center space-x-2 pt-2">
               {[
                 { icon: <FiGithub className="w-4 h-4" />, href: 'https://github.com/saran887', label: 'GitHub' },
-                { icon: <FiLinkedin className="w-4 h-4" />, href: 'https://linkedin.com/in/saran-sarvesh-a-g-950357285', label: 'LinkedIn' },
+                { icon: <FiLinkedin className="w-4 h-4" />, href: 'https://www.linkedin.com/in/saransarvesh/', label: 'LinkedIn' },
                 { icon: <FiMail className="w-4 h-4" />, href: 'mailto:saransarvesh213@gmail.com', label: 'Email' },
               ].map((link) => (
                 <a

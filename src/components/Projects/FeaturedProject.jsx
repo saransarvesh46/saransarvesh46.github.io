@@ -148,7 +148,7 @@ const FeaturedProject = memo(({ project }) => {
                 <FiCpu className="text-accent w-4 h-4" />
                 <div>
                   <span className="text-[10px] text-zinc-400 block">MODEL DEPLOY:</span>
-                  <span className="text-zinc-800 dark:text-zinc-200 font-semibold">MobileNet SSD (TensorRT)</span>
+                  <span className="text-zinc-800 dark:text-zinc-200 font-semibold">YOLO Object Detection</span>
                 </div>
               </div>
 

@@ -3,12 +3,13 @@ import { FiAward, FiBookOpen } from 'react-icons/fi';
 
 const Education = () => {
   const coursework = [
-    'Deep Learning',
-    'Computer Vision',
     'Machine Learning',
+    'Deep Learning Basics',
+    'Computer Vision',
+    'MERN Stack Development',
+    'Embedded Systems & IoT',
     'Data Structures & Algorithms',
-    'Linear Algebra & Calculus',
-    'Probability & Optimization'
+    'Relational Databases (MySQL)'
   ];
 
   return (
@@ -47,17 +48,22 @@ const Education = () => {
                 </div>
                 <div>
                   <span className="font-mono text-xs font-semibold text-accent block">
-                    Bachelor of Engineering
+                    Bachelor of Science (B.Sc.)
                   </span>
                   <h3 className="text-xl font-bold font-display text-zinc-900 dark:text-zinc-100">
-                    Computer Science / Engineering Track
+                    Computer Technology — UG (Information Systems)
                   </h3>
                 </div>
               </div>
               
-              <p className="text-base text-zinc-600 dark:text-zinc-400 font-medium">
-                Focused on machine learning, embedded controllers, and software system engineering.
-              </p>
+              <div className="text-base text-zinc-600 dark:text-zinc-400 font-medium space-y-3 font-body">
+                <p>
+                  Studied at <strong>Kongu Engineering College</strong> (Perundurai, Erode). Focused on real-world AI applications, web application architectures, embedded systems programming, and database administration.
+                </p>
+                <p className="text-sm">
+                  <strong>Academic Projects:</strong> Automated Vehicle Underbody Monitoring System, IoT Poultry Farm Automation System, Blockchain Smart Voting.
+                </p>
+              </div>
               
               {/* Coursework list */}
               <div className="pt-4 space-y-2">
@@ -76,11 +82,11 @@ const Education = () => {
             
             <div className="pt-6 border-t border-zinc-100 dark:border-zinc-800/60 mt-6 flex items-center justify-between text-sm text-zinc-500 dark:text-zinc-400">
               <span>Saran Sarvesh A G</span>
-              <span className="font-mono font-semibold text-accent">Graduated / Trainee Track</span>
+              <span className="font-mono font-semibold text-accent">Batch of 2023 - 2026</span>
             </div>
           </motion.div>
 
-          {/* CGPA card */}
+          {/* CGPA & Schooling card */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -92,9 +98,9 @@ const Education = () => {
               <span className="text-xs uppercase font-mono tracking-wider text-zinc-400 block font-bold">
                 Academic Standing
               </span>
-              <div className="relative py-4">
+              <div className="relative py-2">
                 <span className="text-6xl font-display font-bold text-zinc-900 dark:text-zinc-100">
-                  8.44
+                  7.78
                 </span>
                 <span className="text-base font-mono text-zinc-400 block mt-1">
                   / 10 CGPA
@@ -102,11 +108,13 @@ const Education = () => {
               </div>
             </div>
             
-            <div className="p-4 rounded-xl bg-zinc-50 dark:bg-zinc-800/30 border border-zinc-200/30 dark:border-zinc-800/30 flex items-center gap-3 text-left">
-              <FiAward className="text-accent w-8 h-8 flex-shrink-0" />
-              <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed font-body">
-                Placed in the top tier of the graduating engineering cohort.
-              </p>
+            <div className="p-4 rounded-xl bg-zinc-50 dark:bg-zinc-800/30 border border-zinc-200/30 dark:border-zinc-800/30 text-left space-y-2 mt-4">
+              <span className="text-[10px] font-mono text-accent font-bold uppercase tracking-wider block">Higher Secondary</span>
+              <h4 className="text-sm font-bold text-zinc-900 dark:text-zinc-100">Kongu National Matric Hr Sec School</h4>
+              <div className="flex justify-between items-center text-xs text-zinc-500 dark:text-zinc-400">
+                <span>Score: <strong>79%</strong></span>
+                <span>Year: <strong>2023</strong></span>
+              </div>
             </div>
           </motion.div>
 

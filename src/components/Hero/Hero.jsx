@@ -22,7 +22,7 @@ const Hero = ({ scrollToSection }) => {
     show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
   };
 
-  const nameWords = ['Saran', 'Sarvesh'];
+  const nameWords = ['Saran', 'Sarvesh', 'A', 'G'];
   const resumeUrl = 'https://drive.google.com/file/d/1e0EsSP_gfRlEdM7a2bbGbucYXNP8Jjww/view?usp=sharing';
 
   return (
@@ -101,15 +101,14 @@ const Hero = ({ scrollToSection }) => {
               variants={item}
               className="text-xl sm:text-2xl font-semibold text-zinc-800 dark:text-zinc-300 font-display"
             >
-              AI Engineer | Computer Vision Engineer | Machine Learning Engineer
+              AI Engineer &amp; Full-Stack Developer
             </motion.h2>
 
             <motion.p
               variants={item}
               className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed font-body"
             >
-              I compile, optimize, and deploy real-time deep learning pipelines and computer vision nodes onto Edge hardware. 
-              Specializing in high-throughput object detection and model optimizations, I bridge complex theoretical architectures into robust production integrations.
+              I specialize in building scalable MERN stack web applications, Python-based AI integrations, and real-time computer vision models. From edge-based object detection pipelines to industrial IoT automation and embedded systems, I develop robust solutions that bridge hardware and web technologies.
             </motion.p>
 
             {/* Metadata Info Row */}
@@ -119,15 +118,15 @@ const Hero = ({ scrollToSection }) => {
             >
               <div className="space-y-1">
                 <span className="flex items-center gap-1.5 text-zinc-400 font-semibold"><FiMapPin className="text-accent" /> Location</span>
-                <span className="text-zinc-800 dark:text-zinc-200">India</span>
+                <span className="text-zinc-800 dark:text-zinc-200">Erode, Tamil Nadu, India</span>
               </div>
               <div className="space-y-1">
                 <span className="flex items-center gap-1.5 text-zinc-400 font-semibold"><FiBriefcase className="text-accent" /> Experience</span>
-                <span className="text-zinc-800 dark:text-zinc-200">AI Trainee / &lt;1 Year</span>
+                <span className="text-zinc-800 dark:text-zinc-200">Trainee / Intern</span>
               </div>
               <div className="space-y-1 col-span-2 sm:col-span-1">
                 <span className="flex items-center gap-1.5 text-zinc-400 font-semibold"><FiBookOpen className="text-accent" /> Interests</span>
-                <span className="text-zinc-800 dark:text-zinc-200">Edge AI, Tracking, MOT</span>
+                <span className="text-zinc-800 dark:text-zinc-200">Edge AI, IoT, MERN Stack</span>
               </div>
             </motion.div>
 
@@ -163,7 +162,7 @@ const Hero = ({ scrollToSection }) => {
                   <FiGithub className="w-5 h-5" />
                 </a>
                 <a
-                  href="https://linkedin.com/in/saran-sarvesh-a-g-950357285"
+                  href="https://www.linkedin.com/in/saransarvesh/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3 rounded-xl border border-zinc-200 dark:border-zinc-800 text-zinc-500 hover:text-accent dark:text-zinc-400 dark:hover:text-accent hover:bg-white dark:hover:bg-zinc-900 transition-all duration-300"
