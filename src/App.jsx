@@ -8,10 +8,11 @@ import Footer from './components/Common/Footer';
 import ScrollProgress from './components/Common/ScrollProgress';
 import NeuralGrid from './components/Common/NeuralGrid';
 import { useLenis } from './hooks/useLenis';
+import { safeLazy } from './utils/safeLazy';
 
-const Contact = lazy(() => import('./components/Contact/Contact'));
-const Projects = lazy(() => import('./components/Projects/Projects'));
-const Skills = lazy(() => import('./components/Skills/Skills'));
+const Contact = safeLazy(() => import('./components/Contact/Contact'));
+const Projects = safeLazy(() => import('./components/Projects/Projects'));
+const Skills = safeLazy(() => import('./components/Skills/Skills'));
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -22,8 +23,25 @@ class ErrorBoundary extends React.Component {
     return { hasError: true, error };
   }
   // eslint-disable-next-line no-unused-vars
-  componentDidCatch(_error, _errorInfo) {
-    // Log error to reporting service
+  componentDidCatch(error, _errorInfo) {
+    const errorMessage = error?.message || '';
+    const isChunkLoadFailed =
+      errorMessage.includes('Failed to fetch dynamically imported module') ||
+      errorMessage.includes('error loading dynamically imported module') ||
+      errorMessage.includes('ChunkLoadError') ||
+      errorMessage.includes('Dynamic import') ||
+      error instanceof TypeError;
+
+    if (isChunkLoadFailed) {
+      const reloadKey = 'chunk-failed-reload';
+      const lastReload = sessionStorage.getItem(reloadKey);
+      const now = Date.now();
+
+      if (!lastReload || now - parseInt(lastReload, 10) > 10000) {
+        sessionStorage.setItem(reloadKey, now.toString());
+        window.location.reload();
+      }
+    }
   }
   render() {
     if (this.state.hasError) {
