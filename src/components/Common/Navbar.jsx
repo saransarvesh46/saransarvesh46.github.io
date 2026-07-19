@@ -10,8 +10,11 @@ import { rafThrottle } from '../../utils/throttle';
 
 const navItems = [
   { label: 'Home', href: '#home' },
+  { label: 'About', href: '#about' },
+  { label: 'Experience', href: '#experience' },
   { label: 'Skills', href: '#skills' },
   { label: 'Projects', href: '#projects' },
+  { label: 'Research', href: '#research' },
   { label: 'Contact', href: '#contact' },
 ];
 
@@ -32,7 +35,7 @@ const Navbar = ({ scrollToSection }) => {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
-      const sections = ['home', 'skills', 'projects', 'contact'];
+      const sections = ['home', 'about', 'experience', 'skills', 'projects', 'research', 'contact'];
       const scrollPosition = window.scrollY + 100;
 
       for (let i = 0; i < sections.length; i++) {

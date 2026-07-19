@@ -8,7 +8,7 @@ import { rafThrottle } from '../../utils/throttle';
    "Active" micro-label with pulsing indicator dot.
    ──────────────────────────────────────────────────────────────────── */
 
-const sections = ['home', 'skills', 'projects', 'contact'];
+const sections = ['home', 'about', 'experience', 'skills', 'projects', 'research', 'contact'];
 
 const ScrollProgress = () => {
   const { scrollYProgress } = useScroll();

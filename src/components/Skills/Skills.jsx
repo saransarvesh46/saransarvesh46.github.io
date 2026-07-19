@@ -1,86 +1,75 @@
-// eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
 import { memo, useRef, useCallback } from 'react';
 import {
-  FaPython, FaNodeJs, FaDatabase, FaGithub, FaGit, FaAndroid, FaCode, FaChartBar, FaReact, FaHtml5
+  FaPython, FaNodeJs, FaDatabase, FaGithub, FaGit, FaAndroid, FaCode, FaReact
 } from 'react-icons/fa';
 import {
   SiMongodb, SiMysql, SiFlask, SiFastapi, SiTensorflow,
   SiOpencv, SiPytorch, SiDocker, SiMediapipe, SiArduino, SiScikitlearn, SiTailwindcss
 } from 'react-icons/si';
 
-/* ── Skills — Industrial cards with mouse tilt + spotlight ───────────
-   Grid of skill category cards with perspective tilt on mouse move.
-   Staggered scroll-triggered reveals. Micro-labels and accent glow.
-   ──────────────────────────────────────────────────────────────────── */
-
 const skillsByCategory = [
   {
-    category: 'AI & Deep Learning Systems',
+    category: 'Languages & Core Systems',
     skills: [
-      { name: 'PyTorch', level: 90, icon: <SiPytorch className="w-6 h-6" /> },
-      { name: 'TensorFlow', level: 85, icon: <SiTensorflow className="w-6 h-6" /> },
-      { name: 'Computer Vision (OpenCV)', level: 90, icon: <SiOpencv className="w-6 h-6" /> },
-      { name: 'MediaPipe & Tracking', level: 85, icon: <SiMediapipe className="w-6 h-6" /> },
-      { name: 'Python Programming', level: 95, icon: <FaPython className="w-6 h-6" /> },
+      { name: 'Python', level: 95, icon: <FaPython className="w-5 h-5" /> },
+      { name: 'C++', level: 75, icon: <FaCode className="w-5 h-5" /> },
+      { name: 'Java Programming', level: 80, icon: <FaCode className="w-5 h-5" /> },
+      { name: 'JavaScript (ES6+)', level: 80, icon: <FaCode className="w-5 h-5" /> },
     ]
   },
   {
-    category: 'Machine Learning & MLOps',
+    category: 'AI, Deep Learning & CV',
     skills: [
-      { name: 'Scikit-Learn', level: 85, icon: <SiScikitlearn className="w-6 h-6" /> },
-      { name: 'TensorFlow Lite (Edge)', level: 80, icon: <SiTensorflow className="w-6 h-6" /> },
-      { name: 'Docker Containerization', level: 75, icon: <SiDocker className="w-6 h-6" /> },
-      { name: 'Data Visualization', level: 85, icon: <FaChartBar className="w-6 h-6" /> },
-      { name: 'Git & Version Control', level: 90, icon: <FaGit className="w-6 h-6" /> },
+      { name: 'PyTorch', level: 90, icon: <SiPytorch className="w-5 h-5" /> },
+      { name: 'TensorFlow / Lite', level: 85, icon: <SiTensorflow className="w-5 h-5" /> },
+      { name: 'OpenCV (Vision)', level: 90, icon: <SiOpencv className="w-5 h-5" /> },
+      { name: 'MediaPipe & Tracking', level: 85, icon: <SiMediapipe className="w-5 h-5" /> },
     ]
   },
   {
-    category: 'Full Stack Development',
+    category: 'APIs & Full-Stack Systems',
     skills: [
-      { name: 'React Frontend', level: 85, icon: <FaReact className="w-6 h-6" /> },
-      { name: 'Tailwind CSS / HTML5', level: 90, icon: <SiTailwindcss className="w-6 h-6" /> },
-      { name: 'Node.js Systems', level: 80, icon: <FaNodeJs className="w-6 h-6" /> },
-      { name: 'FastAPI / Flask APIs', level: 85, icon: <SiFastapi className="w-6 h-6" /> },
-      { name: 'MongoDB & MySQL', level: 80, icon: <SiMongodb className="w-6 h-6" /> },
+      { name: 'FastAPI / Flask', level: 85, icon: <SiFastapi className="w-5 h-5" /> },
+      { name: 'React Frontend', level: 85, icon: <FaReact className="w-5 h-5" /> },
+      { name: 'Node.js Systems', level: 80, icon: <FaNodeJs className="w-5 h-5" /> },
+      { name: 'MongoDB & SQL', level: 80, icon: <SiMongodb className="w-5 h-5" /> },
     ]
   },
   {
-    category: 'IoT & Embedded Systems',
+    category: 'Embedded & Infrastructure',
     skills: [
-      { name: 'Arduino Prototyping', level: 90, icon: <SiArduino className="w-6 h-6" /> },
-      { name: 'IoT Systems Design', level: 80, icon: <FaDatabase className="w-6 h-6" /> },
-      { name: 'Android Studio Integration', level: 75, icon: <FaAndroid className="w-6 h-6" /> },
-      { name: 'Hardware Interface', level: 85, icon: <FaCode className="w-6 h-6" /> },
-      { name: 'GitHub Collaboration', level: 90, icon: <FaGithub className="w-6 h-6" /> },
+      { name: 'Arduino Prototyping', level: 90, icon: <SiArduino className="w-5 h-5" /> },
+      { name: 'ESP32 / Hardware', level: 85, icon: <FaDatabase className="w-5 h-5" /> },
+      { name: 'Docker Containerization', level: 75, icon: <SiDocker className="w-5 h-5" /> },
+      { name: 'Git / GitHub Devops', level: 90, icon: <FaGithub className="w-5 h-5" /> },
     ]
   }
 ];
 
-const tools = [
-  { name: 'GitHub', icon: <FaGithub className="w-8 h-8" /> },
-  { name: 'Git', icon: <FaGit className="w-8 h-8" /> },
-  { name: 'VS Code', icon: <FaCode className="w-8 h-8" /> },
-  { name: 'Android Studio', icon: <FaAndroid className="w-8 h-8" /> },
-  { name: 'Data Visualization', icon: <FaChartBar className="w-8 h-8" /> },
-];
-
-/* ── Skill row item with accent hover ── */
-const SkillItem = memo(({ name, icon }) => (
-  <motion.div
-    className="group/item flex items-center gap-3 p-3 rounded-lg border border-transparent hover:border-zinc-200/60 hover:bg-zinc-50/50 transition-all duration-200 dark:hover:border-zinc-800 dark:hover:bg-zinc-800/30"
-    whileHover={{ x: 4 }}
-    transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-  >
-    <span className="flex items-center justify-center w-8 h-8 text-accent group-hover/item:drop-shadow-[0_0_8px_rgba(14,165,233,0.3)] transition-all duration-300">{icon}</span>
-    <span className="text-zinc-600 font-medium text-sm flex-1 dark:text-zinc-400">{name}</span>
-    <motion.div
-      className="h-[2px] w-0 group-hover/item:w-5 bg-accent rounded-full transition-all duration-300"
-    />
-  </motion.div>
+const SkillItem = memo(({ name, icon, level }) => (
+  <div className="space-y-2 p-3.5 rounded-xl bg-zinc-50/50 dark:bg-zinc-800/10 border border-zinc-200/30 dark:border-zinc-800/40 hover:border-accent/20 transition-all duration-300">
+    <div className="flex items-center justify-between">
+      <div className="flex items-center gap-2.5 text-zinc-700 dark:text-zinc-300">
+        <span className="text-accent">{icon}</span>
+        <span className="text-sm font-semibold font-body">{name}</span>
+      </div>
+      <span className="text-xs font-mono text-accent font-semibold">{level}%</span>
+    </div>
+    
+    {/* Animated progress bar indicator */}
+    <div className="h-1.5 w-full bg-zinc-200 dark:bg-zinc-800 rounded-full overflow-hidden">
+      <motion.div
+        initial={{ width: 0 }}
+        whileInView={{ width: `${level}%` }}
+        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+        viewport={{ once: true }}
+        className="h-full bg-gradient-to-r from-accent to-cyan-400 rounded-full"
+      />
+    </div>
+  </div>
 ));
 
-/* ── Skill card with mouse-follow tilt + spotlight ── */
 const SkillCard = memo(({ category, index }) => {
   const cardRef = useRef(null);
 
@@ -91,8 +80,8 @@ const SkillCard = memo(({ category, index }) => {
     const y = e.clientY - rect.top;
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
-    const tiltX = ((y - centerY) / centerY) * -4;
-    const tiltY = ((x - centerX) / centerX) * 4;
+    const tiltX = ((y - centerY) / centerY) * -3;
+    const tiltY = ((x - centerX) / centerX) * 3;
 
     cardRef.current.style.setProperty('--mouse-x', `${x}px`);
     cardRef.current.style.setProperty('--mouse-y', `${y}px`);
@@ -109,43 +98,38 @@ const SkillCard = memo(({ category, index }) => {
   return (
     <motion.div
       ref={cardRef}
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
       viewport={{ once: true, margin: "-60px" }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{
-        transform: 'perspective(800px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg))',
+        transform: 'perspective(1000px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg))',
         transition: 'transform 0.3s ease-out',
       }}
-      className={`group relative overflow-hidden rounded-2xl p-7
-        bg-white/80 backdrop-blur-xl border border-zinc-200/60
-        hover:border-accent/20 hover:shadow-card-hover
-        transition-all duration-300 gradient-border
-        dark:bg-[#0c0c14]/80 dark:border-zinc-800/60 dark:hover:border-accent/20
-        ${index % 2 !== 0 ? 'md:translate-y-6' : ''}`}
+      className="group relative overflow-hidden rounded-2xl p-7 bg-white/90 dark:bg-[#0c0c14]/90 border border-zinc-200/60 dark:border-zinc-800/60 shadow-sm hover:border-accent/20 transition-all duration-300"
     >
-      {/* Cursor spotlight effect — accent tinted */}
+      {/* Spotlight cursor effect */}
       <div
         className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
         style={{
-          background: 'radial-gradient(400px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(14, 165, 233, 0.04), transparent 40%)',
+          background: 'radial-gradient(350px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(14, 165, 233, 0.04), transparent 40%)',
         }}
       />
-      {/* Micro-label */}
-      <span className="micro-label text-zinc-500 dark:text-zinc-400 mb-4 block relative z-10">Tech Stack</span>
-
-      <h3 className="text-xl font-display font-bold text-zinc-900 mb-5 flex items-center gap-3 dark:text-zinc-100 relative z-10">
-        <span className="text-accent">{category.skills[0].icon}</span>
+      
+      <span className="micro-label text-zinc-400 dark:text-zinc-500 mb-2.5 block">AI Skill Grid</span>
+      <h3 className="text-xl font-display font-bold text-zinc-900 dark:text-zinc-100 mb-6 pb-3 border-b border-zinc-100 dark:border-zinc-800/60">
         {category.category}
       </h3>
-      <div className="space-y-1 relative z-10">
+      
+      <div className="space-y-3 relative z-10">
         {category.skills.map((skill, idx) => (
           <SkillItem
             key={`${skill.name}-${idx}`}
             name={skill.name}
             icon={skill.icon}
+            level={skill.level}
           />
         ))}
       </div>
@@ -155,83 +139,30 @@ const SkillCard = memo(({ category, index }) => {
 
 const Skills = () => {
   return (
-    <section id="skills" className="py-28 relative overflow-hidden bg-zinc-100 dark:bg-[#030305]">
-      {/* Subtle ambient gradients */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-bl from-accent/[0.02] to-transparent" />
-        <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-gradient-to-tr from-zinc-200/20 to-transparent dark:from-zinc-900/30" />
-      </div>
-
-      <div className="container mx-auto px-6 max-w-7xl relative z-10">
-        {/* Section heading */}
+    <section id="skills" className="py-28 relative overflow-hidden bg-zinc-50 dark:bg-[#030305] border-t border-zinc-200/40 dark:border-zinc-800/20">
+      <div className="container mx-auto px-6 max-w-5xl relative z-10">
+        
+        {/* Section Heading */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true }}
           className="mb-16 max-w-2xl"
         >
-          <span className="micro-label text-accent mb-4 block">Machine Learning, Deep Learning & CV Tech Stack</span>
-          <h2 className="text-5xl md:text-6xl font-display font-bold tracking-[-0.03em] text-zinc-900 mb-6 dark:text-zinc-100">
-            ML & AI Engineering Tech Stack
+          <span className="micro-label text-accent mb-4 block">Competencies</span>
+          <h2 className="text-4xl md:text-5xl font-display font-bold tracking-[-0.02em] text-zinc-900 dark:text-zinc-100 mb-6">
+            Skill Proficiency Matrix
           </h2>
-
-          <motion.div
-            className="h-[2px] w-[60px] bg-accent rounded-full mb-8 origin-left"
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            viewport={{ once: true }}
-          />
+          <div className="h-[2px] w-[50px] bg-accent rounded-full mb-6" />
         </motion.div>
 
-        {/* Skill cards — 2-col with offset for visual rhythm */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Skills Cards Grid */}
+        <div className="grid gap-6 md:grid-cols-2">
           {skillsByCategory.map((category, index) => (
             <SkillCard key={category.category} category={category} index={index} />
           ))}
         </div>
-
-        {/* Tools section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          viewport={{ once: true, margin: "-60px" }}
-          className="mt-14 bg-white/60 backdrop-blur-xl p-8 rounded-2xl
-            border border-zinc-200/60
-            dark:bg-[#0c0c14]/60 dark:border-zinc-800/40"
-        >
-          <div className="text-center mb-8">
-            <span className="micro-label text-accent mb-2 block">Workflow</span>
-            <h3 className="text-2xl font-display font-bold text-zinc-900 mb-2 dark:text-zinc-100">
-              Tools & Technologies
-            </h3>
-            <p className="text-zinc-600 dark:text-zinc-400">
-              Development tools I use daily
-            </p>
-          </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-            {tools.map((tool, index) => (
-              <motion.div
-                key={tool.name}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                whileHover={{ y: -4, scale: 1.05 }}
-                transition={{ duration: 0.3, delay: index * 0.05 }}
-                viewport={{ once: true, margin: "-40px" }}
-                className="flex flex-col items-center p-4 rounded-xl border border-zinc-200/60 bg-zinc-50/50 hover:bg-white hover:border-accent/20 hover:shadow-[0_0_20px_rgba(14,165,233,0.06)] transition-all duration-300 dark:bg-zinc-800/30 dark:border-zinc-800/60 dark:hover:border-accent/20 dark:hover:bg-zinc-800/50 gradient-border"
-              >
-                <div className="text-accent mb-2">
-                  {tool.icon}
-                </div>
-                <span className="text-sm font-medium text-zinc-600 text-center dark:text-zinc-400">
-                  {tool.name}
-                </span>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
       </div>
     </section>
   );

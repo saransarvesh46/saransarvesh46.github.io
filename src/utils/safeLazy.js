@@ -1,45 +1,75 @@
 import { lazy } from 'react';
 
 /**
- * A robust wrapper around React.lazy to handle dynamic import loading failures gracefully.
- * When a dynamic chunk fails to load (typically due to a redeployment that removes older hashed chunks),
- * this wrapper catches the error and triggers a page reload to fetch the latest index.html and assets.
+ * Enhanced dynamic import wrapper with retries, offline handling, and version mismatch recovery.
+ * Catches dynamic module loading errors (usually caused by redeployments which delete old chunks)
+ * and attempts recovery before performing a clean page reload.
  * 
- * @param {Function} importFunc - The function returning the dynamic import promise, e.g. () => import('./Component')
- * @returns {React.Component} A lazy-loaded component wrapper
+ * @param {Function} importFunc - Function returning the dynamic import promise, e.g. () => import('./Comp')
+ * @param {Object} options - Retry configurations
+ * @returns {React.Component} Lazy component
  */
-export function safeLazy(importFunc) {
+export function safeLazy(importFunc, options = {}) {
+  const { retries = 2, delay = 1000 } = options;
+
   return lazy(async () => {
-    try {
-      return await importFunc();
-    } catch (error) {
-      // Standard dynamic import failures result in a TypeError or specific chunk load errors
-      const errorMessage = error?.message || '';
-      const isChunkLoadFailed =
-        errorMessage.includes('Failed to fetch dynamically imported module') ||
-        errorMessage.includes('error loading dynamically imported module') ||
-        errorMessage.includes('ChunkLoadError') ||
-        errorMessage.includes('Dynamic import') ||
-        error instanceof TypeError;
+    let attempt = 0;
 
-      if (isChunkLoadFailed) {
-        const reloadKey = 'chunk-failed-reload';
-        const lastReload = sessionStorage.getItem(reloadKey);
-        const now = Date.now();
+    const executeImport = async () => {
+      try {
+        return await importFunc();
+      } catch (error) {
+        attempt++;
+        const errorMessage = error?.message || '';
+        const isChunkLoadFailed =
+          errorMessage.includes('Failed to fetch') ||
+          errorMessage.includes('dynamically imported') ||
+          errorMessage.includes('ChunkLoadError') ||
+          errorMessage.includes('Dynamic import') ||
+          error instanceof TypeError;
 
-        // Prevent infinite reloads (e.g. if the user has no internet access or the server is down)
-        // We only trigger auto-reload if there has not been a reload in the past 10 seconds.
-        if (!lastReload || now - parseInt(lastReload, 10) > 10000) {
-          sessionStorage.setItem(reloadKey, now.toString());
-          window.location.reload();
-          
-          // Return a pending promise to prevent rendering a broken state in the UI while reloading
-          return new Promise(() => {});
+        if (isChunkLoadFailed) {
+          // If the user's browser is offline, wait for reconnection
+          if (!navigator.onLine) {
+            return new Promise((resolve, reject) => {
+              const handleOnline = () => {
+                window.removeEventListener('online', handleOnline);
+                resolve(executeImport());
+              };
+              window.addEventListener('online', handleOnline);
+              
+              // Set a timeout of 15 seconds to prevent hanging indefinitely
+              setTimeout(() => {
+                window.removeEventListener('online', handleOnline);
+                reject(error);
+              }, 15000);
+            });
+          }
+
+          // Retry logic with backoff delay
+          if (attempt <= retries) {
+            await new Promise((resolve) => setTimeout(resolve, delay * attempt));
+            return executeImport();
+          }
+
+          // Recovery via reloading with cache buster query parameter
+          const reloadKey = 'app-chunk-failure-reload';
+          const lastReload = sessionStorage.getItem(reloadKey);
+          const now = Date.now();
+
+          // Restrict reloading loop to once every 15 seconds
+          if (!lastReload || now - parseInt(lastReload, 10) > 15000) {
+            sessionStorage.setItem(reloadKey, now.toString());
+            const url = new URL(window.location.href);
+            url.searchParams.set('v', now.toString());
+            window.location.replace(url.toString());
+            return new Promise(() => {}); // Keep in pending state while reloading
+          }
         }
+        throw error;
       }
-      
-      // If it is another kind of error, throw it so the app's regular ErrorBoundary can handle it
-      throw error;
-    }
+    };
+
+    return executeImport();
   });
 }

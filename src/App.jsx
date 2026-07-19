@@ -1,7 +1,6 @@
-import { useState, useEffect, lazy, Suspense } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import React from 'react';
-// eslint-disable-next-line no-unused-vars
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import Hero from './components/Hero/Hero';
 import Navbar from './components/Common/Navbar';
 import Footer from './components/Common/Footer';
@@ -10,9 +9,18 @@ import NeuralGrid from './components/Common/NeuralGrid';
 import { useLenis } from './hooks/useLenis';
 import { safeLazy } from './utils/safeLazy';
 
-const Contact = safeLazy(() => import('./components/Contact/Contact'));
-const Projects = safeLazy(() => import('./components/Projects/Projects'));
+// Lazy loading all components dynamically using safeLazy
+const About = safeLazy(() => import('./components/About/About'));
+const Experience = safeLazy(() => import('./components/Experience/Experience'));
 const Skills = safeLazy(() => import('./components/Skills/Skills'));
+const Projects = safeLazy(() => import('./components/Projects/Projects'));
+const Research = safeLazy(() => import('./components/Research/Research'));
+const Timeline = safeLazy(() => import('./components/Timeline/Timeline'));
+const Resume = safeLazy(() => import('./components/Resume/Resume'));
+const Education = safeLazy(() => import('./components/Education/Education'));
+const Certificates = safeLazy(() => import('./components/Certificates/Certificates'));
+const Achievements = safeLazy(() => import('./components/Achievements/Achievements'));
+const Contact = safeLazy(() => import('./components/Contact/Contact'));
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -22,12 +30,11 @@ class ErrorBoundary extends React.Component {
   static getDerivedStateFromError(error) {
     return { hasError: true, error };
   }
-  // eslint-disable-next-line no-unused-vars
   componentDidCatch(error, _errorInfo) {
     const errorMessage = error?.message || '';
     const isChunkLoadFailed =
-      errorMessage.includes('Failed to fetch dynamically imported module') ||
-      errorMessage.includes('error loading dynamically imported module') ||
+      errorMessage.includes('Failed to fetch') ||
+      errorMessage.includes('dynamically imported') ||
       errorMessage.includes('ChunkLoadError') ||
       errorMessage.includes('Dynamic import') ||
       error instanceof TypeError;
@@ -47,10 +54,10 @@ class ErrorBoundary extends React.Component {
     if (this.state.hasError) {
       return (
         <div className="flex items-center justify-center min-h-screen bg-zinc-100 dark:bg-[#030305] text-zinc-900 dark:text-zinc-100">
-          <div className="text-center">
-            <h2 className="text-2xl font-display font-bold mb-4">Something went wrong.</h2>
-            <pre className="bg-zinc-200 dark:bg-zinc-900 p-4 rounded-xl text-sm">{this.state.error && this.state.error.toString()}</pre>
-            <button className="mt-4 px-6 py-2.5 bg-accent text-white rounded-xl font-semibold hover:bg-accent-hover transition-colors" onClick={() => window.location.reload()}>Reload</button>
+          <div className="text-center p-6">
+            <h2 className="text-2xl font-display font-bold mb-4">Something went wrong loading this component.</h2>
+            <pre className="bg-zinc-200 dark:bg-zinc-900 p-4 rounded-xl text-sm mb-4 max-w-lg overflow-x-auto mx-auto">{this.state.error && this.state.error.toString()}</pre>
+            <button className="px-6 py-2.5 bg-accent text-white rounded-xl font-semibold hover:bg-accent-hover transition-colors" onClick={() => window.location.reload()}>Reload Page</button>
           </div>
         </div>
       );
@@ -64,7 +71,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 1000);
+    const timer = setTimeout(() => setIsLoading(false), 800);
     return () => clearTimeout(timer);
   }, []);
 
@@ -77,30 +84,16 @@ function App() {
     }
   };
 
-  /* ── Loading Screen — industrial with cyan accent ── */
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-zinc-100 dark:bg-[#030305]">
-        <motion.div
-          className="flex flex-col items-center gap-5"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.4 }}
-        >
+        <div className="flex flex-col items-center gap-5">
           <div className="relative">
-            <motion.div
-              className="absolute inset-[-8px] rounded-full bg-accent/15 blur-xl"
-              animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3] }}
-              transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
-            />
-            <motion.div
-              className="w-12 h-12 border-2 border-accent border-t-transparent rounded-full"
-              animate={{ rotate: 360 }}
-              transition={{ duration: 0.8, repeat: Infinity, ease: 'linear' }}
-            />
+            <div className="absolute inset-[-8px] rounded-full bg-accent/15 blur-xl animate-pulse" />
+            <div className="w-12 h-12 border-2 border-accent border-t-transparent rounded-full animate-spin" />
           </div>
-          <span className="micro-label text-zinc-500 dark:text-zinc-600">Initializing</span>
-        </motion.div>
+          <span className="micro-label text-zinc-500 dark:text-zinc-600">Initializing Core Systems</span>
+        </div>
       </div>
     );
   }
@@ -108,13 +101,10 @@ function App() {
   return (
     <ErrorBoundary>
       <ScrollProgress />
-      {/* ── Main shell — industrial dark-first palette ── */}
       <div className="min-h-screen bg-zinc-100 dark:bg-[#030305] transition-colors duration-500">
-        {/* Global neural network background */}
         <NeuralGrid />
         <Navbar scrollToSection={scrollToSection} />
         <AnimatePresence mode="wait">
-          {/* No overflow-hidden on main — required for sticky Projects */}
           <main>
             <section id="home">
               <Hero scrollToSection={scrollToSection} />
@@ -125,11 +115,16 @@ function App() {
                 <div className="w-8 h-8 border-2 border-accent border-t-transparent rounded-full animate-spin" />
               </div>
             }>
+              <About />
+              <Experience />
               <Skills />
-
-              {/* Projects — no z-index wrapper, sticky needs clean ancestry */}
               <Projects />
-
+              <Research />
+              <Timeline />
+              <Resume />
+              <Education />
+              <Certificates />
+              <Achievements />
               <Contact />
             </Suspense>
           </main>
